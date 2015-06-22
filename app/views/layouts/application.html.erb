@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TCCSlr</title>
+  <title> SLR Search Engine </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<header class="navbar navbar-default" role="navigation">
+  <div class="navbar-inner">
+    <div class="container">
+      <div id="logo" class="navbar-brand"><%= link_to "SLR Search Engine", root_path %></div>
+    </div>
+  </div>
+</header>
+
+<div id="main_content" class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
