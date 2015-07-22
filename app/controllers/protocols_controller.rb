@@ -14,7 +14,7 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols/new
   def new
-    @protocol = Protocol.new
+    @protocol = current_user.protocols.build
   end
 
   # GET /protocols/1/edit
@@ -24,7 +24,7 @@ class ProtocolsController < ApplicationController
   # POST /protocols
   # POST /protocols.json
   def create
-    @protocol = Protocol.new(protocol_params)
+    @protocol = current_user.protocols.build(protocol_params)
 
     respond_to do |format|
       if @protocol.save

@@ -18,15 +18,17 @@
   <tbody>
     <% @protocols.each do |protocol| %>
       <tr>
-        <td><%= protocol.title %></td>
-        <td><%= protocol.author %></td>
-        <td><%= protocol.background %></td>
-        <td><%= protocol.research_question %></td>
-        <td><%= protocol.strategy %></td>
-        <td><%= protocol.criteria %></td>
-        <td><%= link_to 'Show', protocol %></td>
-        <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
-        <td><%= link_to 'Destroy', protocol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if protocol.user == current_user %>
+            <td><%= protocol.title %></td>
+            <td><%= protocol.author %></td>
+            <td><%= protocol.background %></td>
+            <td><%= protocol.research_question %></td>
+            <td><%= protocol.strategy %></td>
+            <td><%= protocol.criteria %></td>
+            <td><%= link_to 'Show', protocol %></td>
+            <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
+            <td><%= link_to 'Destroy', protocol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
