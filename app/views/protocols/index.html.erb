@@ -1,38 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Protocols</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Background</th>
-      <th>Research question</th>
-      <th>Strategy</th>
-      <th>Criteria</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @protocols.each do |protocol| %>
-      <tr>
-        <% if protocol.user == current_user %>
-            <td><%= protocol.title %></td>
-            <td><%= protocol.author %></td>
-            <td><%= protocol.background %></td>
-            <td><%= protocol.research_question %></td>
-            <td><%= protocol.strategy %></td>
-            <td><%= protocol.criteria %></td>
-            <td><%= link_to 'Show', protocol %></td>
-            <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
-            <td><%= link_to 'Destroy', protocol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+<% @protocols.each do |protocol| %>
+    <% if protocol.user == current_user %>
+        <div class="link row clearfix">
+          <h2>
+            <%= link_to protocol.title, protocol %> <br>
+            <small class="author">Submitted <%= time_ago_in_words(protocol.created_at) %> by <%= protocol.user.email %> </small>
+          </h2>
+         </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<% end %>
