@@ -32,6 +32,12 @@ gem 'bootstrap-sass', '~> 3.3.5'
 # authentication for users
 gem 'devise', '~> 3.5.1'
 
+gem 'bibtex-ruby', '~> 4.0.14'
+
+gem 'crack', '~> 0.4.2'
+
+gem 'mechanize', '~> 2.7.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

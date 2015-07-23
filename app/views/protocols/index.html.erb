@@ -9,39 +9,28 @@
     <% end %>
 <% end %>
 
-<div class="row">
-  <div class="pull-right range-query">
-    <%= form_tag ieees_path, method: :get do %>
-        <%= text_field_tag 'search[string]', @search %>
-        <%= submit_tag 'Search', class: 'btn search-button' %>
-    <% end %>
-  </div>
-</div>
+
+<%= form_for(Reference.new) do |f| %>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"> Search Engine </div>
+            <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12">
 
 
+                    <div class="form-group">
+                      <%= f.label :query %><br>
+                      <%= f.text_field :query, class: "form-control" %>
+                    </div>
 
-<!--<div class="panel panel-primary">-->
-  <!--<div class="panel-heading"> Search Engine </div>-->
-  <!--<div class="panel-body">-->
-    <!--<div class="row">-->
-      <!--<div class="col-lg-12">-->
-        <!--<div class="input-group">-->
-          <!--<input type="text" class="form-control" placeholder="Insira string de busca genérica">-->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <!--<span class="input-group-btn">-->
-            <!--<button class="btn btn-default" type="button">Search!</button>-->
-          <!--</span>-->
-        <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
-      <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
-      <!--<br><br><br>-->
+                    <div class="form-group">
+                      <%= f.submit "Submit", class: "btn btn-primary" %>
+                    </div>
 
-      <!--<div class="col-lg-2">-->
-        <!--<div class="input-group">-->
-          <!--<input type="checkbox" aria-label="..."> IEEExplore <br>-->
-          <!--<input type="checkbox" aria-label="..."> ACM <br>-->
-          <!--<input type="checkbox" aria-label="..."> Springer <br><br>-->
-          <!--<input type="submit" value="Submit">-->
-        <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
-      <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
-    <!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
-  <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
-<!--</div>-->
+
+                  </div>
+                </div>
+            </div>
+    </div>
+<% end %>
