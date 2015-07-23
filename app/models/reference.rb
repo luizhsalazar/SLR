@@ -1,10 +1,9 @@
 class Reference < ActiveRecord::Base
 
   def search_ieee
+
     @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=(' + self.query + ')'
-    @agent = Mechanize.new { |a|
-      a.user_agent_alias = 'Linux Firefox'
-    }
+    @agent = Mechanize.new
 
     results = @agent.get(@search_url)
 
@@ -70,6 +69,15 @@ class Reference < ActiveRecord::Base
         keywordsIndex = keywordsT.to_s
       end
     end
+
+    @ieee = Ieee.new
+
+    @ieee.title = hashed_result["title"]
+    @ieee.abstract = hashed_result["abstract"]
+    @ieee.author = authors
+    @ieee.generic_string = self.query
+
+    @ieee.save!
 
     @logger.debug "Tipo publicação: #{hashed_result["pubtype"]}"
     @logger.debug "Título: #{hashed_result["title"]}"

@@ -26,7 +26,9 @@ class ReferencesController < ApplicationController
   def create
     @reference = Reference.new(reference_params)
 
-    @ieee = @reference.search_ieee
+    #fixme Antes de rotear para a base certa verificar na checkbox qual base marcada
+
+    @reference.search_ieee
 
     respond_to do |format|
       if @reference.save

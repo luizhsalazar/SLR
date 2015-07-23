@@ -7,7 +7,7 @@ class IeeesController < ApplicationController
 
   # Show all references from IEEE library
   def index
-    @ieee = find.all()
+    @ieees = Ieee.all
   end
 
   def new
