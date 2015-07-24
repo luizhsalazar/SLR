@@ -38,19 +38,6 @@ class Reference < ActiveRecord::Base
     hashed_node = Crack::XML.parse(node.to_s)
     hashed_result = hashed_node["document"]
 
-    case hashed_result["pubtype"]
-      when "Books & eBooks"
-        pubtype = :book
-      when "Conference Publications"
-        pubtype = :inproceedings
-      when "Early Access Articles"
-        pubtype = :article
-      when "Journals & Magazines"
-        pubtype = :article
-      else
-        pubtype = :misc
-    end
-
     if hashed_result["authors"] != nil
       # Substitui o ";" por "e" nos autores
       authors = hashed_result["authors"].gsub(";", " e ")
@@ -75,9 +62,15 @@ class Reference < ActiveRecord::Base
     @ieee.title = hashed_result["title"]
     @ieee.abstract = hashed_result["abstract"]
     @ieee.author = authors
+    @ieee.publisher = hashed_result["publisher"]
+    @ieee.pubtype = hashed_result["pubtype"]
+    @ieee.link = hashed_result["pdf"]
+    @ieee.pubtitle = hashed_result["pubtitle"]
     @ieee.generic_string = self.query
 
     @ieee.save!
+
+    # -------------- LOG -----------------------------------------------------------------------
 
     @logger.debug "Tipo publicação: #{hashed_result["pubtype"]}"
     @logger.debug "Título: #{hashed_result["title"]}"
@@ -90,42 +83,7 @@ class Reference < ActiveRecord::Base
 
     @logger.debug "----------------------------------------------------------------------------------"
 
-
-    entry = BibTeX::Entry.new({
-            :bibtex_type => pubtype,
-            :key => hashed_result["arnumber"],
-            :address => hashed_result[""],
-            :abstract => hashed_result["abstract"],
-            :annote => hashed_result[""],
-            :author => authors,
-            :booktitle => hashed_result["pubtitle"],
-            :chapter => hashed_result[""],
-            :crossref => hashed_result[""],
-            :doi => hashed_result["doi"],
-            :edition => hashed_result[""],
-            :editor => hashed_result[""],
-            :eprint => hashed_result[""],
-            :howpublished => hashed_result[""],
-            :institution => hashed_result["affiliations"],
-            :isbn => hashed_result["isbn"],
-            :issn => hashed_result["issn"],
-            :journal => hashed_result["pubtitle"],
-            :keywordsIndex => keywordsIndex,
-            :month => hashed_result[""],
-            :note => hashed_result[""],
-            :number => hashed_result["issue"],
-            :organization => hashed_result[""],
-            :pages => hashed_result["spage"].to_s + "--" + hashed_result["epage"].to_s,
-            :publisher => hashed_result["publisher"],
-            :school => hashed_result["affiliations"],
-            :series => hashed_result[""],
-            :title => hashed_result["title"],
-            :url => hashed_result["mdurl"],
-            :volume => hashed_result["volume"],
-            :year => hashed_result["py"],
-            :query => @query.to_s,
-            :source => @library
-        })
+    # -------------- LOG -----------------------------------------------------------------------
 
     return entry
   end
