@@ -28,12 +28,11 @@ class ReferencesController < ApplicationController
 
     #fixme Antes de rotear para a base certa verificar na checkbox qual base marcada
 
-    @reference.search_ieee
+    @ieee = @reference.search_ieee
 
     respond_to do |format|
       if @reference.save
-        format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
-        format.json { render :show, status: :created, location: @reference }
+        format.html { redirect_to ieees_path }
       else
         format.html { render :new }
         format.json { render json: @reference.errors, status: :unprocessable_entity }
