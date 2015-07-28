@@ -1,6 +1,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#header {
+  background: #1e1e1e;
+  width: 980px;
+  height: 97px;
+}
+
+#header_name {
+    font-size: 28px;
+    font-weight: normal;
+  alignment: center;
+    color: #a4a4a4;
+}
+
+
 #logo {
   font-size: 26px;
   font-weight: 700;
@@ -8,7 +22,7 @@
   letter-spacing: -1px;
   padding: 15px 0;
   a {
-    color: #337ab7;
+    color: darkgray;
   }
 }
 
