@@ -12,25 +12,50 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :title %><br>
+    <%= f.label :título %><br>
     <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :background %><br>
+    <%= f.label :contextualização %><br>
     <%= f.text_area :background, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :research_question %><br>
+    <%= f.label :pergunta_de_pesquisa %><br>
     <%= f.text_field :research_question, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :strategy %><br>
+    <%= f.label :estratégia_de_busca %><br>
     <%= f.text_area :strategy, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :criteria %><br>
-    <%= f.text_area :criteria, class: "form-control" %>
-  </div>
+
+    <table id="protocol-table" class="table table-hover table-striped">
+      <thead>
+          <th>Termo</th>
+          <th>Sinônimo</th>
+          <th>Tradução</th>
+          <th></th>
+      </thead>
+      <tbody>
+          <%= f.fields_for :query do |query_form| %>
+              <tr class="fields">
+                <td>
+                  <%= query_form.text_field :term %>
+                </td>
+                <td>
+                  <%= query_form.text_field :synonym %>
+                </td>
+                <td>
+                  <%= query_form.text_field :translation %>
+                </td>
+                <td>
+                  <%= f.submit "Adicionar", class: "btn btn-default" %>
+                </td>
+              </tr>
+          <% end %>
+      <tbody>
+    </table>
+
+
   <div class="form-group">
     <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
