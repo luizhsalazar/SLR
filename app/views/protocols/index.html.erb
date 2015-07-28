@@ -9,15 +9,13 @@
     <% end %>
 <% end %>
 
-
 <%= form_for(Reference.new) do |f| %>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading"> Search Engine </div>
             <div class="panel-body">
                 <div class="row">
                   <div class="col-lg-12">
-
 
                     <div class="form-group">
                       <%= f.label :query %><br>
@@ -25,7 +23,7 @@
                     </div>
 
                     <div class="form-group">
-                      <%= f.submit "Submit", class: "btn btn-primary" %>
+                      <%= f.submit "Submit", class: "btn btn-default" %>
                     </div>
 
 
