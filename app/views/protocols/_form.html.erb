@@ -28,12 +28,23 @@
     <%= f.text_area :strategy, class: "form-control" %>
   </div>
 
-    Termos:
-    <ul>
-      <%= f.fields_for :terms do |builder| %>
-          <%= render 'term_fields', :f => builder %>
-      <% end %>
-    </ul>
+  <div class="table-bordered">
+      <table class="table">
+        <tr>
+          <th> Termos </th>
+          <th>  </th>
+          <th> Sinônimos </th>
+          <th>  </th>
+          <th> Tradução (Inglês) </th>
+        </tr>
+          <%= f.fields_for :terms do |builder| %>
+            <%= render 'term_fields', :f => builder%>
+          <% end %>
+
+      </table>
+  </div>
+
+   <br>
 
   <div class="form-group">
     <%= f.submit "Submit", class: "btn btn-primary" %>

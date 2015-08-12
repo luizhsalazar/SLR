@@ -1,40 +1,25 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @protocol.title %>
-</p>
+<div class="container-fluid">
 
-<p>
-  <strong>Background:</strong>
-  <%= @protocol.background %>
-</p>
-
-<p>
-  <strong>Research question:</strong>
-  <%= @protocol.research_question %>
-</p>
-
-<p>
-  <strong>Strategy:</strong>
-  <%= @protocol.strategy %>
-</p>
-
-<p>
-  <strong>Criteria:</strong>
-  <%= @protocol.criteria %>
-</p>
-
-<ol>
-  <% for term in @protocol.terms %>
-    <li><%=h term.termo %></li>
-  <% end %>
-</ol>
-
-
-
-<div class="btn-group">
-  <%= link_to 'Edit', edit_protocol_path(@protocol), class: "btn btn-default" %>
-  <%= link_to 'Destroy', @protocol, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-  <%= link_to 'Back', protocols_path, class: "btn btn-default" %>
+    <div class="panel panel-default">
+      <div class="panel-heading"> <b><%= @protocol.title  %> </b> </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <b> Título: </b> <%= @protocol.title %> <br><br>
+              <b> Contextualização: </b> <br> <p> <%= @protocol.background %></p> <br>
+              <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p> <br>
+              <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p> <br>
+              <b> String de Busca: </b> <br> <p> <%= @protocol.query %> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  <div class="btn-group">
+    <%= link_to 'Edit', edit_protocol_path(@protocol), class: "btn btn-default" %>
+    <%= link_to 'Destroy', @protocol, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+    <%= link_to 'Back', protocols_path, class: "btn btn-default" %>
+  </div>
 </div>
+
+
