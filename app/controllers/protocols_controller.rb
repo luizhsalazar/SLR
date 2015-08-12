@@ -15,6 +15,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/new
   def new
     @protocol = current_user.protocols.build
+    3.times { @protocol.terms.build }
   end
 
   # GET /protocols/1/edit
@@ -25,6 +26,13 @@ class ProtocolsController < ApplicationController
   # POST /protocols.json
   def create
     @protocol = current_user.protocols.build(protocol_params)
+    termos = ''
+    attributes = protocol_params[:terms_attributes]
+    attributes.values.each_with_index do |term, index|
+      termos += (index == attributes.size - 1) ? term[:termo] : term[:termo] + ' AND '
+    end
+
+    @protocol.query = termos
 
     respond_to do |format|
       if @protocol.save
@@ -69,6 +77,7 @@ class ProtocolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
-      params.require(:protocol).permit(:title, :background, :research_question, :strategy, :criteria)
+      params.require(:protocol).permit(:title, :background, :research_question, :strategy, :criteria,
+                                       :terms_attributes => [:id, :termo])
     end
 end

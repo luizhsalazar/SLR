@@ -25,6 +25,14 @@
   <%= @protocol.criteria %>
 </p>
 
+<ol>
+  <% for term in @protocol.terms %>
+    <li><%=h term.termo %></li>
+  <% end %>
+</ol>
+
+
+
 <div class="btn-group">
   <%= link_to 'Edit', edit_protocol_path(@protocol), class: "btn btn-default" %>
   <%= link_to 'Destroy', @protocol, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

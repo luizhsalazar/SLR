@@ -28,33 +28,12 @@
     <%= f.text_area :strategy, class: "form-control" %>
   </div>
 
-    <table id="protocol-table" class="table table-hover table-striped">
-      <thead>
-          <th>Termo</th>
-          <th>Sinônimo</th>
-          <th>Tradução</th>
-          <th></th>
-      </thead>
-      <tbody>
-          <%= f.fields_for :query do |query_form| %>
-              <tr class="fields">
-                <td>
-                  <%= query_form.text_field :term %>
-                </td>
-                <td>
-                  <%= query_form.text_field :synonym %>
-                </td>
-                <td>
-                  <%= query_form.text_field :translation %>
-                </td>
-                <td>
-                  <%= f.submit "Adicionar", class: "btn btn-default" %>
-                </td>
-              </tr>
-          <% end %>
-      <tbody>
-    </table>
-
+    Termos:
+    <ul>
+      <%= f.fields_for :terms do |builder| %>
+          <%= render 'term_fields', :f => builder %>
+      <% end %>
+    </ul>
 
   <div class="form-group">
     <%= f.submit "Submit", class: "btn btn-primary" %>
