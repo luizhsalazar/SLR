@@ -61,17 +61,20 @@ class Ieee < ActiveRecord::Base
       end
     end
 
-    @ieee = Ieee.new
+    # Check if that data is already saved in database
+    unless Ieee.find_by_title(hashed_result["title"])
+      @ieee = Ieee.new
 
-    @ieee.title = hashed_result["title"]
-    @ieee.abstract = hashed_result["abstract"]
-    @ieee.author = authors
-    @ieee.publisher = hashed_result["publisher"]
-    @ieee.pubtype = hashed_result["pubtype"]
-    @ieee.link = hashed_result["pdf"]
-    @ieee.pubtitle = hashed_result["pubtitle"]
+      @ieee.title = hashed_result["title"]
+      @ieee.abstract = hashed_result["abstract"]
+      @ieee.author = authors
+      @ieee.publisher = hashed_result["publisher"]
+      @ieee.pubtype = hashed_result["pubtype"]
+      @ieee.link = hashed_result["pdf"]
+      @ieee.pubtitle = hashed_result["pubtitle"]
 
-    @ieee.save!
+      @ieee.save!
+    end
 
     # -------------- LOG -----------------------------------------------------------------------
 
