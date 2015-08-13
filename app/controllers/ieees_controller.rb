@@ -1,8 +1,3 @@
-require 'mechanize'
-require 'nokogiri'
-require 'rexml/document'
-require 'open-uri'
-
 class IeeesController < ApplicationController
 
   # Show all references from IEEE library
@@ -11,47 +6,26 @@ class IeeesController < ApplicationController
   end
 
   def new
-    @ieee = Ieee.new
+    @ieee = current_user.ieees.build
   end
 
   def create
-    @ieee = Ieee.new(allowed_params)
 
-    if @ieee.save
-      redirect_to ieees_path
-    else
-      render 'new'
+    query = params[:protocol][:query]
+
+    @ieee = Ieee.new
+
+    @ieee = @ieee.search_ieee(query)
+
+    respond_to do |format|
+      # if @ieee.save
+        format.html { redirect_to ieees_path }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @ieee.errors, status: :unprocessable_entity }
+      # end
     end
   end
 
-  # Show one specific reference
-  def show
-    self.search(params[:string])
-    # @ieee_reference = params[:ieee]
-  end
-
-  def search(string)
-      # queryurl = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=(' + string.to_s + ')'
-
-      doc = Nokogiri.parse open('http://www.w3schools.com/xml/note.xml')
-
-      @note = OpenStruct.new
-
-      @note.to = doc.at('to').text
-      @note.from = doc.at('from').text
-      @note.heading = doc.at('heading').text
-      @note.body = doc.at('body').text
-
-      if @note.save
-        redirect_to ieees_path
-      else
-        render 'home/index'
-      end
-  end
-
-  private
-    def allowed_params
-      params.require(:ieee).permit(:string)
-    end
 
 end

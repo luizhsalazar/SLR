@@ -20,6 +20,32 @@
     <%= link_to 'Destroy', @protocol, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
     <%= link_to 'Back', protocols_path, class: "btn btn-default" %>
   </div>
+
+  <br><br><br>
+
+  <%= form_for @protocol, :url => ieees_path, :html => {:method => :post}  do |f| %>
+      <div class="panel panel-default">
+        <div class="panel-heading"> Search Engine </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+
+              <div class="form-group">
+                <%= f.label :query %><br>
+                <%= f.text_field :query, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.submit "Submit", class: "btn btn-default" %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+
 </div>
 
 
