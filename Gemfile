@@ -38,6 +38,8 @@ gem 'crack', '~> 0.4.2'
 
 gem 'mechanize', '~> 2.7.3'
 
+gem 'mysql2', '~> 0.3.19'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
