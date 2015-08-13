@@ -1,27 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing References</h1>
-
-<table>
-  <thead>
+<div class="table-bordered">
+  <table class="table">
     <tr>
-      <th>Query</th>
-      <th colspan="3"></th>
+      <th> Base Digital </th>
+      <th> Resultados </th>
     </tr>
-  </thead>
+    <tr>
+      <% Reference.all.each do |reference| %>
+          <td>
+            <%= link_to reference.database_name, ieees_path %>
+          </td>
+          <td>
+            <%= reference.results %>
+          </td>
+      <% end %>
+    </tr>
 
-  <tbody>
-    <% @references.each do |reference| %>
-      <tr>
-        <td><%= reference.query %></td>
-        <td><%= link_to 'Show', reference %></td>
-        <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
-        <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Reference', new_reference_path %>
+  </table>
+</div>

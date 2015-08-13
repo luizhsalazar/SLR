@@ -2,10 +2,6 @@ class Ieee < ActiveRecord::Base
 
   def search_ieee(query)
 
-    # @logger = Logger.new("SLR.log")
-    #
-    # @logger.debug "query:  #{query}"
-
     @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
     @agent = Mechanize.new
 
@@ -16,6 +12,16 @@ class Ieee < ActiveRecord::Base
     @logger.debug "Query URL:  #{@search_url}"
 
     entries = process_results_base(results)
+
+    results = Ieee.all.length
+
+    @reference = Reference.find_or_initialize_by(database_name: 'IEEE Xplore Digital Library')
+
+    unless @reference.results == results
+      @reference.results = results
+    end
+
+    @reference.save!
 
     @logger.debug "Referências totais processadas: #{entries.size.to_s}"
 
