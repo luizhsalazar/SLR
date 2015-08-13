@@ -39,7 +39,13 @@
         </tr>
           <%= f.fields_for :terms do |builder| %>
             <%= render 'term_fields', :f => builder%>
+
           <% end %>
+        <tr>
+          <td>
+            <%= link_to_add_fields "Add terms", f, :terms %>
+          </td>
+        </tr>
 
       </table>
   </div>
