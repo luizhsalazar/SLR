@@ -20,20 +20,19 @@ class ProtocolsController < ApplicationController
 
   # GET /protocols/1/edit
   def edit
-    #fixme: NA EDIÇÃO DA STRING DE BUSCA NÃO É FEITA A ALTERAÇÃO DO EDIT NA BASE!! ARRUMAR!
   end
 
   # POST /protocols
   # POST /protocols.json
   def create
     @protocol = current_user.protocols.build(protocol_params)
-    @termos = ''
+    termos = ''
     attributes = protocol_params[:terms_attributes]
     attributes.values.each_with_index do |term, index|
-      @termos += (index == attributes.size - 1) ? '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' : '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' + ' AND '
+      termos += (index == attributes.size - 1) ? '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' : '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' + ' AND '
     end
 
-    @protocol.query = @termos
+    @protocol.query = termos
 
     respond_to do |format|
       if @protocol.save
@@ -49,6 +48,15 @@ class ProtocolsController < ApplicationController
   # PATCH/PUT /protocols/1
   # PATCH/PUT /protocols/1.json
   def update
+
+    termos = ''
+    attributes = protocol_params[:terms_attributes]
+    attributes.values.each_with_index do |term, index|
+      termos += (index == attributes.size - 1) ? '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' : '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' + ' AND '
+    end
+
+    @protocol.query = termos
+
     respond_to do |format|
       if @protocol.update(protocol_params)
         format.html { redirect_to @protocol, notice: 'Protocol was successfully updated.' }
