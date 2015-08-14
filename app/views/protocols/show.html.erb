@@ -1,15 +1,17 @@
-
+<br><br>
 <div class="container-fluid">
 
     <div class="panel panel-default">
-      <div class="panel-heading"> <b><%= @protocol.title  %> </b> </div>
+      <div class="panel-heading">
+        <b><%= @protocol.title  %> </b>
+      </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-lg-12">
-              <b> Título: </b> <%= @protocol.title %> <br><br>
-              <b> Contextualização: </b> <br> <p> <%= @protocol.background %></p> <br>
-              <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p> <br>
-              <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p> <br>
+            <div class="col-lg-12" align="left">
+              <b> Título: </b> <%= @protocol.title %> <br>
+              <b> Contextualização: </b> <br> <p> <%= @protocol.background %></p>
+              <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p>
+              <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p>
               <b> String de Busca: </b> <br> <p> <%= @protocol.query %> </p>
             </div>
           </div>
@@ -25,26 +27,23 @@
 
   <%= form_for @protocol, :url => ieees_path, :html => {:method => :post}  do |f| %>
       <div class="panel panel-default">
-        <div class="panel-heading"> Search Engine </div>
+        <div class="panel-heading"> Mecanismo de Busca </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12">
-
               <div class="form-group">
-                <%= f.label :query %><br>
+                <%= f.label :termos_de_busca %><br>
                 <%= f.text_field :query, class: "form-control" %>
               </div>
 
               <div class="form-group">
                 <%= f.submit "Submit", class: "btn btn-default" %>
               </div>
-
             </div>
           </div>
         </div>
       </div>
   <% end %>
-
 
 </div>
 

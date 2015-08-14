@@ -8,42 +8,118 @@
 </head>
 <body>
 
-    <header class="navbar navbar-default" role="navigation">
-        <div class="navbar navbar-inverse navbar-fixed-top" >
-          <div class="container">
-            <nav class="collapse navbar-collapse">
-              <a href="http://www.gqs.ufsc.br" target="_new"> <%= image_tag 'logo.png'  %> </a>
-              <%= link_to "SLR Web Tool", root_path  %>
-
-              <% if user_signed_in? %>
-                  <ul class="nav navbar-nav navbar-right">
-                    <li> <%= link_to "Adicionar Protocolo", new_protocol_path %> </li>
-                    <li> <%= link_to "Account", edit_user_registration_path %> </li>
-                    <li> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
-                  </ul>
-              <% else %>
-                  <ul class="nav navbar-nav pull-right">
-                    <li><%= link_to "Sign Up", new_user_registration_path %> </li>
-                    <li><%= link_to "Sign In", new_user_session_path %> </li>
-                  </ul>
-              <% end %>
-            </nav>
+    <table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td align="center" valign="top">
+          <div id="header">
+            <div id="spacer">&nbsp;</div>
+            <table id="header_logos" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td valign="middle" width="149" style="border-right: #666 solid 1px; padding-right: 15px">
+                  <a href="http://www.gqs.ufsc.br" target="_new">
+                    <%= image_tag 'logo.png' %>
+                    </a></td>
+                <td valign="middle" width="100%" style="padding-left: 15px">
+                  <span id="tool_title">SLR Search Engine Tool</span>
+                </td>
+                <td valign="middle" style="padding-right: 25px; padding-top: 3px">
+                  <a href="http://www.incod.ufsc.br" target="_new">
+                    <%= image_tag 'incod.png' %>
+                  </a>
+                </td>
+                <td valign="middle" align="right">
+                  <a href="http://www.ufsc.br" target="_new">
+                    <%= image_tag 'ufsc.png' %>
+                  </a></td>
+              </tr>
+            </table>
           </div>
-        </div>
-    </header>
 
-    <br><br>
+          <div id="menu">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" height="34">
+              <tr>
+                <td valign="top" nowrap>
+                  <%= link_to (image_tag 'botao_home.png'), root_path %>
+                </td>
+                <td align="right" valign="top" width="100%">
+                  <%= image_tag 'separador.png' %>
+                </td>
 
-    <div id="main_content" class="container">
-      <% flash.each do |name, msg| %>
-          <%= content_tag(:div, msg, class: "alert alert-info") %>
-      <% end %>
+                <td align="right" valign="top" nowrap>
+                  <p class="user"></p>
+                </td>
+                <td width="310" nowrap>
 
-      <div id="content" class="col-md-9 center-block">
-        <!-- Yield identifies a section where content from the view should be inserted. -->
-        <%= yield %>
-      </div>
-    </div>
+                  <% if user_signed_in? %>
+                    <%= link_to "Adicionar Protocolo", new_protocol_path %>
+                    <%= link_to "Account", edit_user_registration_path %>
+                    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                  <% else %>
+                    <%= link_to (image_tag 'botao_register_account2.png'), new_user_registration_path %>
+                    <%= link_to (image_tag 'botao_login.png'), new_user_session_path %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
 
+          <div id="home_header">
+            <p class="about">
+              Ferramenta para auxiliar o desenvolvimento da Revisão Sistemática da Literatura (SLR)
+              <br/> <br/>
+            </p>
+          </div>
+
+          <div id="search_form_container">
+              <div id="main_content" class="container">
+                <% flash.each do |name, msg| %>
+                    <%= content_tag(:div, msg, class: "alert alert-info") %>
+                <% end %>
+
+                <!-- Yield identifies a section where content from the view should be inserted. -->
+                <%= yield %>
+              </div>
+          </div>
+
+          <!--<tr>-->
+            <!--<td valign="bottom" align="center" height="100%">-->
+              <!--<div id="page_footer">-->
+                <!--<div id="page_footer_logos">-->
+                  <!--<table cellpadding="0" cellspacing="0" border="0" width="100%">-->
+                    <!--<tr>-->
+                      <!--<td width="100%">-->
+                        <!--<strong>Software Quality Group - GQS</strong>-->
+                        <!--<br> National Institute for Research and Technology on-->
+                        <!--Digital Convergence - INCOD-->
+                        <!--<br> Department of Informatics and Statistics - INE-->
+                        <!--<br> Federal University of Santa Catarina - UFSC-->
+                        <!--<br> 88049-200 Florianopolis - SC Brazil-->
+                        <!--<br> incod@incod.ufsc.br-->
+                      <!--</td>-->
+                      <!--<td style="border-left: #999 solid 1px; padding-left: 55px">-->
+                        <!--<span style="font-size: 11px">SUPPORT</span><br>-->
+                        <!--<a href="http://www.cnpq.br/" target="_new">-->
+                          <!---->
+                        <!--</a>-->
+                      <!--</td>-->
+                    <!--</tr>-->
+                  <!--</table>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <!--<div align="center">-->
+                <!--<table>-->
+                  <!--<tbody>-->
+                      <!--<tr>-->
+                        <!--<td> GQS - UFSC </td>-->
+                      <!--</tr>-->
+                  <!--</tbody>-->
+                <!--</table>-->
+              <!--</div>-->
+            <!--</td>-->
+          <!--</tr>-->
+        </td>
+      </tr>
+    </table>
 </body>
 </html>

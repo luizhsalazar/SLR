@@ -1,19 +1,21 @@
-<div class="table-bordered">
-  <table class="table">
-    <tr>
-      <th> Base Digital </th>
-      <th> Resultados </th>
-    </tr>
-    <tr>
-      <% Reference.all.each do |reference| %>
-          <td>
-            <%= link_to reference.database_name, ieees_path %>
-          </td>
-          <td>
-            <%= reference.results %>
-          </td>
-      <% end %>
-    </tr>
-
-  </table>
+<br>
+<div class="container-fluid">
+  <div class="table">
+    <table class="table table-hover">
+      <tr>
+        <th> Base Digital </th>
+        <th> Resultados </th>
+      </tr>
+      <tr>
+        <% Reference.all.each do |reference| %>
+            <td>
+              <%= link_to reference.database_name, ieees_path %>
+            </td>
+            <td>
+              <%= reference.results %>
+            </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
 </div>

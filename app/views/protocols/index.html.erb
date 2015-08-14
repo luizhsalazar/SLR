@@ -1,13 +1,55 @@
-<% @protocols.each do |protocol| %>
-    <% if protocol.user == current_user %>
-        <div class="link row clearfix">
-          <h2>
-            <%= link_to protocol.title, protocol %> <br>
-            <small class="author">Submitted <%= time_ago_in_words(protocol.created_at) %> ago by <%= protocol.user.email %> </small>
-          </h2>
-         </div>
+<br>
+
+<% if user_signed_in? %>
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        <strong> Protocolos adicionados </strong>
+      </div>
+      <div class="panel-body">
+        <% @protocols.each do |protocol| %>
+            <% if protocol.user == current_user %>
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h2>
+                      <%= link_to protocol.title, protocol %> <br>
+                      <small class="author">Submitted <%= time_ago_in_words(protocol.created_at) %> ago by <%= protocol.user.email %> </small>
+                    </h2>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+<% else %>
+    <%= form_for Protocol.new, :url => ieees_path, :html => {:method => :post}  do |f| %>
+        <div class="panel panel-default">
+          <div class="panel-heading"> Mecanismo de Busca </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="form-group">
+                  <%= f.label :termos_de_busca %><br>
+                  <%= f.text_field :query, class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.submit "Submit", class: "btn btn-default" %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
     <% end %>
+
+
 <% end %>
+
+
+
+
+
 
 
 

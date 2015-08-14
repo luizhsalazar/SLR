@@ -11,48 +11,49 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :título %><br>
-    <%= f.text_field :title, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :contextualização %><br>
-    <%= f.text_area :background, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :pergunta_de_pesquisa %><br>
-    <%= f.text_field :research_question, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :estratégia_de_busca %><br>
-    <%= f.text_area :strategy, class: "form-control" %>
-  </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <div class="form-group">
+            <%= f.label :título %><br>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :contextualização %><br>
+            <%= f.text_area :background, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :pergunta_de_pesquisa %><br>
+            <%= f.text_field :research_question, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :estratégia_de_busca %><br>
+            <%= f.text_area :strategy, class: "form-control" %>
+          </div>
 
-  <div class="table-bordered">
-      <table class="table">
-        <tr>
-          <th> Termos </th>
-          <th>  </th>
-          <th> Sinônimos </th>
-          <th>  </th>
-          <th> Tradução (Inglês) </th>
-        </tr>
-          <%= f.fields_for :terms do |builder| %>
-            <%= render 'term_fields', :f => builder%>
+          <div class="table-bordered">
+              <table class="table">
+                <tr>
+                  <th> Termos </th>
+                  <th>  </th>
+                  <th> Sinônimos </th>
+                  <th>  </th>
+                  <th> Tradução (Inglês) </th>
+                </tr>
+                  <%= f.fields_for :terms do |builder| %>
+                    <%= render 'term_fields', :f => builder%>
+                  <% end %>
+                <tr>
+                  <td>
+                    <%= link_to_add_fields "Add terms", f, :terms %>
+                  </td>
+                </tr>
+              </table>
+          </div>
+        <br>
+        <div class="form-group">
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
 
-          <% end %>
-        <tr>
-          <td>
-            <%= link_to_add_fields "Add terms", f, :terms %>
-          </td>
-        </tr>
-
-      </table>
-  </div>
-
-   <br>
-
-  <div class="form-group">
-    <%= f.submit "Submit", class: "btn btn-primary" %>
-  </div>
 <% end %>

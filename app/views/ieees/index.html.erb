@@ -1,10 +1,11 @@
 <% @ieees.each do |ieee| %>
 
+    <br>
     <div class="panel panel-default">
       <div class="panel-heading"> <b><%= link_to ieee.title, ieee.link  %> </b> </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-12" align="left">
             <h5>
               <b> Autor: </b> <%= ieee.author %> <br>
               <b> Título da Publicação: </b> <%=ieee.pubtitle  %><br>

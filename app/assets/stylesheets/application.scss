@@ -27,30 +27,91 @@
 }
 
 #main_content {
+  width: 980px;
+  background: #ebe9e3;
+
   #content {
     float: none;
   }
+
   padding-bottom: 100px;
+
   .link {
     padding: 2em 1em;
     border-bottom: 1px solid #e9e9e9;
-    .title {
+  }
+}
 
-      a {
-        color: #FF4500;
-      }
-    }
-  }
-  .comments_title {
-    margin-top: 2em;
-  }
-  #comments {
-    .comment {
-      padding: 1em 0;
-      border-top: 1px solid #E9E9E9;
-      .lead {
-        margin-bottom: 0;
-      }
-    }
-  }
+// MODELO GQS
+
+#search_header_container {
+  width: 980px;
+  height: 150px;
+  background: #ebe9e3;
+}
+
+#search_header {
+  width: 700px;
+  text-align: left;
+  padding-top: 30px;
+}
+
+#home_header {
+  width: 980px;
+  text-align: center;
+  padding-top: 15px;
+  background: #ebe9e3;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #444;
+  line-height: 20px;
+  padding-bottom: 0px;
+  margin-bottom: 0em;
+  margin-top: 0em;
+}
+
+#tool_title {
+  font-size: 28px;
+  font-weight: normal;
+  color: #a4a4a4;
+}
+
+#header {
+  background: #1e1e1e;
+  width: 980px;
+  height: 97px;
+}
+
+#spacer {
+  height: 20px;
+}
+
+#header_logos {
+  width: 900px;
+  border: #F00 solid 0px;
+}
+
+#menu {
+  background: #f9ca06;
+  width: 980px;
+  height: 34px;
+  text-align: left;
+}
+
+#search_form_container {
+  width: 980px;
+  background: #ebe9e3;
+}
+
+.content {
+  width: 690px;
+  text-align: left;
+  padding-top: 30px;
+}
+
+.about {
+  font-size: 20px;
 }
