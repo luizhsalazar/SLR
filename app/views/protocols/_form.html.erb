@@ -25,30 +25,43 @@
             <%= f.label :pergunta_de_pesquisa %><br>
             <%= f.text_field :research_question, class: "form-control" %>
           </div>
-          <div class="form-group">
-            <%= f.label :estratégia_de_busca %><br>
-            <%= f.text_area :strategy, class: "form-control" %>
-          </div>
+        <div class="panel panel-default" align="left"><b> Estratégia de busca </b>
+          <div class="panel-body">
+            <div class="form-group">
+              <%= f.label :descrição %><br>
+              <%= f.text_area :strategy, class: "form-control" %><br>
 
-          <div class="table-bordered">
-              <table class="table">
-                <tr>
-                  <th> Termos </th>
-                  <th>  </th>
-                  <th> Sinônimos </th>
-                  <th>  </th>
-                  <th> Tradução (Inglês) </th>
-                </tr>
-                  <%= f.fields_for :terms do |builder| %>
-                    <%= render 'term_fields', :f => builder%>
-                  <% end %>
-                <tr>
-                  <td>
-                    <%= link_to_add_fields "Adicionar termos", f, :terms %>
-                  </td>
-                </tr>
-              </table>
+              <%= f.label :ano_de_publicação %>
+              De: <%= f.text_field :from %>
+              Até: <%= f.text_field :to %>
+            </div>
           </div>
+        </div>
+
+
+        <div class="panel panel-default" align="left"><b> Critérios de Inclusão </b>
+          <div class="panel-body">
+              <div class="table-bordered">
+                  <table class="table">
+                    <tr>
+                      <th> Termos </th>
+                      <th>  </th>
+                      <th> Sinônimos </th>
+                      <th>  </th>
+                      <th> Tradução (Inglês) </th>
+                    </tr>
+                      <%= f.fields_for :terms do |builder| %>
+                        <%= render 'term_fields', :f => builder%>
+                      <% end %>
+                    <tr>
+                      <td>
+                        <%= link_to_add_fields "Adicionar termos", f, :terms %>
+                      </td>
+                    </tr>
+                  </table>
+              </div>
+          </div>
+        </div>
         <br>
         <div class="form-group">
           <%= f.submit "Submit", class: "btn btn-primary" %>

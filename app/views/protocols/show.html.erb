@@ -12,6 +12,7 @@
               <b> Contextualização: </b> <br> <p> <%= @protocol.background %></p>
               <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p>
               <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p>
+              <b> Data de Publicação: </b> <br> <p> <%= @protocol.from.to_s + " - " + @protocol.to.to_s %> </p>
               <b> Termos de Busca: </b> <br> <p> <%= @protocol.query %> </p>
             </div>
           </div>
