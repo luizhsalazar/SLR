@@ -13,31 +13,52 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-          <div class="form-group">
-            <%= f.label :título %><br>
-            <%= f.text_field :title, class: "form-control" %>
+        <div class="panel panel-default" align="left"><b> Título </b>
+          <div class="panel-body">
+              <div class="form-group">
+                <%= f.text_field :title, class: "form-control" %>
+              </div>
           </div>
-          <div class="form-group">
-            <%= f.label :contextualização %><br>
-            <%= f.text_area :background, class: "form-control" %>
+        </div>
+        <div class="panel panel-default" align="left"><b> Contextualização </b>
+          <div class="panel-body">
+              <div class="form-group">
+                <%= f.text_area :background, class: "form-control" %>
+              </div>
           </div>
-          <div class="form-group">
-            <%= f.label :pergunta_de_pesquisa %><br>
-            <%= f.text_field :research_question, class: "form-control" %>
+        </div>
+
+        <div class="panel panel-default" align="left"><b> Pergunta de Pesquisa </b>
+          <div class="panel-body">
+              <div class="form-group">
+                <%= f.text_area :research_question, class: "form-control" %>
+              </div>
           </div>
+        </div>
         <div class="panel panel-default" align="left"><b> Estratégia de busca </b>
           <div class="panel-body">
             <div class="form-group">
               <%= f.label :descrição %><br>
               <%= f.text_area :strategy, class: "form-control" %><br>
 
-              <%= f.label :ano_de_publicação %>
-              De: <%= f.text_field :from %>
-              Até: <%= f.text_field :to %>
+              <%= f.label :ano_de_publicação %><br>
+              <div class="container-fluid">
+                De: <%= f.text_field :from %>
+                Até: <%= f.text_field :to %> <br><br>
+              </div>
+
+              <%= f.label :bases_digitais %> <br>
+              <div class="container-fluid">
+                <%= f.check_box :ieee, {:checked=> true} %> IEEE Xplore <br>
+                <%= f.check_box :acm %> ACM Digital Library <br>
+                <%= f.check_box :springer %> Springer Link <br>
+                <%= f.check_box :science_direct %> Science Direct <br>
+                <%= f.check_box :google_scholar %> Google Scholar
+              </div>
+
             </div>
           </div>
         </div>
-
 
         <div class="panel panel-default" align="left"><b> Critérios de Inclusão </b>
           <div class="panel-body">
@@ -54,15 +75,28 @@
                         <%= render 'term_fields', :f => builder%>
                       <% end %>
                     <tr>
-                      <td>
+                      <td align="left">
                         <%= link_to_add_fields "Adicionar termos", f, :terms %>
                       </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                     </tr>
                   </table>
               </div>
           </div>
         </div>
         <br>
+
+        <div class="panel panel-default" align="left"><b> Critérios de Inclusão </b>
+          <div class="panel-body">
+            <div class="form-group">
+              <%= f.text_area :quality, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <%= f.submit "Submit", class: "btn btn-primary" %>
         </div>

@@ -87,6 +87,7 @@ class ProtocolsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
       params.require(:protocol).permit(:title, :background, :research_question, :strategy, :criteria, :from, :to,
+                                       :ieee, :acm, :springer, :science_direct, :google_scholar, :quality,
                                        :terms_attributes => [:id, :termo, :sinonimo, :traducao])
     end
 end

@@ -13,7 +13,37 @@
               <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p>
               <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p>
               <b> Data de Publicação: </b> <br> <p> <%= @protocol.from.to_s + " - " + @protocol.to.to_s %> </p>
+              <b> Bases Digitais: </b> <br>
+              <ul>
+                <% if @protocol.ieee %>
+                    <li>
+                      IEEE Xplore
+                    </li>
+                <% end %>
+                <% if @protocol.acm %>
+                    <li>
+                      ACM Digital Library
+                    </li>
+                <% end %>
+                <% if @protocol.springer %>
+                    <li>
+                      Springer Link
+                    </li>
+                <% end %>
+                <% if @protocol.science_direct %>
+                    <li>
+                      Science Direct
+                    </li>
+                <% end %>
+                <% if @protocol.google_scholar %>
+                    <li>
+                      Google Scholar
+                    </li>
+                <% end %>
+              </ul>
+
               <b> Termos de Busca: </b> <br> <p> <%= @protocol.query %> </p>
+              <b> Critérios de Qualidade: </b> <br> <p> <%= @protocol.quality %> </p>
             </div>
           </div>
         </div>
