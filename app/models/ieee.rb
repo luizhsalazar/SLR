@@ -1,6 +1,6 @@
 class Ieee < ActiveRecord::Base
 
-  def search_ieee(query)
+  def search(query)
 
     @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
     @agent = Mechanize.new

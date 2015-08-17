@@ -2,12 +2,12 @@
 <% if user_signed_in? %>
     <div class="panel panel-default">
       <div class="panel panel-heading">
-        <strong> Protocolos adicionados </strong>
+        <strong> Protocolos cadastrados </strong>
       </div>
       <div class="panel-body">
         <!-- Eliminar este find by na VIEW!! -->
         <% if Protocol.find_by_user_id(current_user).nil? %>
-            <p> Usuário não possui nenhum protocolo cadastrado </p>
+            <p> Usuário não possui nenhum protocolo cadastrado. </p>
         <% end %>
         <% @protocols.each do |protocol| %>
             <% if protocol.user == current_user %>

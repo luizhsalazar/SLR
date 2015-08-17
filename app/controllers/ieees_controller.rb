@@ -12,7 +12,7 @@ class IeeesController < ApplicationController
   def create
 
     @ieee = Ieee.new
-    @ieee = @ieee.search_ieee(params[:protocol][:query])
+    @ieee = @ieee.search(params[:protocol][:query])
 
     redirect_to references_path
   end
