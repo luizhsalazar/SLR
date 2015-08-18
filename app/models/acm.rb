@@ -1,6 +1,6 @@
 class Acm < ActiveRecord::Base
 
-  def search(query)
+  def search(query, protocol_id)
 
     @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
     @agent = Mechanize.new
@@ -16,6 +16,11 @@ class Acm < ActiveRecord::Base
     results = Ieee.all.length
 
     @reference = Reference.find_or_initialize_by(database_name: 'ACM Digital Library')
+
+    # @reference = Reference.where("protocol_id = ?", protocol_id).where("database_name = ?", 'ACM Digital Library').first_or_initialize
+
+    @reference.protocol_id = protocol_id
+    # @reference.database_name = 'ACM Digital Library'
 
     unless @reference.results == results
       @reference.results = results

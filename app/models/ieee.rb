@@ -1,6 +1,6 @@
 class Ieee < ActiveRecord::Base
 
-  def search(query)
+  def search(query, protocol_id)
 
     @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
     @agent = Mechanize.new
@@ -17,10 +17,45 @@ class Ieee < ActiveRecord::Base
 
     @reference = Reference.find_or_initialize_by(database_name: 'IEEE Xplore Digital Library')
 
+    # Reference.where(protocol_id: protocol_id).find_each do |reference|
+    #   if reference.protocol_id == protocol_id && reference.database_name == 'IEEE Xplore Digital Library'
+    #     @reference.results = results
+    #   else
+    #     @reference = Reference.new
+    #     @reference.protocol_id = protocol_id
+    #     @reference.database_name = 'IEEE Xplore Digital Library'
+    #
+    #     unless @reference.results == results
+    #       @reference.results = results
+    #     end
+    #   end
+    # end
+
+    @reference.protocol_id = protocol_id
+    # @reference.database_name = 'IEEE Xplore Digital Library'
+
     unless @reference.results == results
       @reference.results = results
     end
 
+    @reference.save!
+
+    # This is just to reproduce and test the interface during meeting on 18th August, 2015.
+
+    @reference = Reference.find_or_initialize_by(database_name: 'ACM Digital Library')
+    @reference.results = results + 10
+    @reference.save!
+
+    @reference = Reference.find_or_initialize_by(database_name: 'Springer Link')
+    @reference.results = results + 13
+    @reference.save!
+
+    @reference = Reference.find_or_initialize_by(database_name: 'Google Scholar')
+    @reference.results = results + 3
+    @reference.save!
+
+    @reference = Reference.find_or_initialize_by(database_name: 'Science Direct')
+    @reference.results = results - 23
     @reference.save!
 
     @logger.debug "Referências totais processadas: #{entries.size.to_s}"

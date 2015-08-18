@@ -13,10 +13,11 @@ class AcmsController < ApplicationController
   end
 
   def create
+    protocol_id = params[:protocol][:id]
     @acm = Acm.new
-    @acm = @acm.search(params[:protocol][:query])
+    @acm = @acm.search(params[:protocol][:query], protocol_id)
 
-    redirect_to references_path
+    redirect_to reference_url(protocol_id)
   end
 
   private
