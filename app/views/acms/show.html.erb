@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @acm.abstract %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @acm.author %>
+</p>
+
+<p>
+  <strong>Generic string:</strong>
+  <%= @acm.generic_string %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @acm.link %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @acm.publisher %>
+</p>
+
+<p>
+  <strong>Pubtitle:</strong>
+  <%= @acm.pubtitle %>
+</p>
+
+<p>
+  <strong>Pubtype:</strong>
+  <%= @acm.pubtype %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @acm.title %>
+</p>
+
+<%= link_to 'Edit', edit_acm_path(@acm) %> |
+<%= link_to 'Back', acms_path %>

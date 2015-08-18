@@ -8,13 +8,15 @@
       </tr>
       <tr>
         <% Reference.all.each do |reference| %>
-            <td>
-              <%= link_to reference.database_name, ieees_path %>
-            </td>
-            <td>
-              <%= reference.results %>
-            </td>
-        <% end %>
+            <tr>
+                <td>
+                  <%= link_to reference.database_name, ieees_path %>
+                </td>
+                <td>
+                  <%= reference.results %>
+                </td>
+            </tr>
+    <% end %>
       </tr>
     </table>
   </div>

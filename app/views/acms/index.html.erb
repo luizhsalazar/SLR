@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Acms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Abstract</th>
+      <th>Author</th>
+      <th>Generic string</th>
+      <th>Link</th>
+      <th>Publisher</th>
+      <th>Pubtitle</th>
+      <th>Pubtype</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acms.each do |acm| %>
+      <tr>
+        <td><%= acm.abstract %></td>
+        <td><%= acm.author %></td>
+        <td><%= acm.generic_string %></td>
+        <td><%= acm.link %></td>
+        <td><%= acm.publisher %></td>
+        <td><%= acm.pubtitle %></td>
+        <td><%= acm.pubtype %></td>
+        <td><%= acm.title %></td>
+        <td><%= link_to 'Show', acm %></td>
+        <td><%= link_to 'Edit', edit_acm_path(acm) %></td>
+        <td><%= link_to 'Destroy', acm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acm', new_acm_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  abstract: MyText
+  author: MyString
+  generic_string: MyString
+  link: MyString
+  publisher: MyString
+  pubtitle: MyString
+  pubtype: MyString
+  title: MyString
+
+two:
+  abstract: MyText
+  author: MyString
+  generic_string: MyString
+  link: MyString
+  publisher: MyString
+  pubtitle: MyString
+  pubtype: MyString
+  title: MyString

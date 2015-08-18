@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :acms
   resources :references
   resources :protocols
   resources :ieees
