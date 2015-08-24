@@ -57,29 +57,13 @@
     <%= link_to 'Back', protocols_path, class: "btn btn-default" %>
   </div>
 
+  <div class="btn-group">
+    <%= link_to 'Continuar', search_protocol_path, class: "btn btn-default" %>
+  </div>
+
   <br><br><br>
 
-  <%= form_for @protocol, :url => path, :html => {:method => :post}  do |f| %>
-      <div class="panel panel-default">
-        <div class="panel-heading"> Mecanismo de Busca </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="form-group">
-                <%= f.label :termos_de_busca %><br>
-                <%= f.text_field :query, class: "form-control" %>
-              </div>
 
-              <%= f.hidden_field :id %>
-
-              <div class="form-group">
-                <%= f.submit "Submit", class: "btn btn-default" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  <% end %>
 
 </div>
 

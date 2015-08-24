@@ -2,7 +2,14 @@ Rails.application.routes.draw do
 
   resources :acms
   resources :references
-  resources :protocols
+  resources :protocols do
+    member do
+      # Using member you create a route for that specific protocol, e.g. 'protocols/5/search'
+      # Otherwise, using collection you can create a route without a specific id :)
+      get 'search'
+    end
+  end
+
   resources :ieees
 
   devise_for :users

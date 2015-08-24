@@ -17,8 +17,6 @@ class Ieee < ActiveRecord::Base
 
     @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'IEEE Xplore Digital Library')
 
-    @logger.debug "Protocol Id: #{protocol_id}"
-
     @reference.protocol_id = protocol_id
     @reference.database_name = 'IEEE Xplore Digital Library'
 
@@ -27,24 +25,6 @@ class Ieee < ActiveRecord::Base
     end
 
     @reference.save!
-
-    # This is just to reproduce and test the interface during meeting on 18th August, 2015.
-
-    # @reference = Reference.find_or_initialize_by(database_name: 'ACM Digital Library')
-    # @reference.results = results + 10
-    # @reference.save!
-    #
-    # @reference = Reference.find_or_initialize_by(database_name: 'Springer Link')
-    # @reference.results = results + 13
-    # @reference.save!
-    #
-    # @reference = Reference.find_or_initialize_by(database_name: 'Google Scholar')
-    # @reference.results = results + 3
-    # @reference.save!
-    #
-    # @reference = Reference.find_or_initialize_by(database_name: 'Science Direct')
-    # @reference.results = results - 23
-    # @reference.save!
 
     @logger.debug "Referências totais processadas: #{entries.size.to_s}"
 
