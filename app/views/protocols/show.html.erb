@@ -22,6 +22,7 @@
                     </li>
                 <% end %>
                 <% if @protocol.acm %>
+                    <% path = acms_path %>
                     <li>
                       ACM Digital Library
                     </li>
@@ -58,7 +59,7 @@
 
   <br><br><br>
 
-  <%= form_for @protocol, :url => ieees_path, :html => {:method => :post}  do |f| %>
+  <%= form_for @protocol, :url => path, :html => {:method => :post}  do |f| %>
       <div class="panel panel-default">
         <div class="panel-heading"> Mecanismo de Busca </div>
         <div class="panel-body">
@@ -68,6 +69,8 @@
                 <%= f.label :termos_de_busca %><br>
                 <%= f.text_field :query, class: "form-control" %>
               </div>
+
+              <%= f.hidden_field :id %>
 
               <div class="form-group">
                 <%= f.submit "Submit", class: "btn btn-default" %>

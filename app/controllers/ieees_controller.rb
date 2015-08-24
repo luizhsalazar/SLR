@@ -15,10 +15,7 @@ class IeeesController < ApplicationController
     @ieee = Ieee.new
     @ieee = @ieee.search(params[:protocol][:query], protocol_id)
 
-    # redirect_to reference_url(protocol_id)
-
-    redirect_to references_path
-
+    redirect_to reference_url(protocol_id)
   end
 
 

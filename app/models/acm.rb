@@ -13,14 +13,12 @@ class Acm < ActiveRecord::Base
 
     entries = process_results_base(results)
 
-    results = Ieee.all.length
+    results = Acm.all.length
 
-    @reference = Reference.find_or_initialize_by(database_name: 'ACM Digital Library')
-
-    # @reference = Reference.where("protocol_id = ?", protocol_id).where("database_name = ?", 'ACM Digital Library').first_or_initialize
+    @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'ACM Digital Library')
 
     @reference.protocol_id = protocol_id
-    # @reference.database_name = 'ACM Digital Library'
+    @reference.database_name = 'ACM Digital Library'
 
     unless @reference.results == results
       @reference.results = results
