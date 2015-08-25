@@ -45,7 +45,27 @@
                 <% end %>
               </ul><br>
 
-              <b> Termos de Busca: </b> <br> <p> <%= @protocol.query %> </p><br>
+              <b> Termos de Busca: </b><br><br>
+              <div class="container-fluid">
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>Termos</th>
+                    <th>Sinônimos</th>
+                    <th>Tradução (Inglês)</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @protocol.terms.each do |term|  %>
+                      <tr>
+                        <td><%= term.termo %></td>
+                        <td><%= term.sinonimo %></td>
+                        <td><%= term.traducao %></td>
+                      </tr>
+                  <% end %>
+                  </table>
+              </div>
+
               <b> Critérios de Qualidade: </b> <br> <p> <%= @protocol.quality %> </p>
             </div>
           </div>
