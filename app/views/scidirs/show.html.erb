@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @scidir.abstract %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @scidir.author %>
+</p>
+
+<p>
+  <strong>Generic string:</strong>
+  <%= @scidir.generic_string %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @scidir.link %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @scidir.publisher %>
+</p>
+
+<p>
+  <strong>Pubtitle:</strong>
+  <%= @scidir.pubtitle %>
+</p>
+
+<p>
+  <strong>Pubtype:</strong>
+  <%= @scidir.pubtype %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @scidir.title %>
+</p>
+
+<%= link_to 'Edit', edit_scidir_path(@scidir) %> |
+<%= link_to 'Back', scidirs_path %>

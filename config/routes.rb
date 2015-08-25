@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :scidirs
   resources :acms
   resources :references
   resources :protocols do
