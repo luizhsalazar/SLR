@@ -1,0 +1,18 @@
+<% @scopus.each do |scopus| %>
+
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-heading"> <b><%= link_to scopus.title, scopus.link %> </b> </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12" align="left">
+            <h5>
+              <b> Autor: </b> <%= scopus.author %> <br>
+              <b> Periódico/Conferência: </b> <%= scopus.pubtitle  %><br>
+              <b> Abstract: </b> <p> <%= scopus.abstract %> </p>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

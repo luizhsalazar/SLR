@@ -4,7 +4,7 @@ class Scidir < ActiveRecord::Base
 
   def search(query, protocol_id)
 
-    doc = Nokogiri::XML(open("http://api.elsevier.com/content/search/index:SCIDIR?apikey=2fc5e714431bca9f441f4314c6684282&httpAccept=application%2Fatom%2Bxml&count=100&query=" + query))
+    doc = Nokogiri::XML(open("http://api.elsevier.com/content/search/scidir?apikey=2fc5e714431bca9f441f4314c6684282&httpAccept=application%2Fatom%2Bxml&count=100&query=" + query))
 
     @logger = Logger.new("SLR.log")
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :scopus
   resources :scidirs
   resources :acms
   resources :references
