@@ -9,10 +9,16 @@ Rails.application.routes.draw do
       # Using member you create a route for that specific protocol, e.g. 'protocols/5/search'
       # Otherwise, using collection you can create a route without a specific id :)
       get 'search'
+      post 'do_search'
     end
   end
 
-  resources :ieees
+  resources :ieees do
+    member do
+      put 'include', to: 'ieees#include'
+      put 'exclude', to: 'ieees#exclude'
+    end
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

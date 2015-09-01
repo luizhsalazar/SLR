@@ -12,8 +12,11 @@
               <b> Contextualização: </b> <br> <p> <%= @protocol.background %></p><br>
               <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p><br>
               <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p><br>
+              <b> Critérios de Qualidade: </b> <br> <p> <%= @protocol.quality %> </p><br>
               <b> Data de Publicação: </b> <br> <p> <%= @protocol.from.to_s + " - " + @protocol.to.to_s %> </p><br>
               <b> Bases Digitais: </b> <br>
+
+              <!-- Jogar esta lógica para o controller -->
               <ul>
                 <% if @protocol.ieee %>
                     <% path = ieees_path %>
@@ -43,6 +46,11 @@
                       Google Scholar
                     </li>
                 <% end %>
+                <% if @protocol.scopus %>
+                    <li>
+                      Scopus
+                    </li>
+                <% end %>
               </ul><br>
 
               <b> Termos de Busca: </b><br><br>
@@ -66,8 +74,43 @@
                   </table>
               </div>
 
-              <b> Critérios de Qualidade: </b> <br> <p> <%= @protocol.quality %> </p>
+              <b> Trabalhos Incluídos na Revisão </b> <br><br>
+              <div class="container-fluid">
+                    <% if @included.empty? %>
+                        <b> Nenhum trabalho incluído na revisão </b>
+                    <% else %>
+                        <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                            <th>Título</th>
+                            <th>Autores</th>
+                            <th>Critério de exclusão</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <% @included.each do |ref|  %>
+                              <tr>
+                                <td><%= link_to ref.title, ref.link %></td>
+                                <td><%= ref.author %></td>
+                                <td>
+                                  <%= link_to exclude_ieee_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                                      <span class="glyphicon glyphicon-chevron-down"></span>
+                                      Excluir
+                                  <% end %>
+                                </td>
+                              </tr>
+                          <% end %>
+                          </tbody>
+                        </table>
+                    <% end %>
+              </div>
+
             </div>
+
+
+
+
+
           </div>
         </div>
       </div>

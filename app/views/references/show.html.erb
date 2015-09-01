@@ -11,7 +11,7 @@
             <% if reference.protocol_id == params[:id] %>
               <tr>
                 <td>
-                  <%= link_to reference.database_name, scopus_path %>
+                  <%= link_to reference.database_name, ieee_path(reference.protocol_id) %>
                 </td>
                 <td>
                   <%= reference.results %>

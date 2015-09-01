@@ -10,6 +10,16 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1
   # GET /protocols/1.json
   def show
+
+      @included = []
+
+      #fixme: Ajustar para buscar apenas as referências adicionadas para aquele protocolo
+
+      Ieee.all.each { |ieee|
+        unless ieee.included.nil?
+          @included.push(ieee)
+        end
+      }
   end
 
   # GET /protocols/new
@@ -82,6 +92,21 @@ class ProtocolsController < ApplicationController
     @protocol = Protocol.find(params[:id])
   end
 
+  def do_search
+    # @protocol = Protocol.find(params[:id])
+    #
+    # if @protocol.scopus
+    #   redirect_to scopus_path(params[:id], params[:query])
+    # end
+    # if @protocol.ieee
+    #   redirect_to ieees_path
+    # end
+    # if @protocol.science_direct
+    #   redirect_to scidirs_path
+    # end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_protocol
@@ -91,7 +116,7 @@ class ProtocolsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
       params.require(:protocol).permit(:id, :title, :background, :research_question, :strategy, :criteria, :from, :to,
-                                       :ieee, :acm, :springer, :science_direct, :google_scholar, :quality,
+                                       :ieee, :acm, :springer, :science_direct, :google_scholar, :scopus, :quality,
                                        :terms_attributes => [:id, :termo, :sinonimo, :traducao])
     end
 end

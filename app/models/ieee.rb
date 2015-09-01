@@ -11,7 +11,7 @@ class Ieee < ActiveRecord::Base
 
     @logger.debug "Query URL:  #{@search_url}"
 
-    entries = process_results_base(results)
+    entries = process_results_base(results, protocol_id)
 
     results = Ieee.all.length
 
@@ -30,7 +30,7 @@ class Ieee < ActiveRecord::Base
 
   end
 
-  def process_results_base(results)
+  def process_results_base(results, protocol_id)
 
     nodes = results.search("//document")
     entries = []
@@ -38,14 +38,14 @@ class Ieee < ActiveRecord::Base
     @logger.debug "NODES: #{nodes.length.to_s}"
 
     nodes.each do |node|
-      entry = process_node_xml(node)
+      entry = process_node_xml(node, protocol_id)
       entries << entry
     end
 
     return entries
   end
 
-  def process_node_xml(node)
+  def process_node_xml(node, protocol_id)
     hash_entry = {}
     hash_entry[:node] = node
     hashed_node = Crack::XML.parse(node.to_s)
@@ -81,6 +81,7 @@ class Ieee < ActiveRecord::Base
       @ieee.pubtype = hashed_result["pubtype"]
       @ieee.link = hashed_result["pdf"]
       @ieee.pubtitle = hashed_result["pubtitle"]
+      @ieee.protocol_id = protocol_id
 
       @ieee.save!
     end
