@@ -81,38 +81,6 @@
                   <% end %>
                   </table>
               </div>
-
-              <b> Trabalhos Incluídos na Revisão </b> <br><br>
-              <div class="container-fluid">
-                    <% if @included.empty? %>
-                        <div class="alert alert-info"><b> Nenhum trabalho incluído na revisão </b></div>
-                    <% else %>
-                        <table class="table table-bordered">
-                          <thead>
-                          <tr>
-                            <th>Título</th>
-                            <th>Autores</th>
-                            <th>Critério de exclusão</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <% @included.each do |ref|  %>
-                              <tr>
-                                <td><%= link_to ref.title, ref.link %></td>
-                                <td><%= ref.author %></td>
-                                <td>
-                                  <%= link_to exclude_ieee_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
-                                      <span class="glyphicon glyphicon-remove"></span>
-                                      Excluir
-                                  <% end %>
-                                </td>
-                              </tr>
-                          <% end %>
-                          </tbody>
-                        </table>
-                    <% end %>
-              </div>
-
             </div>
           </div>
         </div>

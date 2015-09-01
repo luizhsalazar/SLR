@@ -10,17 +10,6 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1
   # GET /protocols/1.json
   def show
-
-      @included = []
-
-      Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
-        unless ieee.included.nil?
-          @included.push(ieee)
-        end
-      }
-
-      @ref_protocol = reference_exist
-
   end
 
   # GET /protocols/new
@@ -107,6 +96,18 @@ class ProtocolsController < ApplicationController
     #   redirect_to scidirs_path
     # end
 
+  end
+
+  def selected
+    @selected = []
+
+    Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
+      unless ieee.included.nil?
+        @selected.push(ieee)
+      end
+    }
+
+    @ref_protocol = reference_exist
   end
 
   private

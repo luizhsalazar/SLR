@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       # Otherwise, using collection you can create a route without a specific id :)
       get 'search'
       post 'do_search'
+      get 'selected'
     end
   end
 

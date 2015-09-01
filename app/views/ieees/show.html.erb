@@ -5,12 +5,9 @@
   <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
   <li><%= link_to 'Resultados Retornados', reference_path %></li>
   <li class="active"> IEEE Xplore Digital Library </li>
-  <li><%= link_to 'Resumo do protocolo', protocol_path %></li>
+  <li><%= link_to 'Trabalhos pré-selecionados', selected_protocol_path %></li>
 </ol>
 
-<% if @results == 0 %>
-    <div class="alert alert-info"><b> Nenhum resultado retornado </b></div>
-<% else %>
     <% @ieees.each do |ieee| %>
         <br>
         <div class="panel panel-default">
@@ -37,5 +34,5 @@
           </div>
         </div>
     <% end %>
-<% end %>
+
 
