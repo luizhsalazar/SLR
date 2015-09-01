@@ -10,8 +10,7 @@ class IeeesController < ApplicationController
   end
 
   def show
-    #fixme: Ajustar para buscar apenas as referências da IEEE daquele protocolo, não de todos como está fazendo agora.
-    @ieees = Ieee.all
+    @ieees = Ieee.where("protocol_id = ?", params[:id])
   end
 
   def create

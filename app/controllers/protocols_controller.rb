@@ -13,9 +13,7 @@ class ProtocolsController < ApplicationController
 
       @included = []
 
-      #fixme: Ajustar para buscar apenas as referências adicionadas para aquele protocolo
-
-      Ieee.all.each { |ieee|
+      Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
         unless ieee.included.nil?
           @included.push(ieee)
         end
