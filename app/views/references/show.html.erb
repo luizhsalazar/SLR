@@ -12,6 +12,7 @@
       <tr>
         <th> Base Digital </th>
         <th> Resultados </th>
+        <th> Data </th>
       </tr>
       <tr>
         <% Reference.all.each do |reference| %>
@@ -22,6 +23,11 @@
                 </td>
                 <td>
                   <%= reference.results %>
+                </td>
+                <td>
+                   <!-- FIXME: Se realizo a mesma busca duas vezes e o resultado é o mesmo, a data não é atualizada
+                               pois os dados não foram alterados -->
+                  <%= time_ago_in_words(reference.updated_at)%> ago
                 </td>
               </tr>
             <% end %>

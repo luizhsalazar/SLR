@@ -11,6 +11,10 @@ class IeeesController < ApplicationController
 
   def show
     @ieees = Ieee.where("protocol_id = ?", params[:id])
+
+    @results = Reference.find_by_protocol_id(params[:id]).results
+
+
   end
 
   def create

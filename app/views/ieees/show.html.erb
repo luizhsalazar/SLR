@@ -5,32 +5,37 @@
   <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
   <li><%= link_to 'Resultados Retornados', reference_path %></li>
   <li class="active"> IEEE Xplore Digital Library </li>
-  <li><%= link_to 'Resumo protocolo', protocol_path %></li>
+  <li><%= link_to 'Resumo do protocolo', protocol_path %></li>
 </ol>
 
-<% @ieees.each do |ieee| %>
-    <br>
-    <div class="panel panel-default">
-      <div class="panel-heading"> <b><%= link_to ieee.title, ieee.link  %> </b>
-        <%= link_to include_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-ok"></span>
-            Incluir
-        <% end %>
-        <%= link_to exclude_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-            Excluir
-        <% end %>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-12" align="left">
-            <h5>
-              <b> Autor: </b> <%= ieee.author %> <br>
-              <b> Periódico/Conferência: </b> <%= ieee.pubtitle  %><br>
-              <b> Abstract: </b> <p> <%= ieee.abstract %> </p>
-            </h5>
+<% if @results == 0 %>
+    <div class="alert alert-info"><b> Nenhum resultado retornado </b></div>
+<% else %>
+    <% @ieees.each do |ieee| %>
+        <br>
+        <div class="panel panel-default">
+          <div class="panel-heading"> <b><%= link_to ieee.title, ieee.link  %> </b>
+            <%= link_to include_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-ok"></span>
+                Incluir
+            <% end %>
+            <%= link_to exclude_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-remove"></span>
+                Excluir
+            <% end %>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12" align="left">
+                <h5>
+                  <b> Autor: </b> <%= ieee.author %> <br>
+                  <b> Periódico/Conferência: </b> <%= ieee.pubtitle  %><br>
+                  <b> Abstract: </b> <p> <%= ieee.abstract %> </p>
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+    <% end %>
 <% end %>
+
