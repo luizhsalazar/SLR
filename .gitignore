@@ -12,6 +12,8 @@
 log/
 .idea/
 
+*.log
+
 db/*
 
 >>>>>>> Stashed changes
