@@ -1,5 +1,13 @@
-<br><br>
+<br>
 <div class="container-fluid">
+
+  <ol class="breadcrumb">
+    <li class="active"> Protocolo </li>
+    <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
+    <% unless @ref_protocol.nil? %>
+        <li><%= link_to 'Resultados Retornados', reference_path %></li>
+    <% end %>
+  </ol>
 
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -77,7 +85,7 @@
               <b> Trabalhos Incluídos na Revisão </b> <br><br>
               <div class="container-fluid">
                     <% if @included.empty? %>
-                        <b> Nenhum trabalho incluído na revisão </b>
+                        <div class="alert alert-info"><b> Nenhum trabalho incluído na revisão </b></div>
                     <% else %>
                         <table class="table table-bordered">
                           <thead>
@@ -94,7 +102,7 @@
                                 <td><%= ref.author %></td>
                                 <td>
                                   <%= link_to exclude_ieee_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
-                                      <span class="glyphicon glyphicon-chevron-down"></span>
+                                      <span class="glyphicon glyphicon-remove"></span>
                                       Excluir
                                   <% end %>
                                 </td>
@@ -106,22 +114,33 @@
               </div>
 
             </div>
-
-
-
-
-
           </div>
         </div>
       </div>
   <div class="btn-group">
-    <%= link_to 'Edit', edit_protocol_path(@protocol), class: "btn btn-default" %>
-    <%= link_to 'Destroy', @protocol, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
-    <%= link_to 'Back', protocols_path, class: "btn btn-default" %>
+
+    <%= link_to protocols_path, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-step-backward"></span>
+        Voltar
+    <% end %>
+
+    <%= link_to @protocol, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-trash"></span>
+        Deletar
+    <% end %>
+
+    <%= link_to edit_protocol_path(@protocol), class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-edit"></span>
+        Editar
+    <% end %>
+
   </div>
 
   <div class="btn-group">
-    <%= link_to 'Continuar', search_protocol_path, class: "btn btn-default" %>
+    <%= link_to search_protocol_path, class: "btn btn-default" do %>
+        Continuar
+        <span class="glyphicon glyphicon-step-forward"></span>
+    <% end %>
   </div>
 
   <br><br><br>

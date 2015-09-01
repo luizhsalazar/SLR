@@ -1,4 +1,12 @@
-<br><br>
+<br>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Protocolo', protocol_path %></li>
+  <li class="active"> Execução da Busca </li>
+  <% unless @ref_protocol.nil? %>
+      <li><%= link_to 'Resultados Retornados', reference_path %></li>
+  <% end %>
+</ol>
 
 <%= form_for @protocol, url: ieees_path, html: {:method => :post}  do |f| %>
     <div class="panel panel-default">

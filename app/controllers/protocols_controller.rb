@@ -18,6 +18,9 @@ class ProtocolsController < ApplicationController
           @included.push(ieee)
         end
       }
+
+      @ref_protocol = reference_exist
+
   end
 
   # GET /protocols/new
@@ -88,6 +91,7 @@ class ProtocolsController < ApplicationController
 
   def search
     @protocol = Protocol.find(params[:id])
+    @ref_protocol = reference_exist
   end
 
   def do_search
@@ -117,4 +121,10 @@ class ProtocolsController < ApplicationController
                                        :ieee, :acm, :springer, :science_direct, :google_scholar, :scopus, :quality,
                                        :terms_attributes => [:id, :termo, :sinonimo, :traducao])
     end
+
+    # Verifica se alguma busca já foi realizada para aquele protocolo
+    def reference_exist
+      Reference.find_by_protocol_id(params[:id])
+    end
+
 end

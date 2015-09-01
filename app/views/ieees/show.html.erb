@@ -1,21 +1,23 @@
 <br>
 
-<div class="btn-group">
-  <%= link_to 'Continuar', protocol_path(params[:id]), class: "btn btn-default" %>
-</div>
-
-<br>
+<ol class="breadcrumb">
+  <li><%= link_to 'Protocolo', protocol_path %></li>
+  <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
+  <li><%= link_to 'Resultados Retornados', reference_path %></li>
+  <li class="active"> IEEE Xplore Digital Library </li>
+  <li><%= link_to 'Resumo protocolo', protocol_path %></li>
+</ol>
 
 <% @ieees.each do |ieee| %>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading"> <b><%= link_to ieee.title, ieee.link  %> </b>
         <%= link_to include_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="glyphicon glyphicon-ok"></span>
             Incluir
         <% end %>
         <%= link_to exclude_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-chevron-down"></span>
+            <span class="glyphicon glyphicon-remove"></span>
             Excluir
         <% end %>
       </div>
