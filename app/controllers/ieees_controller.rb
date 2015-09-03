@@ -41,5 +41,20 @@ class IeeesController < ApplicationController
     redirect_to :back
   end
 
+  def select
+    @ieee = Ieee.find(params[:id])
+    @ieee.selected = 1
+    @ieee.save!
+    redirect_to :back
+  end
+
+  def unselect
+    @ieee = Ieee.find(params[:id])
+    @ieee.selected = nil
+    @ieee.included = nil
+    @ieee.save!
+    redirect_to :back
+  end
+
 
 end

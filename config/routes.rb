@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'search'
       post 'do_search'
       get 'selected'
+      get 'included'
     end
   end
 
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
     member do
       put 'include', to: 'ieees#include'
       put 'exclude', to: 'ieees#exclude'
+      put 'select', to: 'ieees#select'
+      put 'unselect', to: 'ieees#unselect'
     end
   end
 

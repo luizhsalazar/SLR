@@ -102,8 +102,20 @@ class ProtocolsController < ApplicationController
     @selected = []
 
     Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
-      unless ieee.included.nil?
+      unless ieee.selected.nil?
         @selected.push(ieee)
+      end
+    }
+
+    @ref_protocol = reference_exist
+  end
+
+  def included
+    @included = []
+
+    Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
+      unless ieee.included.nil?
+        @included.push(ieee)
       end
     }
 
