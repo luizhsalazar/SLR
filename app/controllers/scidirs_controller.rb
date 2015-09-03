@@ -1,5 +1,5 @@
 class ScidirsController < ApplicationController
-  before_action :set_scidir, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy]
 
   # GET /scidirs
   # GET /scidirs.json
@@ -10,6 +10,7 @@ class ScidirsController < ApplicationController
   # GET /scidirs/1
   # GET /scidirs/1.json
   def show
+    @scidirs = Scidir.where("protocol_id = ?", params[:id])
   end
 
   # GET /scidirs/new

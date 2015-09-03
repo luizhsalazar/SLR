@@ -12,17 +12,14 @@ class IeeesController < ApplicationController
   def show
     @ieees = Ieee.where("protocol_id = ?", params[:id])
 
-    # @results = Reference.find_by_protocol_id(params[:id]).results
-
-
   end
 
   def create
     protocol_id = params[:protocol][:id]
-    from = params[:protocol][:from]
-    to = params[:protocol][:to]
+    # from = params[:protocol][:from]
+    # to = params[:protocol][:to]
     @ieee = Ieee.new
-    @ieee = @ieee.search(params[:protocol][:query], protocol_id, from, to)
+    @ieee = @ieee.search(params[:protocol][:query], protocol_id) #, from, to)
 
     redirect_to reference_url(protocol_id)
   end

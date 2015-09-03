@@ -15,7 +15,6 @@ class Scidir < ActiveRecord::Base
       entry.xpath("./*").each do |element|
         if element.name == 'title'
           @scidir.title = element.text
-          title = @scidir.title
         end
         if element.name == 'creator'
           @scidir.author = element.text
@@ -34,6 +33,8 @@ class Scidir < ActiveRecord::Base
         end
       end
 
+      @scidir.protocol_id = protocol_id
+
       @scidir.save!
     end
 
@@ -43,6 +44,7 @@ class Scidir < ActiveRecord::Base
 
     @reference.protocol_id = protocol_id
     @reference.database_name = 'Science Direct'
+    @reference.database = 'scidir'
 
     unless @reference.results == results
       @reference.results = results

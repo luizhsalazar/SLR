@@ -1,5 +1,5 @@
 class ScopusController < ApplicationController
-  before_action :set_scopu, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy]
 
   # GET /scopus
   # GET /scopus.json
@@ -10,6 +10,7 @@ class ScopusController < ApplicationController
   # GET /scopus/1
   # GET /scopus/1.json
   def show
+    @scopus = Scopu.where("protocol_id = ?", params[:id])
   end
 
   # GET /scopus/new

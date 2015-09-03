@@ -17,19 +17,51 @@
       <tr>
         <% Reference.all.each do |reference| %>
             <% if reference.protocol_id == params[:id] %>
-              <tr>
-                <td>
-                  <%= link_to reference.database_name, ieee_path(reference.protocol_id) %>
-                </td>
-                <td>
-                  <%= reference.results %>
-                </td>
-                <td>
-                   <!-- FIXME: Se realizo a mesma busca duas vezes e o resultado é o mesmo, a data não é atualizada
-                               pois os dados não foram alterados -->
-                  <%= time_ago_in_words(reference.updated_at)%> ago
-                </td>
-              </tr>
+              <% if reference.database == 'scopu' %>
+                  <tr>
+                    <td>
+                      <%= link_to reference.database_name, scopu_path %>
+                    </td>
+                    <td>
+                      <%= reference.results %>
+                    </td>
+                    <td>
+                       <!-- FIXME: Se realizo a mesma busca duas vezes e o resultado é o mesmo, a data não é atualizada
+                                   pois os dados não foram alterados -->
+                      <%= time_ago_in_words(reference.updated_at)%> ago
+                    </td>
+                  </tr>
+              <% end %>
+              <% if reference.database == 'ieee' %>
+                  <tr>
+                    <td>
+                      <%= link_to reference.database_name, ieee_path %>
+                    </td>
+                    <td>
+                      <%= reference.results %>
+                    </td>
+                    <td>
+                      <!-- FIXME: Se realizo a mesma busca duas vezes e o resultado é o mesmo, a data não é atualizada
+                                  pois os dados não foram alterados -->
+                      <%= time_ago_in_words(reference.updated_at)%> ago
+                    </td>
+                  </tr>
+              <% end %>
+              <% if reference.database == 'scidir' %>
+                  <tr>
+                    <td>
+                      <%= link_to reference.database_name, scidir_path %>
+                    </td>
+                    <td>
+                      <%= reference.results %>
+                    </td>
+                    <td>
+                      <!-- FIXME: Se realizo a mesma busca duas vezes e o resultado é o mesmo, a data não é atualizada
+                                  pois os dados não foram alterados -->
+                      <%= time_ago_in_words(reference.updated_at)%> ago
+                    </td>
+                  </tr>
+              <% end %>
             <% end %>
         <% end %>
       </tr>

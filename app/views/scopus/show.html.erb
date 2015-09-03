@@ -1,39 +1,28 @@
-<p id="notice"><%= notice %></p>
+<br>
 
-<p>
-  <strong>Abstract:</strong>
-  <%= @scopu.abstract %>
-</p>
+<ol class="breadcrumb">
+  <li><%= link_to 'Protocolo', protocol_path %></li>
+  <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
+  <li><%= link_to 'Resultados Retornados', reference_path %></li>
+  <li class="active"> Scopus </li>
+</ol>
 
-<p>
-  <strong>Author:</strong>
-  <%= @scopu.author %>
-</p>
+<% @scopus.each do |scopus| %>
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-heading"> <b><%= link_to scopus.title, scopus.link  %> </b>
 
-<p>
-  <strong>Link:</strong>
-  <%= @scopu.link %>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @scopu.publisher %>
-</p>
-
-<p>
-  <strong>Pubtitle:</strong>
-  <%= @scopu.pubtitle %>
-</p>
-
-<p>
-  <strong>Pubtype:</strong>
-  <%= @scopu.pubtype %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @scopu.title %>
-</p>
-
-<%= link_to 'Edit', edit_scopu_path(@scopu) %> |
-<%= link_to 'Back', scopus_path %>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12" align="left">
+            <h5>
+              <b> Autor: </b> <%= scopus.author %> <br>
+              <b> Periódico/Conferência: </b> <%= scopus.pubtitle  %><br>
+              <b> Abstract: </b> <p> <%= scopus.abstract %> </p>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -33,6 +33,8 @@ class Scopu < ActiveRecord::Base
         end
       end
 
+      @scopu.protocol_id = protocol_id
+
       @scopu.save!
     end
 
@@ -42,6 +44,7 @@ class Scopu < ActiveRecord::Base
 
     @reference.protocol_id = protocol_id
     @reference.database_name = 'Scopus'
+    @reference.database = 'scopu'
 
     unless @reference.results == results
       @reference.results = results

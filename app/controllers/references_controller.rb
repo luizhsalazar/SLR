@@ -10,6 +10,16 @@ class ReferencesController < ApplicationController
   # GET /references/1
   # GET /references/1.json
   def show
+    @reference = Reference.find(params[:id])
+
+    if @reference.database == 'ieee'
+      @path = ieee_path
+    end
+
+    if @reference.database == 'scopu'
+      @path = scopu_path
+    end
+
   end
 
   # GET /references/new
