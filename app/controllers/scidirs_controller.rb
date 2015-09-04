@@ -32,6 +32,36 @@ class ScidirsController < ApplicationController
     redirect_to reference_url(protocol_id)
   end
 
+  def include
+    @scidir = Scidir.find(params[:id])
+    @scidir.included = 1
+    @scidir.save!
+    redirect_to :back
+  end
+
+  def exclude
+    @scidir = Scidir.find(params[:id])
+    @scidir.included = nil
+    @scidir.save!
+    redirect_to :back
+  end
+
+  def select
+    @scidir = Scidir.find(params[:id])
+    @scidir.selected = 1
+    @scidir.save!
+    redirect_to :back
+  end
+
+  def unselect
+    @scidir = Scidir.find(params[:id])
+    @scidir.selected = nil
+    @scidir.included = nil
+    @scidir.save!
+    redirect_to :back
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scidir

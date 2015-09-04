@@ -106,25 +106,77 @@ class ProtocolsController < ApplicationController
   end
 
   def selected
-    @selected = []
+    @protocol = Protocol.find(params[:id])
 
-    Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
-      unless ieee.selected.nil?
-        @selected.push(ieee)
-      end
-    }
+    @selected_ieee = []
+    @selected_scidir = []
+    @selected_scopus = []
+
+    if @protocol.ieee
+      Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
+        unless ieee.selected.nil?
+          @selected_ieee.push(ieee)
+        end
+      }
+    end
+
+    if @protocol.science_direct
+      Scidir.where("protocol_id = ?", params[:id]).each { |scidir|
+        unless scidir.selected.nil?
+          @selected_scidir.push(scidir)
+        end
+      }
+    end
+
+    if @protocol.scopus
+      Scopu.where("protocol_id = ?", params[:id]).each { |scopus|
+        unless scopus.selected.nil?
+          @selected_scopus.push(scopus)
+        end
+      }
+    end
+
+    @empty_ieee = (@selected_ieee.empty?) ? true : false
+    @empty_scidir = (@selected_scidir.empty?) ? true : false
+    @empty_scopus = (@selected_scopus.empty?) ? true : false
 
     @ref_protocol = reference_exist
   end
 
   def included
-    @included = []
+    @protocol = Protocol.find(params[:id])
 
-    Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
-      unless ieee.included.nil?
-        @included.push(ieee)
-      end
-    }
+    @included_ieee = []
+    @included_scidir = []
+    @included_scopus = []
+
+    if @protocol.ieee
+      Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
+        unless ieee.included.nil?
+          @included_ieee.push(ieee)
+        end
+      }
+    end
+
+    if @protocol.science_direct
+      Scidir.where("protocol_id = ?", params[:id]).each { |scidir|
+        unless scidir.included.nil?
+          @included_scidir.push(scidir)
+        end
+      }
+    end
+
+    if @protocol.scopus
+      Scopu.where("protocol_id = ?", params[:id]).each { |scopus|
+        unless scopus.included.nil?
+          @included_scopus.push(scopus)
+        end
+      }
+    end
+
+    @empty_ieee = (@included_ieee.empty?) ? true : false
+    @empty_scidir = (@included_scidir.empty?) ? true : false
+    @empty_scopus = (@included_scopus.empty?) ? true : false
 
     @ref_protocol = reference_exist
   end

@@ -4,21 +4,22 @@
   <li><%= link_to 'Protocolo', protocol_path %></li>
   <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
   <li><%= link_to 'Resultados Retornados', reference_path %></li>
-  <li><%= link_to 'IEEE Xplore Digital Library', ieee_path %></li>
   <li class="active"> Trabalhos pré-selecionados </li>
   <li><%= link_to 'Trabalhos selecionados', included_protocol_path %></li>
 
 </ol>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <b>Trabalhos pré-selecionados na Revisão </b>
-  </div>
-  <div class="panel-body">
-    <div class="container-fluid">
-      <% if @selected.empty? %>
-          <div class="alert alert-info"><b> Nenhum trabalho pré-selecionado na revisão </b></div>
-      <% else %>
+<% if @empty_ieee && @empty_scidir %>
+    <div class="alert alert-info"><b> Nenhum trabalho pré-selecionado na revisão </b></div>
+<% end %>
+
+<% unless @empty_ieee %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b><%= link_to 'IEEE Xplore Digital Library', ieee_path %> </b>
+      </div>
+      <div class="panel-body">
+        <div class="container-fluid">
           <table class="table table-hover">
             <thead>
             <tr>
@@ -29,7 +30,7 @@
             </tr>
             </thead>
             <tbody>
-            <% @selected.each do |ref| %>
+            <% @selected_ieee.each do |ref| %>
                 <tr>
                   <td><%= link_to ref.title, ref.link %></td>
                   <td><%= ref.author %></td>
@@ -49,9 +50,92 @@
             <% end %>
             </tbody>
           </table>
-      <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+<% end %>
 
 
+<% unless @empty_scidir %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b><%= link_to 'Science Direct Digital Library', scidir_path %></b>
+      </div>
+      <div class="panel-body">
+        <div class="container-fluid">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Título</th>
+                <th>Autores</th>
+                <th>Seleção</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @selected_scidir.each do |ref| %>
+                  <tr>
+                    <td><%= link_to ref.title, ref.link %></td>
+                    <td><%= ref.author %></td>
+                    <td>
+                      <%= link_to include_scidir_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                          <span class="glyphicon glyphicon-ok"></span>
+                          Incluir
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to unselect_scidir_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                          <span class="glyphicon glyphicon-remove"></span>
+                          Excluir
+                      <% end %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% unless @empty_scopus %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b><%= link_to 'Scopus Digital Library', scopu_path %></b>
+      </div>
+      <div class="panel-body">
+        <div class="container-fluid">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Título</th>
+              <th>Autores</th>
+              <th>Seleção</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @selected_scopus.each do |ref| %>
+                <tr>
+                  <td><%= link_to ref.title, ref.link %></td>
+                  <td><%= ref.author %></td>
+                  <td>
+                    <%= link_to include_scopu_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Incluir
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to unselect_scopu_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Excluir
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<% end %>

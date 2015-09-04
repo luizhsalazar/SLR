@@ -32,6 +32,35 @@ class ScopusController < ApplicationController
     redirect_to reference_url(protocol_id)
   end
 
+  def include
+    @scopu = Scopu.find(params[:id])
+    @scopu.included = 1
+    @scopu.save!
+    redirect_to :back
+  end
+
+  def exclude
+    @scopu = Scopu.find(params[:id])
+    @scopu.included = nil
+    @scopu.save!
+    redirect_to :back
+  end
+
+  def select
+    @scopu = Scopu.find(params[:id])
+    @scopu.selected = 1
+    @scopu.save!
+    redirect_to :back
+  end
+
+  def unselect
+    @scopu = Scopu.find(params[:id])
+    @scopu.selected = nil
+    @scopu.included = nil
+    @scopu.save!
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scopu

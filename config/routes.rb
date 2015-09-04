@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :scopus
-  resources :scidirs
+  resources :scopus do
+    member do
+      put 'include', to: 'scopus#include'
+      put 'exclude', to: 'scopus#exclude'
+      put 'select', to: 'scopus#select'
+      put 'unselect', to: 'scopus#unselect'
+    end
+  end
+
+  resources :scidirs do
+    member do
+      put 'include', to: 'scidirs#include'
+      put 'exclude', to: 'scidirs#exclude'
+      put 'select', to: 'scidirs#select'
+      put 'unselect', to: 'scidirs#unselect'
+    end
+  end
   resources :acms
   resources :references
   resources :protocols do

@@ -5,13 +5,21 @@
   <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
   <li><%= link_to 'Resultados Retornados', reference_path %></li>
   <li class="active"> Scopus </li>
+  <li><%= link_to 'Trabalhos pré-selecionados', selected_protocol_path %></li>
 </ol>
 
 <% @scopus.each do |scopus| %>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading"> <b><%= link_to scopus.title, scopus.link  %> </b>
-
+        <%= link_to select_scopu_path(scopus), method: :put, class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-ok"></span>
+            Incluir
+        <% end %>
+        <%= link_to unselect_scopu_path(scopus), method: :put, class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-remove"></span>
+            Excluir
+        <% end %>
       </div>
       <div class="panel-body">
         <div class="row">

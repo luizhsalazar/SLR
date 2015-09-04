@@ -5,12 +5,22 @@
   <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
   <li><%= link_to 'Resultados Retornados', reference_path %></li>
   <li class="active"> Science Direct </li>
+  <li><%= link_to 'Trabalhos pré-selecionados', selected_protocol_path %></li>
+
 </ol>
 
 <% @scidirs.each do |scidir| %>
     <br>
     <div class="panel panel-default">
       <div class="panel-heading"> <b><%= link_to scidir.title, scidir.link  %> </b>
+        <%= link_to select_scidir_path(scidir), method: :put, class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-ok"></span>
+            Incluir
+        <% end %>
+        <%= link_to unselect_scidir_path(scidir), method: :put, class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-remove"></span>
+            Excluir
+        <% end %>
       </div>
       <div class="panel-body">
         <div class="row">
