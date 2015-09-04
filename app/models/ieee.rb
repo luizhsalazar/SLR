@@ -1,8 +1,8 @@
 class Ieee < ActiveRecord::Base
 
-  def search(query, protocol_id, from, to)
+  def search(query, protocol_id)
 
-    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query + '&pys=' + from.to_s + '&pye=' + to.to_s
+    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
     @agent = Mechanize.new
 
     results = @agent.get(@search_url)
@@ -19,6 +19,7 @@ class Ieee < ActiveRecord::Base
 
     @reference.protocol_id = protocol_id
     @reference.database_name = 'IEEE Xplore Digital Library'
+    @reference.database = 'ieee'
 
     # WATCH OUT! Possível geração de erros no futuro.
     unless @reference.results == results
@@ -71,8 +72,9 @@ class Ieee < ActiveRecord::Base
       end
     end
 
+    # fixme: Isto está quebrando quando mais de um protocolo executa a busca com a mesma search string
     # Check if that data is already saved in database
-    unless Ieee.find_by_title(hashed_result["title"])
+    # unless Ieee.find_by_title(hashed_result["title"])
       @ieee = Ieee.new
 
       @ieee.title = hashed_result["title"]
@@ -85,7 +87,7 @@ class Ieee < ActiveRecord::Base
       @ieee.protocol_id = protocol_id
 
       @ieee.save!
-    end
+    # end
 
     # -------------- LOG -----------------------------------------------------------------------
 

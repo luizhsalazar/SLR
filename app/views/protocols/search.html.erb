@@ -8,7 +8,7 @@
   <% end %>
 </ol>
 
-<%= form_for @protocol, url: ieees_path, html: {:method => :post}  do |f| %>
+<%= form_for @protocol, url: do_search_protocol_path, html: {:method => :post}  do |f| %>
     <div class="panel panel-default">
       <div class="panel-heading"><strong> Mecanismo de Busca </strong>  </div>
       <div class="panel-body">
@@ -20,8 +20,6 @@
             </div>
 
             <%= f.hidden_field :id %>
-            <%= f.hidden_field :to %>
-            <%= f.hidden_field :from %>
 
             <div class="form-group">
               <%= f.submit "Buscar", class: "btn btn-default" %>
@@ -44,16 +42,28 @@
               </tr>
               </thead>
               <tbody>
+                <% if @protocol.ieee %>
                   <tr>
                     <td> IEEE Xplore Digital Library </td>
-                    <td><%= @protocol.query + '&ranges=' + @protocol.from.to_s + "-" + @protocol.to.to_s  %></td>
+                    <td><%= @protocol.query  %></td>
                   </tr>
+                <% end %>
+
+                <% if @protocol.science_direct %>
+                  <tr>
+                    <td> Science Direct Digital Library </td>
+                    <td><%= @protocol.query  %></td>
+                  </tr>
+              <% end %>
+              <% if @protocol.scopus %>
+                  <tr>
+                    <td> Scopus Digital Library </td>
+                    <td><%= @protocol.query  %></td>
+                  </tr>
+              <% end %>
               </table>
           </div>
         </div>
       </div>
     </div>
-
-
-
 <% end %>
