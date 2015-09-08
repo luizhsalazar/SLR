@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> SLR Search Engine </title>
+  <title> RESuLT </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -20,7 +20,7 @@
                     <%= image_tag 'logo.png' %>
                     </a></td>
                 <td valign="middle" width="100%" style="padding-left: 15px">
-                  <span id="tool_title">SLR Search Engine Tool</span>
+                  <span id="tool_title">RESuLT - Revisão Sistemática</span>
                 </td>
                 <td valign="middle" style="padding-right: 25px; padding-top: 3px">
                   <a href="http://www.incod.ufsc.br" target="_new">
@@ -38,25 +38,20 @@
           <div id="menu">
             <table cellpadding="0" cellspacing="0" border="0" width="100%" height="34">
               <tr>
-                <td valign="top" nowrap>
+                <td nowrap>
                   <%= link_to (image_tag 'botao_home.png'), root_path %>
                 </td>
-                <td align="right" valign="top" width="100%">
-                  <%= image_tag 'separador.png' %>
-                </td>
-
                 <td align="right" valign="top" nowrap>
                   <p class="user"></p>
                 </td>
-                <td width="310" nowrap>
+                <td align="right" width="310">
 
                   <% if user_signed_in? %>
-                    <%= link_to "Cadastrar Protocolo", new_protocol_path %>
-                    <%= link_to "Account", edit_user_registration_path %>
-                    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                    <%= link_to (image_tag 'cadastrar.png'), new_protocol_path %>
+                    <%= link_to (image_tag 'sair.png'), destroy_user_session_path, :method => :delete %>
                   <% else %>
-                    <%= link_to (image_tag 'botao_register_account2.png'), new_user_registration_path %>
-                    <%= link_to (image_tag 'botao_login.png'), new_user_session_path %>
+                    <%= link_to (image_tag 'criar-conta.png'), new_user_registration_path %>
+                    <%= link_to (image_tag 'entrar.png'), new_user_session_path %>
                   <% end %>
                 </td>
               </tr>
