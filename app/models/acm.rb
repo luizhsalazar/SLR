@@ -2,31 +2,91 @@ class Acm < ActiveRecord::Base
 
   def search(query, protocol_id)
 
-    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
-    @agent = Mechanize.new
-
-    results = @agent.get(@search_url)
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?query=" + query))
 
     @logger = Logger.new("SLR.log")
 
-    @logger.debug "Query URL:  #{@search_url}"
+    # authors = doc.css("div.authors").child
+    links = doc.css("a.medium-text")
+    links.each { |link|
+      @logger.debug "Title: #{link.child}"
+      @logger.debug "Link: #{link['href']}"
+      # authors.each { |author|
+      #   @logger.debug "Link: #{author.child}"
+      #               }
+      @logger.debug "----------------------------------------------------"
+    }
 
-    entries = process_results_base(results)
 
-    results = Acm.all.length
+    # links = doc.css("div.authors").children
+    # links.each { |link|
+    #   @logger.debug "Link: #{link.child}"
+    #   @logger.debug "----------------------------------------------------"
+    #
+    # }
 
-    @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'ACM Digital Library')
+    # links = doc.css("div.abstract2 p")
+    # links.each { |link|
+    #   @logger.debug "Abstract: #{link.child}"
+    #   @logger.debug "----------------------------------------------------"
+    #
+    # }
 
-    @reference.protocol_id = protocol_id
-    @reference.database_name = 'ACM Digital Library'
 
-    unless @reference.results == results
-      @reference.results = results
-    end
+    # doc.xpath("//xmlns:entry").each do|entry|
+    #
+    #   @scidir = Scidir.new
+    #
+    #   entry.xpath("./*").each do |element|
+    #
+    #     @logger.debug "Element:  #{element}"
+    #     @logger.debug "----------------------------------------------------"
+    #   end
+    # end
 
-    @reference.save!
-
-    @logger.debug "Referências totais processadas: #{entries.size.to_s}"
+    # doc.xpath("//xmlns:entry").each do|entry|
+    #
+    #   @acm = Acm.new
+    #
+    #   entry.xpath("./*").each do |element|
+    #     if element.name == 'title'
+    #       @acm.title = element.text
+    #     end
+    #     if element.name == 'creator'
+    #       @acm.author = element.text
+    #     end
+    #     if element.name == 'teaser'
+    #       @acm.abstract = element.text
+    #     end
+    #     if element.name == 'publicationName'
+    #       @acm.pubtitle = element.text
+    #     end
+    #
+    #     if element.name == 'link'
+    #       if element["ref"] == 'scidir'
+    #         @acm.link = element["href"]
+    #       end
+    #     end
+    #   end
+    #
+    #   @acm.protocol_id = protocol_id
+    #
+    #   @acm.save!
+    # end
+    #
+    # results = Acm.all.length
+    #
+    # @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'ACM Digital Library')
+    #
+    # @reference.protocol_id = protocol_id
+    # @reference.database_name = 'ACM Digital Library'
+    # @reference.database = 'acm'
+    #
+    # unless @reference.results == results
+    #   @reference.results = results
+    # end
+    #
+    # @reference.save!
 
   end
 

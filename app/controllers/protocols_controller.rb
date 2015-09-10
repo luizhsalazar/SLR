@@ -86,20 +86,23 @@ class ProtocolsController < ApplicationController
   def do_search
     @protocol = Protocol.find(params[:id])
 
-    if @protocol.ieee
-      @ieee = Ieee.new
-      @ieee = @ieee.search(params[:protocol][:query], params[:id])
-    end
+    @acm = Acm.new
+    @acm = @acm.search(params[:protocol][:query], params[:id])
 
-    if @protocol.scopus
-      @scopu = Scopu.new
-      @scopu = @scopu.search(params[:protocol][:query], params[:id])
-    end
-
-    if @protocol.science_direct
-      @scidir = Scidir.new
-      @scidir = @scidir.search(params[:protocol][:query], params[:id])
-    end
+    # if @protocol.ieee
+    #   @ieee = Ieee.new
+    #   @ieee = @ieee.search(params[:protocol][:query], params[:id])
+    # end
+    #
+    # if @protocol.scopus
+    #   @scopu = Scopu.new
+    #   @scopu = @scopu.search(params[:protocol][:query], params[:id])
+    # end
+    #
+    # if @protocol.science_direct
+    #   @scidir = Scidir.new
+    #   @scidir = @scidir.search(params[:protocol][:query], params[:id])
+    # end
 
     redirect_to reference_url(params[:id])
 
