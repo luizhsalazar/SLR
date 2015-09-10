@@ -15,7 +15,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/new
   def new
     @protocol = current_user.protocols.build
-    1.times { @protocol.terms.build }
+    2.times { @protocol.terms.build }
   end
 
   # GET /protocols/1/edit

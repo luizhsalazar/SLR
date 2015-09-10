@@ -61,24 +61,42 @@
             </div>
           </div>
         </div>
+        <div class="panel panel-default" align="left"><b> Critérios de Inclusão/Exclusão </b>
+          <div class="panel-body">
+            <div class="form-group">
+              <%= f.text_area :criteria, class: "form-control" %>
+            </div>
+          </div>
+        </div>
 
         <div class="panel panel-default" align="left"><b> String de busca </b> <i>(Não utilizar acentuação nos termos!)</i>
           <table class="table">
             <tr>
+              <th>  </th>
               <th> Termos </th>
               <th>  </th>
+              <th>  </th>
+              <th>  </th>
+              <th>  </th>
+              <th>  </th>
+              <th>  </th>
+              <th>  </th>
               <th> Sinônimos </th>
+              <th>  </th>
+              <th>  </th>
+              <th>  </th>
+              <th>  </th>
               <th>  </th>
               <th> Tradução (Inglês) </th>
             </tr>
           </table>
-          <div class="panel-body">
+          <div>
             <%= f.fields_for :terms do |builder| %>
                 <%= render 'term_fields', :f => builder %>
             <% end %>
           </div>
-          <div">
-              <%= link_to_add_fields "Adicionar termos", f, :terms %>
+          <div>
+              <%= link_to_add_fields (button_to "Adicionar termos", class: "btn btn-primary" ), f, :terms %>
           </div>
         </div>
         <br>
