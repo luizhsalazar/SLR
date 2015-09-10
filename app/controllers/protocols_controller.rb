@@ -155,6 +155,7 @@ class ProtocolsController < ApplicationController
     @empty_ieee = (@selected_ieee.empty?) ? true : false
     @empty_scidir = (@selected_scidir.empty?) ? true : false
     @empty_scopus = (@selected_scopus.empty?) ? true : false
+    @empty_acm = (@selected_acm.empty?) ? true : false
 
     @ref_protocol = reference_exist
   end
