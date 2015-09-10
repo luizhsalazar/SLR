@@ -1,18 +1,20 @@
 <div class="fields">
-  <tr>
-    <td>
-      <%= f.hidden_field :termo %>
-      <%= f.text_field :termo %>
-    </td>
-    <td> OR </td>
-    <td>
-      <%= f.hidden_field :sinonimo %>
-      <%= f.text_field :sinonimo %>
-    </td>
-    <td> OR </td>
-    <td>
-      <%= f.hidden_field :traducao %>
-      <%= f.text_field :traducao %>
-    </td>
-  </tr>
+  <table class="table">
+      <tr>
+          <td>
+            <%= f.hidden_field :termo %>
+            <%= f.text_field :termo %>
+          </td>
+          <td> OR </td>
+          <td>
+            <%= f.hidden_field :sinonimo %>
+            <%= f.text_field :sinonimo %>
+          </td>
+          <td> OR </td>
+          <td>
+            <%= f.hidden_field :traducao %>
+            <%= f.text_field :traducao %>
+          </td>
+      </tr>
+  </table>
 </div>

@@ -25,7 +25,13 @@ function remove_fields (link) {
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g")
-    $(link).up().insert({
-        before: content.replace(regexp, new_id)
-    });
+    $(link).parent().before(content.replace(regexp, new_id));
 }
+
+$(document).on("click", "a.link_to_add_fields", function(e){
+            e.preventDefault();
+            var link = $(this);
+            var association = $(this).data("association");
+            var content = $(this).data("content");
+            add_fields(link, association, content);
+});
