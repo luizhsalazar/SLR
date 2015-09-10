@@ -17,7 +17,15 @@ Rails.application.routes.draw do
       put 'unselect', to: 'scidirs#unselect'
     end
   end
-  resources :acms
+  resources :acms do
+    member do
+      put 'include', to: 'acms#include'
+      put 'exclude', to: 'acms#exclude'
+      put 'select', to: 'acms#select'
+      put 'unselect', to: 'acms#unselect'
+    end
+  end
+
   resources :references
   resources :protocols do
     member do

@@ -38,7 +38,7 @@ class Scidir < ActiveRecord::Base
       @scidir.save!
     end
 
-    results = Scidir.all.length
+    results =  Scidir.where("protocol_id = ?", protocol_id).count
 
     @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'Science Direct')
 
@@ -46,9 +46,7 @@ class Scidir < ActiveRecord::Base
     @reference.database_name = 'Science Direct'
     @reference.database = 'scidir'
 
-    unless @reference.results == results
-      @reference.results = results
-    end
+    @reference.results = results
 
     @reference.save!
   end

@@ -1,44 +1,36 @@
-<p id="notice"><%= notice %></p>
+<br>
 
-<p>
-  <strong>Abstract:</strong>
-  <%= @acm.abstract %>
-</p>
+<ol class="breadcrumb">
+  <li><%= link_to 'Protocolo', protocol_path %></li>
+  <li><%= link_to 'Execução da Busca', search_protocol_path %></li>
+  <li><%= link_to 'Resultados Retornados', reference_path %></li>
+  <li class="active"> ACM Digital Library </li>
+  <li><%= link_to 'Trabalhos pré-selecionados', selected_protocol_path %></li>
+</ol>
 
-<p>
-  <strong>Author:</strong>
-  <%= @acm.author %>
-</p>
-
-<p>
-  <strong>Generic string:</strong>
-  <%= @acm.generic_string %>
-</p>
-
-<p>
-  <strong>Link:</strong>
-  <%= @acm.link %>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @acm.publisher %>
-</p>
-
-<p>
-  <strong>Pubtitle:</strong>
-  <%= @acm.pubtitle %>
-</p>
-
-<p>
-  <strong>Pubtype:</strong>
-  <%= @acm.pubtype %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @acm.title %>
-</p>
-
-<%= link_to 'Edit', edit_acm_path(@acm) %> |
-<%= link_to 'Back', acms_path %>
+<% @acms.each do |acm| %>
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-heading"> <b><%= link_to acm.title, acm.link  %> </b>
+        <%= link_to select_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-ok"></span>
+            Incluir
+        <% end %>
+        <%= link_to unselect_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-remove"></span>
+            Excluir
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12" align="left">
+            <h5>
+              <b> Autor: </b> <%= acm.author %> <br>
+              <b> Periódico/Conferência: </b> <%= acm.pubtitle  %><br>
+              <b> Abstract: </b> <p> <%= acm.abstract %> </p>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -15,16 +15,13 @@ class Ieee < ActiveRecord::Base
 
     @reference = Reference.find_or_initialize_by(protocol_id: protocol_id)
 
-    results = Ieee.where("protocol_id = ?", protocol_id).length
+    results =  Ieee.where("protocol_id = ?", protocol_id).count
 
     @reference.protocol_id = protocol_id
     @reference.database_name = 'IEEE Xplore Digital Library'
     @reference.database = 'ieee'
 
-    # WATCH OUT! Possível geração de erros no futuro.
-    unless @reference.results == results
-      @reference.results = results
-    end
+    @reference.results = results
 
     @reference.save!
 

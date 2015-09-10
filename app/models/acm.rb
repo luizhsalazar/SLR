@@ -2,31 +2,37 @@ class Acm < ActiveRecord::Base
 
   def search(query, protocol_id)
 
-    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
-    @agent = Mechanize.new
-
-    results = @agent.get(@search_url)
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query))
 
     @logger = Logger.new("SLR.log")
 
-    @logger.debug "Query URL:  #{@search_url}"
+    links = doc.css("a.medium-text")
+    links.each { |link|
 
-    entries = process_results_base(results)
+      @acm = Acm.new
 
-    results = Acm.all.length
+      @acm.title = link.child
+      @acm.link = 'http://dl.acm.org/' + link['href']
+
+      @acm.protocol_id = protocol_id
+      @acm.save!
+
+      # @logger.debug "Title: #{link.child}"
+      # @logger.debug "Link: #{link['href']}"
+      # @logger.debug "----------------------------------------------------"
+    }
+
+    results =  Acm.where("protocol_id = ?", protocol_id).count
 
     @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'ACM Digital Library')
 
     @reference.protocol_id = protocol_id
     @reference.database_name = 'ACM Digital Library'
+    @reference.database = 'acm'
 
-    unless @reference.results == results
-      @reference.results = results
-    end
+    @reference.results = results
 
     @reference.save!
-
-    @logger.debug "Referências totais processadas: #{entries.size.to_s}"
 
   end
 

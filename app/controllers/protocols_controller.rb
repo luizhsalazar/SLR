@@ -86,6 +86,8 @@ class ProtocolsController < ApplicationController
   def do_search
     @protocol = Protocol.find(params[:id])
 
+    @protocol.clean_bases(params[:id])
+
     if @protocol.ieee
       @ieee = Ieee.new
       @ieee = @ieee.search(params[:protocol][:query], params[:id])
@@ -101,6 +103,11 @@ class ProtocolsController < ApplicationController
       @scidir = @scidir.search(params[:protocol][:query], params[:id])
     end
 
+    if @protocol.acm
+      @acm = Acm.new
+      @acm = @acm.search(params[:protocol][:query], params[:id])
+    end
+
     redirect_to reference_url(params[:id])
 
   end
@@ -111,6 +118,7 @@ class ProtocolsController < ApplicationController
     @selected_ieee = []
     @selected_scidir = []
     @selected_scopus = []
+    @selected_acm = []
 
     if @protocol.ieee
       Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
@@ -136,6 +144,14 @@ class ProtocolsController < ApplicationController
       }
     end
 
+    if @protocol.acm
+      Acm.where("protocol_id = ?", params[:id]).each { |acm|
+        unless acm.selected.nil?
+          @selected_acm.push(acm)
+        end
+      }
+    end
+
     @empty_ieee = (@selected_ieee.empty?) ? true : false
     @empty_scidir = (@selected_scidir.empty?) ? true : false
     @empty_scopus = (@selected_scopus.empty?) ? true : false
@@ -149,6 +165,7 @@ class ProtocolsController < ApplicationController
     @included_ieee = []
     @included_scidir = []
     @included_scopus = []
+    @included_acm = []
 
     if @protocol.ieee
       Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
@@ -174,9 +191,18 @@ class ProtocolsController < ApplicationController
       }
     end
 
+    if @protocol.acm
+      Acm.where("protocol_id = ?", params[:id]).each { |acm|
+        unless acm.included.nil?
+          @included_acm.push(acm)
+        end
+      }
+    end
+
     @empty_ieee = (@included_ieee.empty?) ? true : false
     @empty_scidir = (@included_scidir.empty?) ? true : false
     @empty_scopus = (@included_scopus.empty?) ? true : false
+    @empty_acm = (@included_acm.empty?) ? true : false
 
     @ref_protocol = reference_exist
   end

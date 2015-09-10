@@ -38,7 +38,7 @@ class Scopu < ActiveRecord::Base
       @scopu.save!
     end
 
-    results = Scopu.all.length
+    results =  Scopu.where("protocol_id = ?", protocol_id).count
 
     @reference = Reference.find_or_initialize_by(protocol_id: protocol_id, database_name: 'Scopus')
 
@@ -46,9 +46,7 @@ class Scopu < ActiveRecord::Base
     @reference.database_name = 'Scopus'
     @reference.database = 'scopu'
 
-    unless @reference.results == results
-      @reference.results = results
-    end
+    @reference.results = results
 
     @reference.save!
   end

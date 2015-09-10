@@ -1,5 +1,5 @@
 class ReferencesController < ApplicationController
-  before_action :set_reference, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy]
 
   # GET /references
   # GET /references.json
@@ -10,16 +10,7 @@ class ReferencesController < ApplicationController
   # GET /references/1
   # GET /references/1.json
   def show
-    @reference = Reference.find(params[:id])
-
-    if @reference.database == 'ieee'
-      @path = ieee_path
-    end
-
-    if @reference.database == 'scopu'
-      @path = scopu_path
-    end
-
+    @reference = Reference.where("protocol_id = ?", params[:id])
   end
 
   # GET /references/new
