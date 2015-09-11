@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @google_scholar.abstract %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @google_scholar.author %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @google_scholar.link %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @google_scholar.publisher %>
+</p>
+
+<p>
+  <strong>Pubtitle:</strong>
+  <%= @google_scholar.pubtitle %>
+</p>
+
+<p>
+  <strong>Pubtype:</strong>
+  <%= @google_scholar.pubtype %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @google_scholar.title %>
+</p>
+
+<p>
+  <strong>Protocol:</strong>
+  <%= @google_scholar.protocol_id %>
+</p>
+
+<p>
+  <strong>Included:</strong>
+  <%= @google_scholar.included %>
+</p>
+
+<p>
+  <strong>Selected:</strong>
+  <%= @google_scholar.selected %>
+</p>
+
+<%= link_to 'Edit', edit_google_scholar_path(@google_scholar) %> |
+<%= link_to 'Back', google_scholars_path %>

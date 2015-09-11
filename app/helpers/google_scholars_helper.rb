@@ -1,0 +1,2 @@
+module GoogleScholarsHelper
+end

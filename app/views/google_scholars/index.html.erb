@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Google Scholars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Abstract</th>
+      <th>Author</th>
+      <th>Link</th>
+      <th>Publisher</th>
+      <th>Pubtitle</th>
+      <th>Pubtype</th>
+      <th>Title</th>
+      <th>Protocol</th>
+      <th>Included</th>
+      <th>Selected</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @google_scholars.each do |google_scholar| %>
+      <tr>
+        <td><%= google_scholar.abstract %></td>
+        <td><%= google_scholar.author %></td>
+        <td><%= google_scholar.link %></td>
+        <td><%= google_scholar.publisher %></td>
+        <td><%= google_scholar.pubtitle %></td>
+        <td><%= google_scholar.pubtype %></td>
+        <td><%= google_scholar.title %></td>
+        <td><%= google_scholar.protocol_id %></td>
+        <td><%= google_scholar.included %></td>
+        <td><%= google_scholar.selected %></td>
+        <td><%= link_to 'Show', google_scholar %></td>
+        <td><%= link_to 'Edit', edit_google_scholar_path(google_scholar) %></td>
+        <td><%= link_to 'Destroy', google_scholar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Google scholar', new_google_scholar_path %>
