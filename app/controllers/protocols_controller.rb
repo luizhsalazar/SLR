@@ -88,27 +88,33 @@ class ProtocolsController < ApplicationController
 
     @protocol.clean_bases(params[:id])
 
+    query = params[:protocol][:query]
+    protocol_id = params[:id]
+    max_results = params[:protocol][:results_returned]
+
+
     if @protocol.ieee
       @ieee = Ieee.new
-      @ieee = @ieee.search(params[:protocol][:query], params[:id])
+      @ieee = @ieee.search(query, protocol_id, max_results)
     end
 
     if @protocol.scopus
       @scopu = Scopu.new
-      @scopu = @scopu.search(params[:protocol][:query], params[:id])
+      @scopu = @scopu.search(query, protocol_id, max_results)
     end
 
     if @protocol.science_direct
       @scidir = Scidir.new
-      @scidir = @scidir.search(params[:protocol][:query], params[:id])
+      @scidir = @scidir.search(query, protocol_id, max_results)
     end
 
+    #Falta inserir os máximos retornados!
     if @protocol.acm
       @acm = Acm.new
-      @acm = @acm.search(params[:protocol][:query], params[:id])
+      @acm = @acm.search(query, protocol_id)
     end
 
-    redirect_to reference_url(params[:id])
+    redirect_to reference_url(protocol_id)
 
   end
 
@@ -216,7 +222,7 @@ class ProtocolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def protocol_params
-      params.require(:protocol).permit(:id, :title, :background, :research_question, :strategy, :criteria, :from, :to,
+      params.require(:protocol).permit(:id, :title, :background, :research_question, :strategy, :criteria, :from, :to, :results_returned,
                                        :ieee, :acm, :springer, :science_direct, :google_scholar, :scopus, :quality,
                                        :terms_attributes => [:id, :termo, :sinonimo, :traducao])
     end

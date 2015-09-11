@@ -1,15 +1,23 @@
 class Ieee < ActiveRecord::Base
 
-  def search(query, protocol_id)
+  def search(query, protocol_id, max_returned)
 
-    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query
+    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query + '&hc=' + max_returned
     @agent = Mechanize.new
 
     results = @agent.get(@search_url)
 
     @logger = Logger.new("SLR.log")
 
-    @logger.debug "Query URL:  #{@search_url}"
+    @logger.debug "Max: #{@search_url}"
+
+    root = results.search("//root")
+
+    #fixme: Otimizar este código
+    root.each do |node|
+      hashed_node = Crack::XML.parse(node.to_s)
+      @total_found = hashed_node["root"]["totalfound"]
+    end
 
     entries = process_results_base(results, protocol_id)
 
@@ -22,6 +30,7 @@ class Ieee < ActiveRecord::Base
     @reference.database = 'ieee'
 
     @reference.results = results
+    @reference.total_found = @total_found
 
     @reference.save!
 
@@ -33,8 +42,6 @@ class Ieee < ActiveRecord::Base
 
     nodes = results.search("//document")
     entries = []
-
-    @logger.debug "NODES: #{nodes.length.to_s}"
 
     nodes.each do |node|
       entry = process_node_xml(node, protocol_id)
@@ -69,9 +76,6 @@ class Ieee < ActiveRecord::Base
       end
     end
 
-    # fixme: Isto está quebrando quando mais de um protocolo executa a busca com a mesma search string
-    # Check if that data is already saved in database
-    # unless Ieee.find_by_title(hashed_result["title"])
       @ieee = Ieee.new
 
       @ieee.title = hashed_result["title"]
@@ -84,18 +88,17 @@ class Ieee < ActiveRecord::Base
       @ieee.protocol_id = protocol_id
 
       @ieee.save!
-    # end
 
     # -------------- LOG -----------------------------------------------------------------------
 
-    @logger.debug "Tipo publicação: #{hashed_result["pubtype"]}"
-    @logger.debug "Título: #{hashed_result["title"]}"
-    @logger.debug "Título publicação: #{hashed_result["pubtitle"]}"
-    @logger.debug "Keywords: #{keywordsT}"
-    @logger.debug "Abstract: #{hashed_result["abstract"]}"
-    @logger.debug "Autores: #{authors}"
-    @logger.debug "Link Publicação: #{hashed_result["pdf"]}"
-    @logger.debug "Editora: #{hashed_result["publisher"]}"
+    # @logger.debug "Tipo publicação: #{hashed_result["pubtype"]}"
+    # @logger.debug "Título: #{hashed_result["title"]}"
+    # @logger.debug "Título publicação: #{hashed_result["pubtitle"]}"
+    # @logger.debug "Keywords: #{keywordsT}"
+    # @logger.debug "Abstract: #{hashed_result["abstract"]}"
+    # @logger.debug "Autores: #{authors}"
+    # @logger.debug "Link Publicação: #{hashed_result["pdf"]}"
+    # @logger.debug "Editora: #{hashed_result["publisher"]}"
 
     @logger.debug "----------------------------------------------------------------------------------"
 

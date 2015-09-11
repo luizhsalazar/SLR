@@ -58,6 +58,13 @@
                 <%= f.check_box :google_scholar, {:checked=> false} %> Google Scholar
               </div>
 
+              <br>
+
+              <%= f.label :resultados_a_serem_retornados %><br>
+              <div class="container-fluid">
+                Resultados Máximos retornados: <%= f.text_field :results_returned %> (0-100)
+              </div>
+
             </div>
           </div>
         </div>

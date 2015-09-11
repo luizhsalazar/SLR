@@ -22,16 +22,6 @@ class ScopusController < ApplicationController
   def edit
   end
 
-  # POST /scopus
-  # POST /scopus.json
-  def create
-    protocol_id = params[:protocol][:id]
-    @scopu = Scopu.new
-    @scopu = @scopu.search(params[:protocol][:query], protocol_id)
-
-    redirect_to reference_url(protocol_id)
-  end
-
   def include
     @scopu = Scopu.find(params[:id])
     @scopu.included = 1

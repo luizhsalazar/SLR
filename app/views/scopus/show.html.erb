@@ -10,27 +10,32 @@
 
 <% @scopus.each do |scopus| %>
     <br>
-    <div class="panel panel-default">
-      <div class="panel-heading"> <b><%= link_to scopus.title, scopus.link  %> </b>
-        <%= link_to select_scopu_path(scopus), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-ok"></span>
-            Incluir
-        <% end %>
-        <%= link_to unselect_scopu_path(scopus), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-            Excluir
-        <% end %>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-12" align="left">
-            <h5>
-              <b> Autor: </b> <%= scopus.author %> <br>
-              <b> Periódico/Conferência: </b> <%= scopus.pubtitle  %><br>
-              <b> Abstract: </b> <p> <%= scopus.abstract %> </p>
-            </h5>
+    <% if scopus.title.nil? %>
+        <div class="alert alert-info"><b> Nenhum trabalho retornado! </b></div>
+    <% else %>
+        <div class="panel panel-default">
+          <div class="panel-heading"> <b><%= link_to scopus.title, scopus.link  %> </b>
+            <%= link_to select_scopu_path(scopus), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-ok"></span>
+                Incluir
+            <% end %>
+            <%= link_to unselect_scopu_path(scopus), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-remove"></span>
+                Excluir
+            <% end %>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12" align="left">
+                <h5>
+                  <b> Autor: </b> <%= scopus.author %> <br>
+                  <b> Periódico/Conferência: </b> <%= scopus.pubtitle  %><br>
+                  <b> Abstract: </b> <p> <%= scopus.abstract %> </p>
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+    <% end %>
+
 <% end %>

@@ -2,11 +2,15 @@ require 'open-uri'
 
 class Scidir < ActiveRecord::Base
 
-  def search(query, protocol_id)
+  def search(query, protocol_id, max_returned)
 
-    doc = Nokogiri::XML(open("http://api.elsevier.com/content/search/scidir?apikey=2fc5e714431bca9f441f4314c6684282&httpAccept=application%2Fatom%2Bxml&count=100&query=" + query))
+    doc = Nokogiri::XML(open('http://api.elsevier.com/content/search/scidir?apikey=2fc5e714431bca9f441f4314c6684282&httpAccept=application%2Fatom%2Bxml&count=' + max_returned + '&query=' + query))
 
     @logger = Logger.new("SLR.log")
+
+    doc.xpath("//opensearch:totalResults").each do |entry|
+      @total_found = entry.text
+    end
 
     doc.xpath("//xmlns:entry").each do|entry|
 
@@ -20,7 +24,7 @@ class Scidir < ActiveRecord::Base
           @scidir.author = element.text
         end
         if element.name == 'teaser'
-          @scidir.abstract = element.text
+          @scidir.abstract = element.text.empty? ? 'Abstract não disponível' : element.text
         end
         if element.name == 'publicationName'
           @scidir.pubtitle = element.text
@@ -47,6 +51,7 @@ class Scidir < ActiveRecord::Base
     @reference.database = 'scidir'
 
     @reference.results = results
+    @reference.total_found = @total_found
 
     @reference.save!
   end
