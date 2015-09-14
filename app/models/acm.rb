@@ -8,35 +8,52 @@ class Acm < ActiveRecord::Base
 
     doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query))
 
-    @logger = Logger.new("SLR.log")
-
     doc_total = doc.css("table.small-text td")
 
     # Search for last characters and remove comma to get the total found value
     total_found = doc_total.first.child.to_s[18..-1].gsub(/,/, '').to_f
 
+    @logger = Logger.new("SLR2.log")
+
+    index = 0
+
     for i in 1..max
 
-      doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s))
+      search_query = "http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s
 
+      doc = Nokogiri::HTML(open(search_query))
+
+      # Result comes with 20 references per page
       j += 20
 
       links = doc.css("a.medium-text")
+      abstracts = doc.css("div.abstract2")
+      conference = doc.css("div.addinfo")
+      authors = doc.css("div.authors")
+
       links.each { |link|
 
         @acm = Acm.new
-
         @acm.title = link.child
         @acm.link = 'http://dl.acm.org/' + link['href']
+
+        # Stripping HTML tags and deleting undesirable symbols
+        @acm.pubtitle = ActionView::Base.full_sanitizer.sanitize(conference[index].to_s).strip.gsub(/&#13;/, '')
+        @acm.abstract = ActionView::Base.full_sanitizer.sanitize(abstracts[index].to_s).strip.gsub(/&#13;/, '')
+        @acm.author = ActionView::Base.full_sanitizer.sanitize(authors[index].to_s).strip.gsub(/&#13;/, '')
 
         @acm.protocol_id = protocol_id
         @acm.save!
 
         # @logger.debug "Title: #{link.child}"
         # @logger.debug "Link: #{link['href']}"
+        # @logger.debug "PubTitle: #{conference[index].to_s}"
+        # @logger.debug "Abstract: #{abstracts[index].to_s}"
+        # @logger.debug "Author: #{authors[index].to_s}"
         # @logger.debug "----------------------------------------------------"
-      }
 
+        index += 1
+      }
     end
 
     results =  Acm.where("protocol_id = ?", protocol_id).count
