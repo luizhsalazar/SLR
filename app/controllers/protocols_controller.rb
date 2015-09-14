@@ -108,10 +108,9 @@ class ProtocolsController < ApplicationController
       @scidir = @scidir.search(query, protocol_id, max_results)
     end
 
-    #Falta inserir os máximos retornados!
     if @protocol.acm
       @acm = Acm.new
-      @acm = @acm.search(query, protocol_id)
+      @acm = @acm.search(query, protocol_id, max_results)
     end
 
     redirect_to reference_url(protocol_id)

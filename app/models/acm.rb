@@ -1,26 +1,36 @@
 class Acm < ActiveRecord::Base
 
-  def search(query, protocol_id)
+  def search(query, protocol_id, max_results)
 
-    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query))
+    max = max_results.to_f / 20
+
+    j = 1
 
     @logger = Logger.new("SLR.log")
 
-    links = doc.css("a.medium-text")
-    links.each { |link|
+    for i in 1..max
 
-      @acm = Acm.new
+      doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s))
 
-      @acm.title = link.child
-      @acm.link = 'http://dl.acm.org/' + link['href']
+      j += 20
 
-      @acm.protocol_id = protocol_id
-      @acm.save!
+      links = doc.css("a.medium-text")
+      links.each { |link|
 
-      # @logger.debug "Title: #{link.child}"
-      # @logger.debug "Link: #{link['href']}"
-      # @logger.debug "----------------------------------------------------"
-    }
+        @acm = Acm.new
+
+        @acm.title = link.child
+        @acm.link = 'http://dl.acm.org/' + link['href']
+
+        @acm.protocol_id = protocol_id
+        @acm.save!
+
+        # @logger.debug "Title: #{link.child}"
+        # @logger.debug "Link: #{link['href']}"
+        # @logger.debug "----------------------------------------------------"
+      }
+
+    end
 
     results =  Acm.where("protocol_id = ?", protocol_id).count
 
