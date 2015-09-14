@@ -6,7 +6,14 @@ class Acm < ActiveRecord::Base
 
     j = 1
 
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query))
+
     @logger = Logger.new("SLR.log")
+
+    doc_total = doc.css("table.small-text td")
+
+    # Search for last characters and remove comma to get the total found value
+    total_found = doc_total.first.child.to_s[18..-1].gsub(/,/, '').to_f
 
     for i in 1..max
 
@@ -41,6 +48,7 @@ class Acm < ActiveRecord::Base
     @reference.database = 'acm'
 
     @reference.results = results
+    @reference.total_found = total_found
 
     @reference.save!
 
