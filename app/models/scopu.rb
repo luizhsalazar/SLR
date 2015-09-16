@@ -1,6 +1,6 @@
 class Scopu < ActiveRecord::Base
 
-  def search(query, protocol_id, max_returned)
+  def search(query, protocol_id, max_returned, from, to)
 
     doc = Nokogiri::XML(open('http://api.elsevier.com/content/search/scopus?apikey=2fc5e714431bca9f441f4314c6684282&httpAccept=application%2Fatom%2Bxml&view=complete&count=' + max_returned + '&query=' + query))
 

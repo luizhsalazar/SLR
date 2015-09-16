@@ -14,16 +14,6 @@ class IeeesController < ApplicationController
 
   end
 
-  def create
-    protocol_id = params[:protocol][:id]
-    # from = params[:protocol][:from]
-    # to = params[:protocol][:to]
-    @ieee = Ieee.new
-    @ieee = @ieee.search(params[:protocol][:query], protocol_id) #, from, to)
-
-    redirect_to reference_url(protocol_id)
-  end
-
   def include
     @ieee = Ieee.find(params[:id])
     @ieee.included = 1

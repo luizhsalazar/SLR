@@ -46,20 +46,26 @@
                 <% if @protocol.ieee %>
                   <tr>
                     <td> IEEE Xplore Digital Library </td>
-                    <td><%= @protocol.query  %></td>
+                    <td><%= @protocol.query + '&pys=' + @protocol.from.to_s + '&pye=' + @protocol.to.to_s  %></td>
                   </tr>
                 <% end %>
 
                 <% if @protocol.science_direct %>
                   <tr>
                     <td> Science Direct Digital Library </td>
-                    <td><%= @protocol.query  %></td>
+                    <td><%= @protocol.query + '&pub-date>' + @protocol.from.to_s + '&pub-date<' + @protocol.to.to_s  %></td>
                   </tr>
               <% end %>
               <% if @protocol.scopus %>
                   <tr>
                     <td> Scopus Digital Library </td>
-                    <td><%= @protocol.query  %></td>
+                    <td><%= @protocol.query + '&pub-date>' + @protocol.from.to_s + '&pub-date<' + @protocol.to.to_s %></td>
+                  </tr>
+              <% end %>
+              <% if @protocol.acm %>
+                  <tr>
+                    <td> ACM Digital Library </td>
+                    <td><%= @protocol.query + '&since_year=' + @protocol.from.to_s + '&before_year=' + @protocol.to.to_s %></td>
                   </tr>
               <% end %>
               </table>

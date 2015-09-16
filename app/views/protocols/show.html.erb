@@ -21,6 +21,7 @@
               <b> Pergunta de Pesquisa: </b> <br> <p> <%= @protocol.research_question %> </p><br>
               <b> Estratégia: </b> <br> <p> <%= @protocol.strategy %> </p><br>
               <b> Critérios de Qualidade: </b> <br> <p> <%= @protocol.quality %> </p><br>
+              <b> Critérios de Inclusão/Exclusão: </b> <br> <p> <%= @protocol.criteria %> </p><br>
               <b> Data de Publicação: </b> <br> <p> <%= @protocol.from.to_s + " - " + @protocol.to.to_s %> </p><br>
               <b> Resultados máximos a serem retornados: </b> <br> <p> <%= @protocol.results_returned %> </p><br>
 
@@ -75,7 +76,7 @@
                   <% @protocol.terms.each do |term|  %>
                       <tr>
                         <td><%= term.termo %></td>
-                        <td><%= term.sinonimo %></td>
+                        <td><%= term.sinonimo + ', ' + term.sinonimo2 + ', ' + term.sinonimo3 %></td>
                         <td><%= term.traducao %></td>
                       </tr>
                   <% end %>

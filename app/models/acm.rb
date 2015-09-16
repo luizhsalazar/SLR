@@ -1,6 +1,6 @@
 class Acm < ActiveRecord::Base
 
-  def search(query, protocol_id, max_results)
+  def search(query, protocol_id, max_results, from, to)
 
     max = max_results.to_f / 20
 

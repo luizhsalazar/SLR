@@ -15,7 +15,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/new
   def new
     @protocol = current_user.protocols.build
-    2.times { @protocol.terms.build }
+    1.times { @protocol.terms.build }
   end
 
   # GET /protocols/1/edit
@@ -29,7 +29,7 @@ class ProtocolsController < ApplicationController
     termos = ''
     attributes = protocol_params[:terms_attributes]
     attributes.values.each_with_index do |term, index|
-      termos += (index == attributes.size - 1) ? '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' : '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' + ' AND '
+      termos += (index == attributes.size - 1) ? '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' : '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' + ' AND '
     end
 
     @protocol.query = termos
@@ -88,29 +88,30 @@ class ProtocolsController < ApplicationController
 
     @protocol.clean_bases(params[:id])
 
+    from = params[:from]
+    to = params[:to]
     query = params[:protocol][:query]
     protocol_id = params[:id]
     max_results = params[:protocol][:results_returned]
 
-
     if @protocol.ieee
       @ieee = Ieee.new
-      @ieee = @ieee.search(query, protocol_id, max_results)
+      @ieee = @ieee.search(query, protocol_id, max_results, from, to)
     end
 
     if @protocol.scopus
       @scopu = Scopu.new
-      @scopu = @scopu.search(query, protocol_id, max_results)
+      @scopu = @scopu.search(query, protocol_id, max_results, from, to)
     end
 
     if @protocol.science_direct
       @scidir = Scidir.new
-      @scidir = @scidir.search(query, protocol_id, max_results)
+      @scidir = @scidir.search(query, protocol_id, max_results, from, to)
     end
 
     if @protocol.acm
       @acm = Acm.new
-      @acm = @acm.search(query, protocol_id, max_results)
+      @acm = @acm.search(query, protocol_id, max_results, from, to)
     end
 
     redirect_to reference_url(protocol_id)
@@ -223,7 +224,7 @@ class ProtocolsController < ApplicationController
     def protocol_params
       params.require(:protocol).permit(:id, :title, :background, :research_question, :strategy, :criteria, :from, :to, :results_returned,
                                        :ieee, :acm, :springer, :science_direct, :google_scholar, :scopus, :quality,
-                                       :terms_attributes => [:id, :termo, :sinonimo, :traducao])
+                                       :terms_attributes => [:id, :termo, :sinonimo, :sinonimo2, :sinonimo3, :traducao])
     end
 
     # Verifica se alguma busca já foi realizada para aquele protocolo

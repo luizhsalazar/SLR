@@ -1,6 +1,6 @@
 class Ieee < ActiveRecord::Base
 
-  def search(query, protocol_id, max_returned)
+  def search(query, protocol_id, max_returned, from, to)
 
     @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query + '&hc=' + max_returned
     @agent = Mechanize.new

@@ -2,7 +2,7 @@ require 'open-uri'
 
 class Scidir < ActiveRecord::Base
 
-  def search(query, protocol_id, max_returned)
+  def search(query, protocol_id, max_returned, from, to)
 
     doc = Nokogiri::XML(open('http://api.elsevier.com/content/search/scidir?apikey=2fc5e714431bca9f441f4314c6684282&httpAccept=application%2Fatom%2Bxml&count=' + max_returned + '&query=' + query))
 
