@@ -26,6 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # haml for html abstraction markup language
 gem 'haml', '~> 4.0.6'
 
+gem 'passenger'
+gem 'execjs'
+gem 'therubyracer'
+
 # adding bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
 
@@ -59,4 +63,12 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+group :development do
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails', '~> 1.1.3'
+  gem 'capistrano-rbenv', '~> 2.0.3'
+
+end
+
 
