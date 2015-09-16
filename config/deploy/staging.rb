@@ -17,7 +17,8 @@ set :rails_env, 'production'
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-# server 'result.inf.ufsc.br', user: 'luiz', roles: %w{web app}
+
+server 'result.inf.ufsc.br', user: 'luiz', roles: %w{web app}
 
 # fetch(:default_env).merge!(rails_env: :staging)
 
