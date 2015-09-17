@@ -22,7 +22,7 @@ set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.2.2'
 
 require 'capistrano/bundler'
-# require 'capistrano/passenger'
+require 'capistrano/passenger'
 require 'capistrano/rails'
 
 # require 'capistrano/rvm'
