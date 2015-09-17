@@ -14,7 +14,11 @@ log/
 
 *.log
 
-db/*
+## This doesn't allow to deploy databases
+## db/*
+
+db/development.*
+db/test.*
 
 >>>>>>> Stashed changes
 ## Specific to RubyMotion:
