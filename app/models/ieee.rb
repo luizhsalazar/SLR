@@ -2,7 +2,9 @@ class Ieee < ActiveRecord::Base
 
   def search(query, protocol_id, max_returned, from, to)
 
-    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=' + query + '&hc=' + max_returned
+    # querytext flag does a search in FULL TEXT and METADATA fields
+    # md flags does a search in METADATA fields only.
+    @search_url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?md=' + query + '&hc=' + max_returned
     @agent = Mechanize.new
 
     results = @agent.get(@search_url)
