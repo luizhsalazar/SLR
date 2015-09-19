@@ -32,6 +32,9 @@ class ProtocolsController < ApplicationController
       termos += (index == attributes.size - 1) ? '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' : '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' + ' AND '
     end
 
+    @logger = Logger.new("SLR.log")
+    @logger.debug "termos: #{termos}"
+
     @protocol.query = termos
 
     respond_to do |format|
@@ -52,7 +55,7 @@ class ProtocolsController < ApplicationController
     termos = ''
     attributes = protocol_params[:terms_attributes]
     attributes.values.each_with_index do |term, index|
-      termos += (index == attributes.size - 1) ? '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' : '(' + term[:termo] + ' OR ' + term[:sinonimo] + ' OR ' + term[:traducao] + ' ) ' + ' AND '
+      termos += (index == attributes.size - 1) ? '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' : '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' + ' AND '
     end
 
     @protocol.query = termos

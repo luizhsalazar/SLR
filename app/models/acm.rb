@@ -6,7 +6,7 @@ class Acm < ActiveRecord::Base
 
     j = 1
 
-    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?query=" + query))
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?query=" + query)) # + "&since_year=" + from.to_s + "&before_year=" + to.to_s))
 
     doc_total = doc.css("table.small-text td")
 
@@ -15,44 +15,49 @@ class Acm < ActiveRecord::Base
 
     @logger = Logger.new("SLR.log")
 
-    index = 0
-    i = 0
+    not_found = total_found > max_results.to_f + 1000
 
-    while i < max
-
-      search_query = "http://dl.acm.org/results.cfm?query=" + query + "&start=" + j.to_s
-
-      doc = Nokogiri::HTML(open(search_query))
-
-      links = doc.css("a.medium-text")
-      abstracts = doc.css("div.abstract2")
-      conference = doc.css("div.addinfo")
-      authors = doc.css("div.authors")
-
-      links.each { |link|
-
-        @acm = Acm.new
-        @acm.title = link.child
-        @acm.link = 'http://dl.acm.org/' + link['href']
-
-        # Stripping HTML tags and deleting undesirable symbols
-        @acm.pubtitle = ActionView::Base.full_sanitizer.sanitize(conference[index].to_s).strip.gsub(/&#13;/, '')
-        @acm.abstract = ActionView::Base.full_sanitizer.sanitize(abstracts[index].to_s).strip.gsub(/&#13;/, '')
-        @acm.author = ActionView::Base.full_sanitizer.sanitize(authors[index].to_s).strip.gsub(/&#13;/, '')
-
-        @acm.protocol_id = protocol_id
-        @acm.save!
-
-        index += 1
-      }
-
+    # If not found any result acm shows all references in index page after search
+    unless not_found
       index = 0
-      i += 1
+      i = 0
 
-      # Result comes with 20 references per page
-      j += 20
+      while i < max
 
-      break if total_found <= j
+        search_query = "http://dl.acm.org/results.cfm?query=" + query + "&start=" + j.to_s
+
+        doc = Nokogiri::HTML(open(search_query))
+
+        links = doc.css("a.medium-text")
+        abstracts = doc.css("div.abstract2")
+        conference = doc.css("div.addinfo")
+        authors = doc.css("div.authors")
+
+        links.each { |link|
+
+          @acm = Acm.new
+          @acm.title = link.child
+          @acm.link = 'http://dl.acm.org/' + link['href']
+
+          # Stripping HTML tags and deleting undesirable symbols
+          @acm.pubtitle = ActionView::Base.full_sanitizer.sanitize(conference[index].to_s).strip.gsub(/&#13;/, '')
+          @acm.abstract = ActionView::Base.full_sanitizer.sanitize(abstracts[index].to_s).strip.gsub(/&#13;/, '')
+          @acm.author = ActionView::Base.full_sanitizer.sanitize(authors[index].to_s).strip.gsub(/&#13;/, '')
+
+          @acm.protocol_id = protocol_id
+          @acm.save!
+
+          index += 1
+        }
+
+        index = 0
+        i += 1
+
+        # Result comes with 20 references per page
+        j += 20
+
+        break if total_found <= j
+      end
     end
 
     results =  Acm.where("protocol_id = ?", protocol_id).count
@@ -64,7 +69,8 @@ class Acm < ActiveRecord::Base
     @reference.database = 'acm'
 
     @reference.results = results
-    @reference.total_found = total_found
+
+    @reference.total_found = not_found ? 0 : total_found
 
     @reference.save!
 
