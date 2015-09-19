@@ -10,7 +10,7 @@ class IeeesController < ApplicationController
   end
 
   def show
-    @ieees = Ieee.where("protocol_id = ?", params[:id])
+    @ieees = Ieee.where("protocol_id = ?", params[:id]).paginate(:page => params[:page], per_page: 10)
 
   end
 

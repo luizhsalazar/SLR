@@ -18,7 +18,7 @@ class Acm < ActiveRecord::Base
 
     @logger = Logger.new("SLR.log")
 
-    not_found = total_found > max_results.to_f + 1000
+    not_found = total_found > max_results.to_f + 3000
 
     # If not found any result acm shows all references in index page after search
     unless not_found

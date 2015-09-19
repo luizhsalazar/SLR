@@ -10,7 +10,7 @@ class ScopusController < ApplicationController
   # GET /scopus/1
   # GET /scopus/1.json
   def show
-    @scopus = Scopu.where("protocol_id = ?", params[:id])
+    @scopus = Scopu.where("protocol_id = ?", params[:id]).paginate(:page => params[:page], per_page: 10)
   end
 
   # GET /scopus/new

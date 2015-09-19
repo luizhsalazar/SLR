@@ -8,20 +8,12 @@ class AcmsController < ApplicationController
   end
 
   def show
-    @acms = Acm.where("protocol_id = ?", params[:id])
+    @acms = Acm.where("protocol_id = ?", params[:id]).paginate(:page => params[:page], per_page: 10)
   end
 
   # GET /acms/new
   def new
     @acm = current_user.acms.build
-  end
-
-  def create
-    protocol_id = params[:protocol][:id]
-    @acm = Acm.new
-    @acm = @acm.search(params[:protocol][:query], protocol_id)
-
-    redirect_to reference_url(protocol_id)
   end
 
   def include

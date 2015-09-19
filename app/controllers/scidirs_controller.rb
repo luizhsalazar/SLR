@@ -10,7 +10,7 @@ class ScidirsController < ApplicationController
   # GET /scidirs/1
   # GET /scidirs/1.json
   def show
-    @scidirs = Scidir.where("protocol_id = ?", params[:id])
+    @scidirs = Scidir.where("protocol_id = ?", params[:id]).paginate(:page => params[:page], per_page: 10)
   end
 
   # GET /scidirs/new
@@ -20,16 +20,6 @@ class ScidirsController < ApplicationController
 
   # GET /scidirs/1/edit
   def edit
-  end
-
-  # POST /scidirs
-  # POST /scidirs.json
-  def create
-    protocol_id = params[:protocol][:id]
-    @scidir = Scidir.new
-    @scidir = @scidir.search(params[:protocol][:query], protocol_id)
-
-    redirect_to reference_url(protocol_id)
   end
 
   def include
