@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915023125) do
+ActiveRecord::Schema.define(version: 20150919020352) do
 
   create_table "acms", force: :cascade do |t|
     t.text     "abstract",       limit: 65535
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150915023125) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "user_id",           limit: 4
-    t.string   "query",             limit: 255
+    t.text     "query",             limit: 65535
     t.integer  "from",              limit: 4
     t.integer  "to",                limit: 4
     t.boolean  "ieee",              limit: 1

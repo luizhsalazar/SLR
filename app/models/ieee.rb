@@ -31,7 +31,7 @@ class Ieee < ActiveRecord::Base
     @reference.database = 'ieee'
 
     @reference.results = results
-    @reference.total_found = @total_found
+    @reference.total_found = @total_found.nil? ? 0 : @total_found
 
     @reference.save!
 
