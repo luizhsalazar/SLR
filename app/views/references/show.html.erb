@@ -43,7 +43,7 @@
                       <%= reference.results %>
                     </td>
                     <td>
-                      <% unless reference.results == 0 %>
+                      <% if reference.results == 0 %>
                         <% reference.total_found = 0 %>
                       <% end %>
                       <%= reference.total_found %>
