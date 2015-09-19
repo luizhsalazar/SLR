@@ -6,7 +6,9 @@ class Acm < ActiveRecord::Base
 
     j = 1
 
-    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?query=" + query)) # + "&since_year=" + from.to_s + "&before_year=" + to.to_s))
+    # querytext flag does a search in FULL TEXT and METADATA fields
+    # md flags does a search in METADATA fields only.
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?md=" + query)) # + "&since_year=" + from.to_s + "&before_year=" + to.to_s))
 
     doc_total = doc.css("table.small-text td")
 
