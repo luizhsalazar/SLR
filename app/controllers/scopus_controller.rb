@@ -25,6 +25,7 @@ class ScopusController < ApplicationController
   def include
     @scopu = Scopu.find(params[:id])
     @scopu.included = 1
+    @scopu.selected = nil
     @scopu.save!
     redirect_to :back
   end

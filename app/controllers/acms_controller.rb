@@ -19,6 +19,7 @@ class AcmsController < ApplicationController
   def include
     @acm = Acm.find(params[:id])
     @acm.included = 1
+    @acm.selected = nil
     @acm.save!
     redirect_to :back
   end

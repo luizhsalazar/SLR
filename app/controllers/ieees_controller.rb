@@ -17,6 +17,7 @@ class IeeesController < ApplicationController
   def include
     @ieee = Ieee.find(params[:id])
     @ieee.included = 1
+    @ieee.selected = nil
     @ieee.save!
     redirect_to :back
   end

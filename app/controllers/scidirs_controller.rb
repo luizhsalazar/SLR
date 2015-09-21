@@ -25,6 +25,7 @@ class ScidirsController < ApplicationController
   def include
     @scidir = Scidir.find(params[:id])
     @scidir.included = 1
+    @scidir.selected = nil
     @scidir.save!
     redirect_to :back
   end
