@@ -18,23 +18,21 @@ class Springer < ActiveRecord::Base
 
       entry.xpath("./*/*/*").each do |element|
 
+        @springer.abstract = entry.css("p").text
+
         if element.name == 'title'
-          @logger.debug "Title: #{element.text}"
           @springer.title = element.text
         end
 
         if element.name == 'creator'
-          @logger.debug "Author: #{element.text}"
           @springer.author = element.text
         end
 
         if element.name == 'publicationName'
-          @logger.debug "Pubtitle: #{element.text}"
           @springer.pubtitle = element.text
         end
 
         if element.name == 'url'
-          @logger.debug "Link: #{element.text}"
           @springer.link = element.text
         end
 
@@ -42,7 +40,6 @@ class Springer < ActiveRecord::Base
 
       @springer.protocol_id = protocol_id
       @springer.save!
-
     end
 
     results =  Springer.where("protocol_id = ?", protocol_id).count
