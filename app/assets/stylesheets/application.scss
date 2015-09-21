@@ -27,6 +27,7 @@
 }
 
 #main_content {
+  height: 100%;
   width: 980px;
   background: #ebe9e3;
 
@@ -34,7 +35,7 @@
     float: none;
   }
 
-  padding-bottom: 100px;
+  padding-bottom: 20px;
 
   .link {
     padding: 2em 1em;
@@ -63,6 +64,15 @@
   background: #ebe9e3;
 }
 
+#home_footer {
+  width: 980px;
+  text-align: center;
+  margin-left: 198px;
+  background: #ebe9e3;
+  border-top: #ccc solid 1px;
+  bottom: 0;
+}
+
 .title {
   font-size: 24px;
   font-weight: bold;
@@ -75,6 +85,12 @@
 
 #tool_title {
   font-size: 28px;
+  font-weight: normal;
+  color: #a4a4a4;
+}
+
+#tool_title_small {
+  font-size: 15px;
   font-weight: normal;
   color: #a4a4a4;
 }
@@ -114,4 +130,64 @@
 
 .about {
   font-size: 20px;
+}
+
+/* footer */
+
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+#page_footer {
+  width: 980px;
+  height: 130px;
+  //background: #ebe9e3 url(imagens/background_header.gif) repeat-x bottom;
+  border-top: #cc8318 solid 1px;
+}
+
+#page_footer_logos {
+  width: 800px;
+  text-align: left;
+}
+
+#body_footer {
+  padding-left: 5%;
+  padding-bottom: 2%;
+  color: black;
+}
+
+#text_intro {
+  font-size: 20px;
+  padding: 10px;
+}
+
+#table_info {
+  background: #fffce1;
+}
+
+#links_footer {
+  .a {
+    color: black;
+  }
+
+  background: white;
 }
