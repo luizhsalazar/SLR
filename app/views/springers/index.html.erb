@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Springers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Abstract</th>
+      <th>Author</th>
+      <th>Link</th>
+      <th>Publisher</th>
+      <th>Pubtitle</th>
+      <th>Pubtype</th>
+      <th>Title</th>
+      <th>Protocol</th>
+      <th>Included</th>
+      <th>Selected</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @springers.each do |springer| %>
+      <tr>
+        <td><%= springer.abstract %></td>
+        <td><%= springer.author %></td>
+        <td><%= springer.link %></td>
+        <td><%= springer.publisher %></td>
+        <td><%= springer.pubtitle %></td>
+        <td><%= springer.pubtype %></td>
+        <td><%= springer.title %></td>
+        <td><%= springer.protocol_id %></td>
+        <td><%= springer.included %></td>
+        <td><%= springer.selected %></td>
+        <td><%= link_to 'Show', springer %></td>
+        <td><%= link_to 'Edit', edit_springer_path(springer) %></td>
+        <td><%= link_to 'Destroy', springer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Springer', new_springer_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919020352) do
+ActiveRecord::Schema.define(version: 20150921171458) do
 
   create_table "acms", force: :cascade do |t|
     t.text     "abstract",       limit: 65535
@@ -127,6 +127,21 @@ ActiveRecord::Schema.define(version: 20150919020352) do
     t.boolean  "selected",            limit: 1
     t.string   "protocol_id_integer", limit: 255
     t.integer  "protocol_id",         limit: 4
+  end
+
+  create_table "springers", force: :cascade do |t|
+    t.text     "abstract",    limit: 65535
+    t.string   "author",      limit: 255
+    t.string   "link",        limit: 255
+    t.string   "publisher",   limit: 255
+    t.string   "pubtitle",    limit: 255
+    t.string   "pubtype",     limit: 255
+    t.string   "title",       limit: 255
+    t.integer  "protocol_id", limit: 4
+    t.boolean  "included",    limit: 1
+    t.boolean  "selected",    limit: 1
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "terms", force: :cascade do |t|

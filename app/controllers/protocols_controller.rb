@@ -114,6 +114,11 @@ class ProtocolsController < ApplicationController
       @acm = @acm.search(query, protocol_id, max_results, from, to)
     end
 
+    if @protocol.springer
+      @springer = Springer.new
+      @springer = @springer.search(query, protocol_id, max_results, from, to)
+    end
+
     redirect_to reference_url(protocol_id)
 
   end
@@ -125,6 +130,7 @@ class ProtocolsController < ApplicationController
     @selected_scidir = []
     @selected_scopus = []
     @selected_acm = []
+    @selected_springer = []
 
     if @protocol.ieee
       Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
@@ -158,10 +164,19 @@ class ProtocolsController < ApplicationController
       }
     end
 
+    if @protocol.springer
+      Springer.where("protocol_id = ?", params[:id]).each { |springer|
+        unless springer.selected.nil?
+          @selected_springer.push(springer)
+        end
+      }
+    end
+
     @empty_ieee = (@selected_ieee.empty?) ? true : false
     @empty_scidir = (@selected_scidir.empty?) ? true : false
     @empty_scopus = (@selected_scopus.empty?) ? true : false
     @empty_acm = (@selected_acm.empty?) ? true : false
+    @empty_springer = (@selected_springer.empty?) ? true : false
 
     @ref_protocol = reference_exist
   end
@@ -173,6 +188,7 @@ class ProtocolsController < ApplicationController
     @included_scidir = []
     @included_scopus = []
     @included_acm = []
+    @included_springer = []
 
     if @protocol.ieee
       Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
@@ -206,10 +222,19 @@ class ProtocolsController < ApplicationController
       }
     end
 
+    if @protocol.springer
+      Springer.where("protocol_id = ?", params[:id]).each { |springer|
+        unless springer.included.nil?
+          @included_springer.push(springer)
+        end
+      }
+    end
+
     @empty_ieee = (@included_ieee.empty?) ? true : false
     @empty_scidir = (@included_scidir.empty?) ? true : false
     @empty_scopus = (@included_scopus.empty?) ? true : false
     @empty_acm = (@included_acm.empty?) ? true : false
+    @empty_springer = (@included_springer.empty?) ? true : false
 
     @ref_protocol = reference_exist
   end

@@ -1,0 +1,57 @@
+<%= form_for(@springer) do |f| %>
+  <% if @springer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@springer.errors.count, "error") %> prohibited this springer from being saved:</h2>
+
+      <ul>
+      <% @springer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :abstract %><br>
+    <%= f.text_area :abstract %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :link %><br>
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :publisher %><br>
+    <%= f.text_field :publisher %>
+  </div>
+  <div class="field">
+    <%= f.label :pubtitle %><br>
+    <%= f.text_field :pubtitle %>
+  </div>
+  <div class="field">
+    <%= f.label :pubtype %><br>
+    <%= f.text_field :pubtype %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :protocol_id %><br>
+    <%= f.number_field :protocol_id %>
+  </div>
+  <div class="field">
+    <%= f.label :included %><br>
+    <%= f.check_box :included %>
+  </div>
+  <div class="field">
+    <%= f.label :selected %><br>
+    <%= f.check_box :selected %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

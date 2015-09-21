@@ -9,7 +9,7 @@
 
 </ol>
 
-<% if @empty_ieee && @empty_scidir && @empty_scopus && @empty_acm %>
+<% if @empty_ieee && @empty_scidir && @empty_scopus && @empty_acm && @empty_springer %>
     <div class="alert alert-info"><b> Nenhum trabalho pré-selecionado na revisão </b></div>
 <% end %>
 
@@ -169,6 +169,48 @@
                   </td>
                   <td>
                     <%= link_to unselect_acm_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Excluir
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% unless @empty_springer %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b><%= link_to 'Springer Link Digital Library', springer_path %></b>
+      </div>
+      <div class="panel-body">
+        <div class="container-fluid">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Título</th>
+              <th>Autores</th>
+              <th>Seleção</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @selected_springer.each do |ref| %>
+                <tr>
+                  <td><%= link_to ref.title, ref.link %></td>
+                  <td><%= ref.author %></td>
+                  <td>
+                    <%= link_to include_springer_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Incluir
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to unselect_springer_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
                         <span class="glyphicon glyphicon-remove"></span>
                         Excluir
                     <% end %>

@@ -68,6 +68,12 @@
                     <td><%= @protocol.query + '&since_year=' + @protocol.from.to_s + '&before_year=' + @protocol.to.to_s %></td>
                   </tr>
               <% end %>
+              <% if @protocol.springer %>
+                  <tr>
+                    <td> Springer Link Digital Library </td>
+                    <td><%= @protocol.query + '&facet-start-year=' + @protocol.from.to_s + '&facet-end-year=' + @protocol.to.to_s %></td>
+                  </tr>
+              <% end %>
               </table>
           </div>
         </div>

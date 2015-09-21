@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :springers do
+    member do
+      put 'include', to: 'springers#include'
+      put 'exclude', to: 'springers#exclude'
+      put 'select', to: 'springers#select'
+      put 'unselect', to: 'springers#unselect'
+    end
+  end
+
   resources :scopus do
     member do
       put 'include', to: 'scopus#include'
