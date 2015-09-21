@@ -32,9 +32,6 @@ class ProtocolsController < ApplicationController
       termos += (index == attributes.size - 1) ? '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' : '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' + ' AND '
     end
 
-    @logger = Logger.new("SLR.log")
-    @logger.debug "termos: #{termos}"
-
     @protocol.query = termos
 
     respond_to do |format|
