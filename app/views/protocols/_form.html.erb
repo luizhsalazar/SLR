@@ -53,14 +53,12 @@
                 <%= f.check_box :science_direct, {:checked=> true} %> Science Direct <br>
                 <%= f.check_box :scopus, {:checked=> true} %> Scopus <br>
                 <%= f.check_box :acm, {:checked=> true} %> ACM Digital Library <br>
-
               </div>
-
               <br>
 
               <%= f.label :resultados_a_serem_retornados %><br>
               <div class="container-fluid">
-                Resultado máximo a ser retornado: <%= f.text_field :results_returned %> (0-100)
+                Resultado máximo a ser retornado: <%= f.select(:results_returned, options_for_select([[20], [40], [60], [80], [100] ])) %>
               </div>
 
             </div>
