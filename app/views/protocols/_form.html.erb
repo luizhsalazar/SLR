@@ -81,9 +81,9 @@
               </div>
               <br>
 
-              <%= f.label :resultados_a_serem_retornados %><br>
+              <strong> No. máximo de resultados de busca retornados por base </strong><br><br>
               <div class="container-fluid">
-                Resultado máximo a ser retornado: <%= f.select(:results_returned, options_for_select([[20], [40], [60], [80], [100] ])) %>
+                No. máximo: <%= f.select(:results_returned, options_for_select([[100], [80], [60], [40], [20]])) %>
               </div>
 
             </div>

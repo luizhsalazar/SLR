@@ -11,15 +11,17 @@
 <% @ieees.each do |ieee| %>
     <br>
     <div class="panel panel-default">
-      <div class="panel-heading"> <b><%= link_to ieee.title, ieee.link  %> </b>
-        <%= link_to select_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-ok"></span>
-            Incluir
-        <% end %>
-        <%= link_to unselect_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-            Excluir
-        <% end %>
+      <div class="panel-heading" align="left"> <b><%= link_to ieee.title, ieee.link  %> </b>
+        <div align="right">
+            <%= link_to select_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-ok"></span>
+                Incluir
+            <% end %>
+            <%= link_to unselect_ieee_path(ieee), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-remove"></span>
+                Excluir
+            <% end %>
+        </div>
       </div>
       <div class="panel-body">
         <div class="row">

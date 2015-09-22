@@ -2,29 +2,30 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="form-inputs">
+    <!--<div class="panel panel-default">-->
+      <!--<div class="panel-body">-->
+        <!--<div class="form-inputs">-->
+          <div id="border-form-div" >
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, class: "form-control", autofocus: true %>
+            </div>
 
-          <div class="form-group">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, class: "form-control", autofocus: true %>
-          </div>
+            <div class="form-group">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+            </div>
 
-          <div class="form-group">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-          </div>
+              <% if devise_mapping.rememberable? -%>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+              <% end -%>
 
-          <% if devise_mapping.rememberable? -%>
-              <div class="field">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
+              <div class="form-group">
+                <%= f.submit "Log in", class: "btn btn-primary" %>
               </div>
-          <% end -%>
-
-          <div class="form-group">
-            <%= f.submit "Log in", class: "btn btn-primary" %>
           </div>
 <% end %>
 

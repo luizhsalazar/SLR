@@ -11,15 +11,17 @@
 <% @springers.each do |springer| %>
     <br>
     <div class="panel panel-default">
-      <div class="panel-heading"> <b><%= link_to springer.title, springer.link  %> </b>
-        <%= link_to select_springer_path(springer), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-ok"></span>
-            Incluir
-        <% end %>
-        <%= link_to unselect_springer_path(springer), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-            Excluir
-        <% end %>
+      <div class="panel-heading" align="left"> <b><%= link_to springer.title, springer.link  %> </b>
+        <div align="right">
+            <%= link_to select_springer_path(springer), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-ok"></span>
+                Incluir
+            <% end %>
+            <%= link_to unselect_springer_path(springer), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-remove"></span>
+                Excluir
+            <% end %>
+         </div>
       </div>
       <div class="panel-body">
         <div class="row">

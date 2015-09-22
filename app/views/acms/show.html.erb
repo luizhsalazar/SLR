@@ -11,15 +11,17 @@
 <% @acms.each do |acm| %>
     <br>
     <div class="panel panel-default">
-      <div class="panel-heading"> <b><%= link_to acm.title, acm.link  %> </b>
-        <%= link_to select_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-ok"></span>
-            Incluir
-        <% end %>
-        <%= link_to unselect_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-            Excluir
-        <% end %>
+      <div class="panel-heading" align="left"> <b><%= link_to acm.title, acm.link  %> </b>
+        <div align="right">
+            <%= link_to select_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-ok"></span>
+                Incluir
+            <% end %>
+            <%= link_to unselect_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
+                <span class="glyphicon glyphicon-remove"></span>
+                Excluir
+            <% end %>
+        </div>
       </div>
       <div class="panel-body">
         <div class="row">
