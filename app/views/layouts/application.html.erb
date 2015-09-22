@@ -73,25 +73,26 @@
 
                 <!-- Yield identifies a section where content from the view should be inserted. -->
                 <%= yield %>
+
               </div>
+
           </div>
 
-          <div align="right" style="width: 800px; padding-top: 5px; padding-bottom: 5px">
-          </div>
+          <table id="home_footer">
+            <tr>
+              <td>
+                <div >
+                  <%= render 'layouts/footer' %>
+                </div>
+              </td>
+            </tr>
+          </table>
 
         </td>
       </tr>
     </table>
 
-    <table id="home_footer">
-    <tr>
-      <td>
-        <div >
-          <%= render 'layouts/footer' %>
-        </div>
-      </td>
-    </tr>
-    </table>
+
 
 
 </body>
