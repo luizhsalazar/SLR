@@ -16,14 +16,16 @@
         <div class="panel panel-default" align="left"><b> Título </b>
           <div class="panel-body">
               <div class="form-group">
-                <%= f.text_field :title, class: "form-control" %>
+                <%= f.text_field :title, class: "form-control", placeholder: "Protocolo Exemplo" %>
               </div>
           </div>
         </div>
         <div class="panel panel-default" align="left"><b> Contextualização </b>
           <div class="panel-body">
               <div class="form-group">
-                <%= f.text_area :background, rows: "10", class: "form-control" %>
+                <%= f.text_area :background, rows: "10", class: "form-control",
+                                placeholder: 'Exemplo: O propósito do estudo descrito neste protocolo é revisar o estado atual do Evidence-based Software Engineering (EBSE) desde 2004 utilizando a revisão de artigos relacionados com EBSE e que descrevam revisões sistemáticas da literatira (SLRs).'
+                %>
               </div>
           </div>
         </div>
@@ -31,7 +33,13 @@
         <div class="panel panel-default" align="left"><b> Pergunta de Pesquisa </b>
           <div class="panel-body">
               <div class="form-group">
-                <%= f.text_area :research_question, class: "form-control" %>
+                <%= f.text_area :research_question, rows: '4', class: "form-control",
+                                                    placeholder:
+'Exemplo: As perguntas de pesquisa a serem respondidas neste estudo são:
+- Quantos tópios de pesquisa estão sendo abordados?
+- Quem está liderando as pesquisas EBSE?
+- Quais são as limitações da pesquisa atual?'
+                %>
               </div>
           </div>
         </div>
@@ -39,8 +47,11 @@
           <div class="panel-body">
             <div class="form-group">
               <%= f.label :descrição %><br>
-              <%= f.text_area :strategy, rows: "5", class: "form-control" %><br>
-
+              <%= f.text_area :strategy, rows: "5", class: "form-control",
+                                                    placeholder:
+'Exemplo: O processo de busca será feito através da pesquisa em artigos publicados em conferências e journal desde 2004.'
+              %>
+              <br>
               <%= f.label :ano_de_publicação %><br>
               <div class="container-fluid">
                 <table>
@@ -92,7 +103,14 @@
         <div class="panel panel-default" align="left"><b> Critérios de Inclusão/Exclusão </b>
           <div class="panel-body">
             <div class="form-group">
-              <%= f.text_area :criteria, rows: "10", class: "form-control" %>
+              <%= f.text_area :criteria, rows: "10", class: "form-control",
+                                                     placeholder:
+'Exemplo: Artigos relacionados aos seguintes tópico, publicados entre 1º de Janeiro de 2004 e 30 de Junho de 2007 serão incluídos:
+- Systematic Literature Reviews (SLRs);
+- Meta-analyses (MA).
+Os seguintes tipos de trabalhos serão excluídos:
+- Survey informal da literatura (que não definam pergunta de pesquisa, estratégia de busca, etc.'
+              %>
             </div>
           </div>
         </div>
@@ -132,7 +150,10 @@
         <div class="panel panel-default" align="left"><b> Critérios de Qualidade </b>
           <div class="panel-body">
             <div class="form-group">
-              <%= f.text_area :quality, rows: "10", class: "form-control" %>
+              <%= f.text_area :quality, rows: "10", class: "form-control",
+                                                    placeholder:
+'Exemplo: Artigos que abordem o processo de SLR mas não sejam relacionados com a Engenharia de Software serão excluídos.'
+              %>
             </div>
           </div>
         </div>

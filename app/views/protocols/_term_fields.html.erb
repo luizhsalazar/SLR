@@ -3,17 +3,17 @@
       <tr>
           <td>
             <%= f.hidden_field :termo %>
-            <%= f.text_field :termo %>
+            <%= f.text_field :termo, placeholder: 'revisao sistematica da literatura' %>
           </td>
           <td> OR </td>
           <td>
             <%= f.hidden_field :sinonimo %>
-            <%= f.text_field :sinonimo %>
+            <%= f.text_field :sinonimo, placeholder: 'revisao da literatura' %>
           </td>
           <td> OR </td>
           <td>
             <%= f.hidden_field :traducao %>
-            <%= f.text_field :traducao %>
+            <%= f.text_field :traducao, placeholder: 'systematic literature review' %>
           </td>
       </tr>
     <tr>
@@ -21,12 +21,12 @@
       <td></td>
       <td>
         <%= f.hidden_field :sinonimo2 %>
-        <%= f.text_field :sinonimo2 %>
+        <%= f.text_field :sinonimo2, placeholder: 'revisao sistematica' %>
       </td>
       <td> OR </td>
       <td>
         <%= f.hidden_field :traducao2 %>
-        <%= f.text_field :traducao2 %>
+        <%= f.text_field :traducao2, placeholder: 'systematic review' %>
       </td>
     </tr>
 
@@ -36,12 +36,12 @@
       <td> </td>
       <td>
         <%= f.hidden_field :sinonimo3 %>
-        <%= f.text_field :sinonimo3 %>
+        <%= f.text_field :sinonimo3, placeholder: 'estudo mapeado' %>
       </td>
       <td> OR </td>
       <td>
         <%= f.hidden_field :traducao3 %>
-        <%= f.text_field :traducao3 %>
+        <%= f.text_field :traducao3, placeholder: 'mapping study' %>
       </td>
     </tr>
   </table>

@@ -21,7 +21,11 @@
               <% if reference.database == 'scopu' %>
                   <tr>
                     <td>
-                      <%= link_to reference.database_name, scopu_path %>
+                      <% if reference.total_found == 0 %>
+                        <%= reference.database_name %>
+                      <% else %>
+                        <%= link_to reference.database_name, scopu_path %>
+                      <% end %>
                     </td>
                     <td align="center">
                       <%= reference.total_found %>
@@ -37,7 +41,11 @@
               <% if reference.database == 'ieee' %>
                   <tr>
                     <td>
-                      <%= link_to reference.database_name, ieee_path %>
+                      <% if reference.total_found == 0 %>
+                          <%= reference.database_name %>
+                      <% else %>
+                          <%= link_to reference.database_name, ieee_path %>
+                      <% end %>
                     </td>
                     <td align="center">
                       <%= reference.total_found %>
@@ -53,7 +61,11 @@
               <% if reference.database == 'scidir' %>
                   <tr>
                     <td>
-                      <%= link_to reference.database_name, scidir_path %>
+                      <% if reference.total_found == 0 %>
+                          <%= reference.database_name %>
+                      <% else %>
+                          <%= link_to reference.database_name, scidir_path %>
+                      <% end %>
                     </td>
                     <td align="center">
                       <%= reference.total_found %>
@@ -69,7 +81,11 @@
               <% if reference.database == 'acm' %>
                   <tr>
                     <td>
-                      <%= link_to reference.database_name, acm_path %>
+                      <% if reference.total_found == 0 %>
+                          <%= reference.database_name %>
+                      <% else %>
+                          <%= link_to reference.database_name, acm_path %>
+                      <% end %>
                     </td>
                     <td align="center">
                       <%= reference.total_found %>
@@ -85,7 +101,11 @@
               <% if reference.database == 'springer' %>
                   <tr>
                     <td>
-                      <%= link_to reference.database_name, springer_path %>
+                      <% if reference.total_found == 0 %>
+                          <%= reference.database_name %>
+                      <% else %>
+                          <%= link_to reference.database_name, springer_path %>
+                      <% end %>
                     </td>
                     <td align="center">
                       <%= reference.total_found %>
