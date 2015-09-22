@@ -17,18 +17,19 @@
           </td>
       </tr>
     <tr>
-      <td>
-
-      </td>
-      <td> </td>
+      <td></td>
+      <td></td>
       <td>
         <%= f.hidden_field :sinonimo2 %>
         <%= f.text_field :sinonimo2 %>
       </td>
-      <td> </td>
+      <td> OR </td>
       <td>
+        <%= f.hidden_field :traducao2 %>
+        <%= f.text_field :traducao2 %>
       </td>
     </tr>
+
     <tr>
       <td>
       </td>
@@ -37,8 +38,10 @@
         <%= f.hidden_field :sinonimo3 %>
         <%= f.text_field :sinonimo3 %>
       </td>
-      <td> </td>
+      <td> OR </td>
       <td>
+        <%= f.hidden_field :traducao3 %>
+        <%= f.text_field :traducao3 %>
       </td>
     </tr>
   </table>

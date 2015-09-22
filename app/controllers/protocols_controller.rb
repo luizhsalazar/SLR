@@ -29,7 +29,9 @@ class ProtocolsController < ApplicationController
     termos = ''
     attributes = protocol_params[:terms_attributes]
     attributes.values.each_with_index do |term, index|
-      termos += (index == attributes.size - 1) ? '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' : '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' + ' AND '
+      termos += (index == attributes.size - 1) ?
+          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' :
+          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' + ' AND '
     end
 
     @protocol.query = termos
@@ -52,7 +54,9 @@ class ProtocolsController < ApplicationController
     termos = ''
     attributes = protocol_params[:terms_attributes]
     attributes.values.each_with_index do |term, index|
-      termos += (index == attributes.size - 1) ? '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' : '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '")' + ' AND '
+      termos += (index == attributes.size - 1) ?
+          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' :
+          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' + ' AND '
     end
 
     @protocol.query = termos
@@ -249,7 +253,7 @@ class ProtocolsController < ApplicationController
     def protocol_params
       params.require(:protocol).permit(:id, :title, :background, :research_question, :strategy, :criteria, :from, :to, :results_returned,
                                        :ieee, :acm, :springer, :science_direct, :google_scholar, :scopus, :quality,
-                                       :terms_attributes => [:id, :termo, :sinonimo, :sinonimo2, :sinonimo3, :traducao])
+                                       :terms_attributes => [:id, :termo, :sinonimo, :sinonimo2, :sinonimo3, :traducao, :traducao2, :traducao3])
     end
 
     # Verifica se alguma busca já foi realizada para aquele protocolo

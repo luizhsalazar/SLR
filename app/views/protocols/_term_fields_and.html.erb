@@ -1,0 +1,65 @@
+<div class="fields">
+  <table class="table">
+    <tr id="and_style_form">
+      <td></td>
+      <td></td>
+      <td>
+        <strong> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp AND </strong>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.hidden_field :termo %>
+        <%= f.text_field :termo %>
+      </td>
+      <td> OR </td>
+      <td>
+        <%= f.hidden_field :sinonimo %>
+        <%= f.text_field :sinonimo %>
+      </td>
+      <td> OR </td>
+      <td>
+        <%= f.hidden_field :traducao %>
+        <%= f.text_field :traducao %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+
+      </td>
+      <td> </td>
+      <td>
+        <%= f.hidden_field :sinonimo2 %>
+        <%= f.text_field :sinonimo2 %>
+      </td>
+      <td> OR </td>
+      <td>
+        <%= f.hidden_field :traducao2 %>
+        <%= f.text_field :traducao2 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td> </td>
+      <td>
+        <%= f.hidden_field :sinonimo3 %>
+        <%= f.text_field :sinonimo3 %>
+      </td>
+      <td> OR </td>
+      <td>
+        <%= f.hidden_field :traducao3 %>
+        <%= f.text_field :traducao3 %>
+      </td>
+    </tr>
+  </table>
+</div>

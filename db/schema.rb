@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921171458) do
+ActiveRecord::Schema.define(version: 20150922020333) do
 
   create_table "acms", force: :cascade do |t|
     t.text     "abstract",       limit: 65535
@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 20150921171458) do
     t.string   "traducao",    limit: 255
     t.string   "sinonimo2",   limit: 255
     t.string   "sinonimo3",   limit: 255
+    t.string   "traducao2",   limit: 255
+    t.string   "traducao3",   limit: 255
   end
 
   add_index "terms", ["protocol_id"], name: "index_terms_on_protocol_id", using: :btree

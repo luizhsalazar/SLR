@@ -23,7 +23,7 @@
               <b> Critérios de Qualidade: </b> <br> <p> <%= @protocol.quality %> </p><br>
               <b> Critérios de Inclusão/Exclusão: </b> <br> <p> <%= @protocol.criteria %> </p><br>
               <b> Data de Publicação: </b> <br> <p> <%= @protocol.from.to_s + " - " + @protocol.to.to_s %> </p><br>
-              <b> Resultados máximos a serem retornados: </b> <br> <p> <%= @protocol.results_returned %> </p><br>
+              <b> No. máximo de resultados de busca retornados por base : </b> <br> <p> <%= @protocol.results_returned %> </p><br>
 
               <b> Bases Digitais: </b> <br>
 
@@ -72,7 +72,7 @@
                       <tr>
                         <td><%= term.termo %></td>
                         <td><%= term.sinonimo + ', ' + term.sinonimo2 + ', ' + term.sinonimo3 %></td>
-                        <td><%= term.traducao %></td>
+                        <td><%= term.traducao + ', ' + term.traducao2 + ', ' + term.traducao3 %></td>
                       </tr>
                   <% end %>
                   </table>
