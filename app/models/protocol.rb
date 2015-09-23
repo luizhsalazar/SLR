@@ -33,5 +33,31 @@ class Protocol < ActiveRecord::Base
     end
   end
 
+  def generate_string(attributes)
+
+    @termos = ''
+
+    attributes.values.each_with_index do |term, index|
+
+      sinonimo = term[:sinonimo] == "" ? '' : '" OR "' + term[:sinonimo]
+
+      sinonimo2 = term[:sinonimo2] == "" ? '' : '" OR "' + term[:sinonimo2]
+
+      traducao2 = term[:traducao2] == "" ? '' : '" OR "' + term[:traducao2]
+
+      traducao3 = term[:traducao3] == "" ? '' : '" OR "' + term[:traducao3]
+
+      @termos += (index == attributes.size - 1) ?
+          '("' + term[:termo] + '" OR "' + term[:traducao] + sinonimo + sinonimo2 + traducao2 + traducao3 + '")' :
+          '("' + term[:termo] + '" OR "' + term[:traducao] + sinonimo + sinonimo2 + traducao2 + traducao3 + '")' + ' AND '
+    end
+
+    return @termos
+  end
+
+  # def termos
+  #   termo =
+  # end
+
 
 end

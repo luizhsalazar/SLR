@@ -16,7 +16,7 @@ class IncludedsController < ApplicationController
     redirect_to :back
   end
 
-  def index
+  def csv
     @includeds = Included.where("included = 1")
     send_data @includeds.to_csv, filename: "Incluidos-SLR-#{Date.today}.csv"
   end

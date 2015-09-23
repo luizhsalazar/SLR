@@ -71,8 +71,31 @@
                   <% @protocol.terms.each do |term|  %>
                       <tr>
                         <td><%= term.termo %></td>
-                        <td><%= term.sinonimo + ', ' + term.sinonimo2 + ', ' + term.sinonimo3 %></td>
-                        <td><%= term.traducao + ', ' + term.traducao2 + ', ' + term.traducao3 %></td>
+                        <% if term.sinonimo == '' && term.sinonimo2 == '' %>
+                            <td><%= 'Nenhum sinônimo adicionado' %></td>
+                        <% else %>
+                            <% if term.sinonimo != '' && term.sinonimo2 != '' %>
+                                <td><%= term.sinonimo + ', ' + term.sinonimo2 %></td>
+                            <% else if term.sinonimo == '' %>
+                                        <td><%= term.sinonimo2 %></td>
+                                    <% else %>
+                                        <td><%= term.sinonimo %></td>
+                                    <% end %>
+                            <% end %>
+                        <% end %>
+
+                        <% if term.traducao2 == '' && term.traducao3 == '' %>
+                            <td><%= term.traducao %></td>
+                        <% else %>
+                            <% if term.traducao2 == '' %>
+                                <td><%= term.traducao  + ', ' + term.traducao3 %></td>
+                            <% else if term.traducao3 == '' %>
+                                    <td><%= term.traducao  + ', ' + term.traducao2 %></td>
+                                <% else %>
+                                    <td><%= term.traducao  + ', ' + term.traducao2 + ', ' + term.traducao3 %></td>
+                                    <% end %>
+                            <% end %>
+                        <% end %>
                       </tr>
                   <% end %>
                   </table>

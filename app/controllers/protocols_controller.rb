@@ -26,15 +26,9 @@ class ProtocolsController < ApplicationController
   # POST /protocols.json
   def create
     @protocol = current_user.protocols.build(protocol_params)
-    termos = ''
     attributes = protocol_params[:terms_attributes]
-    attributes.values.each_with_index do |term, index|
-      termos += (index == attributes.size - 1) ?
-          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' :
-          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' + ' AND '
-    end
 
-    @protocol.query = termos
+    @protocol.query = @protocol.generate_string(attributes)
 
     respond_to do |format|
       if @protocol.save
@@ -51,15 +45,9 @@ class ProtocolsController < ApplicationController
   # PATCH/PUT /protocols/1.json
   def update
 
-    termos = ''
     attributes = protocol_params[:terms_attributes]
-    attributes.values.each_with_index do |term, index|
-      termos += (index == attributes.size - 1) ?
-          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' :
-          '("' + term[:termo] + '" OR "' + term[:sinonimo] + '" OR "' + term[:sinonimo2] + '" OR "' + term[:sinonimo3] + '" OR "' + term[:traducao] + '" OR "' + term[:traducao2] + '" OR "' + term[:traducao3] + '")' + ' AND '
-    end
 
-    @protocol.query = termos
+    @protocol.query = @protocol.generate_string(attributes)
 
     respond_to do |format|
       if @protocol.update(protocol_params)
@@ -246,7 +234,7 @@ class ProtocolsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
-        redirect_to includeds_path
+        redirect_to csv_included_path
       }
     end
 
