@@ -8,34 +8,43 @@
   <li><%= link_to 'Trabalhos pré-selecionados', selected_protocol_path %></li>
 </ol>
 
-<% @acms.each do |acm| %>
-    <br>
-    <div class="panel panel-default">
-      <div class="panel-heading" align="left"> <b><%= link_to acm.title, acm.link  %> </b>
-        <div align="right">
-            <%= link_to select_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
-                <span class="glyphicon glyphicon-ok"></span>
-                Incluir
-            <% end %>
-            <%= link_to unselect_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
-                <span class="glyphicon glyphicon-remove"></span>
-                Excluir
-            <% end %>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-12" align="left">
-            <h5>
-              <b> Autores: </b> <%= acm.author %> <br>
-              <b> Periódico/Conferência: </b> <%= acm.pubtitle  %><br>
-              <b> Abstract: </b> <p class="text-justify"> <%= acm.abstract %> </p>
-            </h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<% if @reference.results == 0 %>
+    <div class="alert alert-info"><b> Nenhum trabalho retornado! </b></div>
+<% else %>
+    <% if @acms.empty? %>
+        <div class="alert alert-info"><b> Todos trabalhos desta base já foram revisados! </b></div>
+    <% else %>
+        <% @acms.each do |acm| %>
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading" align="left"> <b><%= link_to acm.title, acm.link  %> </b>
+                <div align="right">
+                  <%= link_to select_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
+                      <span class="glyphicon glyphicon-ok"></span>
+                      Incluir
+                  <% end %>
+                  <%= link_to unselect_acm_path(acm), method: :put, class: 'btn btn-default btn-sm' do %>
+                      <span class="glyphicon glyphicon-remove"></span>
+                      Excluir
+                  <% end %>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12" align="left">
+                    <h5>
+                      <b> Autores: </b> <%= acm.author %> <br>
+                      <b> Periódico/Conferência: </b> <%= acm.pubtitle  %><br>
+                      <b> Abstract: </b> <p class="text-justify"> <%= acm.abstract %> </p>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
 <% end %>
+
+
 
 <%= will_paginate @acms, renderer: BootstrapPagination::Rails %>

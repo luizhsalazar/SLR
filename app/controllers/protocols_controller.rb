@@ -130,49 +130,50 @@ class ProtocolsController < ApplicationController
   def selected
     @protocol = Protocol.find(params[:id])
 
-    @selected_ieee = []
-    @selected_scidir = []
     @selected_scopus = []
     @selected_acm = []
+    @selected_ieee = []
+    @selected_scidir = []
     @selected_springer = []
 
     if @protocol.ieee
-      Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
-        unless ieee.selected.nil?
-          @selected_ieee.push(ieee)
-        end
+      @selected = Included.where("protocol_id = ? AND included = 0 AND name_database = 'ieee'", params[:id])
+
+      @selected.each { |ieee|
+        @selected_ieee.push(ieee)
       }
     end
 
     if @protocol.science_direct
-      Scidir.where("protocol_id = ?", params[:id]).each { |scidir|
-        unless scidir.selected.nil?
-          @selected_scidir.push(scidir)
-        end
+      @selected = Included.where("protocol_id = ? AND included = 0 AND name_database = 'scidir'", params[:id])
+
+      @selected.each { |scidir|
+        @selected_scidir.push(scidir)
       }
     end
 
     if @protocol.scopus
-      Scopu.where("protocol_id = ?", params[:id]).each { |scopus|
-        unless scopus.selected.nil?
-          @selected_scopus.push(scopus)
-        end
+      @selected = Included.where("protocol_id = ? AND included = 0 AND name_database = 'scopus'", params[:id])
+
+      @selected.each { |scopus|
+        @selected_scopus.push(scopus)
       }
+
     end
 
     if @protocol.acm
-      Acm.where("protocol_id = ?", params[:id]).each { |acm|
-        unless acm.selected.nil?
-          @selected_acm.push(acm)
-        end
+      @selected = Included.where("protocol_id = ? AND included = 0 AND name_database = 'acm'", params[:id])
+
+      @selected.each { |acm|
+        @selected_acm.push(acm)
       }
     end
 
     if @protocol.springer
-      Springer.where("protocol_id = ?", params[:id]).each { |springer|
-        unless springer.selected.nil?
-          @selected_springer.push(springer)
-        end
+      @selected = Included.where("protocol_id = ? AND included = 0 AND name_database = 'springer'", params[:id])
+
+      @selected.each { |springer|
+        @selected_springer.push(springer)
       }
     end
 
@@ -195,42 +196,42 @@ class ProtocolsController < ApplicationController
     @included_springer = []
 
     if @protocol.ieee
-      Ieee.where("protocol_id = ?", params[:id]).each { |ieee|
-        unless ieee.included.nil?
-          @included_ieee.push(ieee)
-        end
+      @included = Included.where("protocol_id = ? AND included = 1 AND name_database = 'ieee'", params[:id])
+
+      @included.each { |ieee|
+        @included_ieee.push(ieee)
       }
     end
 
     if @protocol.science_direct
-      Scidir.where("protocol_id = ?", params[:id]).each { |scidir|
-        unless scidir.included.nil?
-          @included_scidir.push(scidir)
-        end
+      @included = Included.where("protocol_id = ? AND included = 1 AND name_database = 'scidir'", params[:id])
+
+      @included.each { |scidir|
+        @included_scidir.push(scidir)
       }
     end
 
     if @protocol.scopus
-      Scopu.where("protocol_id = ?", params[:id]).each { |scopus|
-        unless scopus.included.nil?
-          @included_scopus.push(scopus)
-        end
+      @included = Included.where("protocol_id = ? AND included = 1 AND name_database = 'scopus'", params[:id])
+
+      @included.each { |scopus|
+        @included_scopus.push(scopus)
       }
     end
 
     if @protocol.acm
-      Acm.where("protocol_id = ?", params[:id]).each { |acm|
-        unless acm.included.nil?
-          @included_acm.push(acm)
-        end
+      @included = Included.where("protocol_id = ? AND included = 1 AND name_database = 'acm'", params[:id])
+
+      @included.each { |acm|
+        @included_acm.push(acm)
       }
     end
 
     if @protocol.springer
-      Springer.where("protocol_id = ?", params[:id]).each { |springer|
-        unless springer.included.nil?
-          @included_springer.push(springer)
-        end
+      @included = Included.where("protocol_id = ? AND included = 1 AND name_database = 'springer'", params[:id])
+
+      @included.each { |springer|
+        @included_springer.push(springer)
       }
     end
 
@@ -241,9 +242,18 @@ class ProtocolsController < ApplicationController
     @empty_springer = (@included_springer.empty?) ? true : false
 
     @ref_protocol = reference_exist
+
+    # respond_to do |format|
+    #   format.html
+    #   format.csv {
+    #     redirect_to includeds_path
+    #   }
+    # end
+
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_protocol
       @protocol = Protocol.find(params[:id])

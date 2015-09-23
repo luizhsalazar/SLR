@@ -1,54 +1,33 @@
 class ScidirsController < ApplicationController
   before_action only: [:show, :edit, :update, :destroy]
 
-  # GET /scidirs
-  # GET /scidirs.json
-  def index
-    @scidirs = Scidir.all
-  end
-
-  # GET /scidirs/1
-  # GET /scidirs/1.json
   def show
     @scidirs = Scidir.where("protocol_id = ?", params[:id]).paginate(:page => params[:page], per_page: 10)
-  end
-
-  # GET /scidirs/new
-  def new
-    @scidir = current_user.scidirs.build
-  end
-
-  # GET /scidirs/1/edit
-  def edit
-  end
-
-  def include
-    @scidir = Scidir.find(params[:id])
-    @scidir.included = 1
-    @scidir.selected = nil
-    @scidir.save!
-    redirect_to :back
-  end
-
-  def exclude
-    @scidir = Scidir.find(params[:id])
-    @scidir.included = nil
-    @scidir.save!
-    redirect_to :back
+    @reference = Reference.find_by_protocol_id(params[:id])
   end
 
   def select
     @scidir = Scidir.find(params[:id])
-    @scidir.selected = 1
-    @scidir.save!
+
+    @included = Included.new
+    @included.title = @scidir.title
+    @included.author = @scidir.author
+    @included.pubtitle = @scidir.pubtitle
+    @included.protocol_id = @scidir.protocol_id
+    @included.link = @scidir.link
+    @included.name_database = 'scidir'
+    @included.included = 0
+    @included.save!
+
+    @scidir.destroy
+
     redirect_to :back
   end
 
   def unselect
     @scidir = Scidir.find(params[:id])
-    @scidir.selected = nil
-    @scidir.included = nil
-    @scidir.save!
+    @scidir.destroy
+
     redirect_to :back
   end
 

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @included.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @included.author %>
+</p>
+
+<p>
+  <strong>Pubtitle:</strong>
+  <%= @included.pubtitle %>
+</p>
+
+<p>
+  <strong>Included:</strong>
+  <%= @included.included %>
+</p>
+
+<p>
+  <strong>Protocol:</strong>
+  <%= @included.protocol_id %>
+</p>
+
+<%= link_to 'Edit', edit_included_path(@included) %> |
+<%= link_to 'Back', includeds_path %>

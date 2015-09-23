@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+  resources :includeds do
+    member do
+      put 'include', to: 'includeds#include'
+      put 'exclude', to: 'includeds#exclude'
+      put 'csv', to: 'includeds#to_csv'
+    end
+  end
+
   resources :springers do
     member do
-      put 'include', to: 'springers#include'
-      put 'exclude', to: 'springers#exclude'
       put 'select', to: 'springers#select'
       put 'unselect', to: 'springers#unselect'
     end
@@ -11,8 +17,6 @@ Rails.application.routes.draw do
 
   resources :scopus do
     member do
-      put 'include', to: 'scopus#include'
-      put 'exclude', to: 'scopus#exclude'
       put 'select', to: 'scopus#select'
       put 'unselect', to: 'scopus#unselect'
     end
@@ -20,16 +24,12 @@ Rails.application.routes.draw do
 
   resources :scidirs do
     member do
-      put 'include', to: 'scidirs#include'
-      put 'exclude', to: 'scidirs#exclude'
       put 'select', to: 'scidirs#select'
       put 'unselect', to: 'scidirs#unselect'
     end
   end
   resources :acms do
     member do
-      put 'include', to: 'acms#include'
-      put 'exclude', to: 'acms#exclude'
       put 'select', to: 'acms#select'
       put 'unselect', to: 'acms#unselect'
     end
@@ -49,8 +49,6 @@ Rails.application.routes.draw do
 
   resources :ieees do
     member do
-      put 'include', to: 'ieees#include'
-      put 'exclude', to: 'ieees#exclude'
       put 'select', to: 'ieees#select'
       put 'unselect', to: 'ieees#unselect'
     end

@@ -33,7 +33,7 @@
                   <td><%= link_to ref.title, ref.link %></td>
                   <td><%= ref.author %></td>
                   <td>
-                    <%= link_to exclude_ieee_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                    <%= link_to exclude_included_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
                         <span class="glyphicon glyphicon-trash"></span>
                     <% end %>
                   </td>
@@ -67,7 +67,7 @@
                     <td><%= link_to ref.title, ref.link %></td>
                     <td><%= ref.author %></td>
                     <td>
-                      <%= link_to exclude_scidir_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                      <%= link_to exclude_included_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
                           <span class="glyphicon glyphicon-trash"></span>
                       <% end %>
                     </td>
@@ -101,7 +101,7 @@
                   <td><%= link_to ref.title, ref.link %></td>
                   <td><%= ref.author %></td>
                   <td>
-                    <%= link_to exclude_scopu_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                    <%= link_to exclude_included_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
                         <span class="glyphicon glyphicon-trash"></span>
                     <% end %>
                   </td>
@@ -135,7 +135,7 @@
                   <td><%= link_to ref.title, ref.link %></td>
                   <td><%= ref.author %></td>
                   <td>
-                    <%= link_to exclude_acm_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                    <%= link_to exclude_included_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
                         <span class="glyphicon glyphicon-trash"></span>
                     <% end %>
                   </td>
@@ -169,7 +169,7 @@
                   <td><%= link_to ref.title, ref.link %></td>
                   <td><%= ref.author %></td>
                   <td>
-                    <%= link_to exclude_springer_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
+                    <%= link_to exclude_included_path(ref), method: :put, class: 'btn btn-default btn-sm' do %>
                         <span class="glyphicon glyphicon-trash"></span>
                     <% end %>
                   </td>
@@ -181,4 +181,3 @@
       </div>
     </div>
 <% end %>
-

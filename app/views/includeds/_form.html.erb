@@ -1,0 +1,37 @@
+<%= form_for(@included) do |f| %>
+  <% if @included.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@included.errors.count, "error") %> prohibited this included from being saved:</h2>
+
+      <ul>
+      <% @included.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :pubtitle %><br>
+    <%= f.text_field :pubtitle %>
+  </div>
+  <div class="field">
+    <%= f.label :included %><br>
+    <%= f.check_box :included %>
+  </div>
+  <div class="field">
+    <%= f.label :protocol_id %><br>
+    <%= f.number_field :protocol_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
