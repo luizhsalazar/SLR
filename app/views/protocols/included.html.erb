@@ -10,14 +10,6 @@
 
 <% if @empty_ieee && @empty_scidir && @empty_scopus && @empty_acm && @empty_springer%>
     <div class="alert alert-info"><b> Nenhum trabalho incluído na revisão </b></div>
-<% else %>
-    <div class="pull-left" >
-      <%= link_to includeds_path, class: "btn btn-default" do %>
-          Exportar Dados
-          <span class="glyphicon glyphicon-download-alt" ></span>
-      <% end %>
-    </div>
-    <br><br>
 <% end %>
 
 <% unless @empty_ieee %>
