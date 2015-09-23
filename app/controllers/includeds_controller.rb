@@ -17,8 +17,8 @@ class IncludedsController < ApplicationController
   end
 
   def index
-    @includeds = Included.all
-    send_data @includeds.to_csv
+    @includeds = Included.where("included = 1")
+    send_data @includeds.to_csv, filename: "Incluidos-SLR-#{Date.today}.csv"
   end
 
   private

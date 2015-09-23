@@ -243,12 +243,12 @@ class ProtocolsController < ApplicationController
 
     @ref_protocol = reference_exist
 
-    # respond_to do |format|
-    #   format.html
-    #   format.csv {
-    #     redirect_to includeds_path
-    #   }
-    # end
+    respond_to do |format|
+      format.html
+      format.csv {
+        redirect_to includeds_path
+      }
+    end
 
   end
 
