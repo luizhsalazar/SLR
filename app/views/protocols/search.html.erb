@@ -56,13 +56,13 @@
                 <% if @protocol.science_direct %>
                   <tr>
                     <td> Science Direct Digital Library </td>
-                    <td><%= @protocol.query + '&pub-date>' + @protocol.from.to_s + '&pub-date<' + @protocol.to.to_s  %></td>
+                    <td><%= @protocol.query + '&date=' + @protocol.from.to_s + '-' + @protocol.to.to_s %></td>
                   </tr>
               <% end %>
               <% if @protocol.scopus %>
                   <tr>
                     <td> Scopus Digital Library </td>
-                    <td><%= @protocol.query + '&pub-date>' + @protocol.from.to_s + '&pub-date<' + @protocol.to.to_s %></td>
+                    <td><%= @protocol.query + '&date=' + @protocol.from.to_s + '-' + @protocol.to.to_s %></td>
                   </tr>
               <% end %>
               <% if @protocol.acm %>
