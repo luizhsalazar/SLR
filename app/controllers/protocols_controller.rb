@@ -80,8 +80,8 @@ class ProtocolsController < ApplicationController
 
     @protocol.clean_bases(params[:id])
 
-    from = params[:from]
-    to = params[:to]
+    from = params[:protocol][:from]
+    to = params[:protocol][:to]
     query = params[:protocol][:query]
     protocol_id = params[:id]
     max_results = params[:protocol][:results_returned]
