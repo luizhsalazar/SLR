@@ -9,14 +9,12 @@ class Acm < ActiveRecord::Base
     # querytext flag does a search in FULL TEXT and METADATA fields
     # md flags does a search in METADATA fields only
     # within + adv get the exact same results as in a correct research in acm website
-    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&adv=1")) # + "&since_year=" + from.to_s + "&before_year=" + to.to_s))
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&adv=1" + "&since_year=" + from + "&before_year=" + to + "&srt=meta_published_date dsc"))
 
     doc_total = doc.css("table.small-text td")
 
     # Search for last characters and remove comma to get the total found value
     total_found = doc_total.first.child.to_s[18..-1].gsub(/,/, '').to_f
-
-    @logger = Logger.new("SLR.log")
 
     not_found = total_found > max_results.to_f + 20000
 
@@ -27,7 +25,7 @@ class Acm < ActiveRecord::Base
 
       while i < max
 
-        search_query = "http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s + "&adv=1"
+        search_query = "http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s + "&adv=1&since_year=" + from + "&before_year=" + to + "&srt=meta_published_date dsc"
 
         doc = Nokogiri::HTML(open(search_query))
 
@@ -46,6 +44,8 @@ class Acm < ActiveRecord::Base
           @acm.pubtitle = ActionView::Base.full_sanitizer.sanitize(conference[index].to_s).strip.gsub(/&#13;/, '')
           @acm.abstract = ActionView::Base.full_sanitizer.sanitize(abstracts[index].to_s).strip.gsub(/&#13;/, '')
           @acm.author = ActionView::Base.full_sanitizer.sanitize(authors[index].to_s).strip.gsub(/&#13;/, '')
+
+          @acm.year = @acm.pubtitle.gsub(/[^3-6]/, '')[0].nil? ? to : '201' + @acm.pubtitle.gsub(/[^2-5]/, '')[0]
 
           @acm.protocol_id = protocol_id
           @acm.save!
