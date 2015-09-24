@@ -23,7 +23,7 @@
 <% unless @empty_ieee %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <b><%= link_to 'IEEE Xplore Digital Library', ieee_path %> </b>
+        <b><%= link_to 'IEEE Xplore Digital Library' + ' (' + @count_ieee + ')', ieee_path  %> </b>
       </div>
       <div class="panel-body">
         <div class="container-fluid">
@@ -57,7 +57,7 @@
 <% unless @empty_scidir %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <b><%= link_to 'Science Direct Digital Library', scidir_path %> </b>
+        <b><%= link_to 'Science Direct Digital Library' + ' (' + @count_scidir + ')', scidir_path %> </b>
       </div>
       <div class="panel-body">
         <div class="container-fluid">
@@ -91,7 +91,7 @@
 <% unless @empty_scopus %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <b><%= link_to 'Scopus Digital Library', scopu_path %> </b>
+        <b><%= link_to 'Scopus Digital Library' + ' (' + @count_scopus + ')', scopu_path %> </b>
       </div>
       <div class="panel-body">
         <div class="container-fluid">
@@ -125,7 +125,7 @@
 <% unless @empty_acm %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <b><%= link_to 'ACM Digital Library', acm_path %> </b>
+        <b><%= link_to 'ACM Digital Library' + ' (' + @count_acm + ')', acm_path %> </b>
       </div>
       <div class="panel-body">
         <div class="container-fluid">
@@ -159,7 +159,7 @@
 <% unless @empty_springer %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <b><%= link_to 'Springer Link Digital Library', springer_path %> </b>
+        <b><%= link_to 'Springer Link Digital Library' + ' (' + @count_springer + ')', springer_path %> </b>
       </div>
       <div class="panel-body">
         <div class="container-fluid">

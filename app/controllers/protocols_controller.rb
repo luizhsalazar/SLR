@@ -189,6 +189,8 @@ class ProtocolsController < ApplicationController
       @included.each { |ieee|
         @included_ieee.push(ieee)
       }
+
+      @count_ieee = @included_ieee.count.to_s
     end
 
     if @protocol.science_direct
@@ -197,6 +199,8 @@ class ProtocolsController < ApplicationController
       @included.each { |scidir|
         @included_scidir.push(scidir)
       }
+
+      @count_scidir = @included_scidir.count.to_s
     end
 
     if @protocol.scopus
@@ -205,6 +209,8 @@ class ProtocolsController < ApplicationController
       @included.each { |scopus|
         @included_scopus.push(scopus)
       }
+
+      @count_scopus = @included_scopus.count.to_s
     end
 
     if @protocol.acm
@@ -213,6 +219,8 @@ class ProtocolsController < ApplicationController
       @included.each { |acm|
         @included_acm.push(acm)
       }
+
+      @count_acm = @included_acm.count.to_s
     end
 
     if @protocol.springer
@@ -221,6 +229,8 @@ class ProtocolsController < ApplicationController
       @included.each { |springer|
         @included_springer.push(springer)
       }
+
+      @count_springer = @included_springer.count.to_s
     end
 
     @empty_ieee = (@included_ieee.empty?) ? true : false
