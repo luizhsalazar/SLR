@@ -84,16 +84,26 @@
                             <% end %>
                         <% end %>
 
-                        <% if term.traducao2 == '' && term.traducao3 == '' %>
-                            <td><%= term.traducao %></td>
+                        <% if term.traducao2 == '' && term.traducao3 == '' && term.traducao == '' %>
+                            <td><%= 'Nenhuma tradução adicionada' %></td>
                         <% else %>
-                            <% if term.traducao2 == '' %>
-                                <td><%= term.traducao  + ', ' + term.traducao3 %></td>
-                            <% else if term.traducao3 == '' %>
-                                    <td><%= term.traducao  + ', ' + term.traducao2 %></td>
-                                <% else %>
-                                    <td><%= term.traducao  + ', ' + term.traducao2 + ', ' + term.traducao3 %></td>
+                            <% if term.traducao == '' && term.traducao2 == '' %>
+                                <td><%= term.traducao3 %></td>
+                            <% else if term.traducao == '' && term.traducao3 == ''%>
+                                    <td><%= term.traducao2 %></td>
+                                <% else if term.traducao2 == '' && term.traducao3 == ''%>
+                                    <td><%= term.traducao %></td>
+                                    <% else if term.traducao != '' && term.traducao2 != '' && term.traducao3 != ''%>
+                                            <td><%= term.traducao + ', ' + term.traducao2 + ', ' + term.traducao3 %></td>
+                                        <% else if term.traducao != '' && term.traducao2 != '' %>
+                                                <td><%= term.traducao + ', ' + term.traducao2 %></td>
+                                            <% else if term.traducao2 != '' && term.traducao3 != '' %>
+                                                <td><%= term.traducao2 + ', ' + term.traducao3 %></td>
+                                                <% end %>
+                                            <% end %>
+                                        <% end %>
                                     <% end %>
+                                <% end %>
                             <% end %>
                         <% end %>
                       </tr>

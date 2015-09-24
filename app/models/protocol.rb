@@ -43,13 +43,15 @@ class Protocol < ActiveRecord::Base
 
       sinonimo2 = term[:sinonimo2] == "" ? '' : '" OR "' + term[:sinonimo2]
 
+      traducao = term[:traducao] == "" ? '' : '" OR "' + term[:traducao]
+
       traducao2 = term[:traducao2] == "" ? '' : '" OR "' + term[:traducao2]
 
       traducao3 = term[:traducao3] == "" ? '' : '" OR "' + term[:traducao3]
 
       @termos += (index == attributes.size - 1) ?
-          '("' + term[:termo] + '" OR "' + term[:traducao] + sinonimo + sinonimo2 + traducao2 + traducao3 + '")' :
-          '("' + term[:termo] + '" OR "' + term[:traducao] + sinonimo + sinonimo2 + traducao2 + traducao3 + '")' + ' AND '
+          '("' + term[:termo] + traducao + sinonimo + sinonimo2 + traducao2 + traducao3 + '")' :
+          '("' + term[:termo] + traducao + sinonimo + sinonimo2 + traducao2 + traducao3 + '")' + ' AND '
     end
 
     return @termos
