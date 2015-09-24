@@ -25,9 +25,10 @@
             <%= f.hidden_field :from %>
             <%= f.hidden_field :to %>
 
-            <div class="form-group">
-              <%= f.submit "Buscar", class: "btn btn-default" %>
-            </div>
+
+            <%= button_tag( :class => "btn btn-primary btn-lg") do %>
+                Buscar <span class="glyphicon glyphicon-search"></span>
+            <% end %>
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ class Acm < ActiveRecord::Base
           @acm.abstract = ActionView::Base.full_sanitizer.sanitize(abstracts[index].to_s).strip.gsub(/&#13;/, '')
           @acm.author = ActionView::Base.full_sanitizer.sanitize(authors[index].to_s).strip.gsub(/&#13;/, '')
 
-          @acm.year = @acm.pubtitle.gsub(/[^3-6]/, '')[0].nil? ? to : '201' + @acm.pubtitle.gsub(/[^2-5]/, '')[0]
+          @acm.year = @acm.pubtitle.gsub(/[^2-5]/, '')[0].nil? ? to : '201' + @acm.pubtitle.gsub(/[^2-5]/, '')[0].to_s
 
           @acm.protocol_id = protocol_id
           @acm.save!
