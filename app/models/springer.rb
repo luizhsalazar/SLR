@@ -2,9 +2,7 @@ class Springer < ActiveRecord::Base
 
   def search(query, protocol_id, max_returned, from, to)
 
-    doc = Nokogiri::XML(open('http://api.springer.com/metadata/pam?api_key=df81deec5097211838ef3a07c91c02d2&q=' + query + '&p=' + max_returned))
-
-    @logger = Logger.new("SLR.log")
+    doc = Nokogiri::XML(open('http://api.springer.com/metadata/pam?api_key=df81deec5097211838ef3a07c91c02d2&q=year:' + to + '&q=' + query + '&p=' + max_returned))
 
     doc.xpath("//response//result/*").each do|entry|
       if entry.name == 'total'
@@ -34,6 +32,10 @@ class Springer < ActiveRecord::Base
 
         if element.name == 'url'
           @springer.link = element.text
+        end
+
+        if element.name == 'publicationDate'
+          @springer.year = element.text[0..3]
         end
 
       end
