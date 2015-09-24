@@ -55,9 +55,4 @@ class Protocol < ActiveRecord::Base
     return @termos
   end
 
-  # def termos
-  #   termo =
-  # end
-
-
 end
