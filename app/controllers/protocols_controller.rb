@@ -243,7 +243,7 @@ class ProtocolsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv {
+      format.xls {
         redirect_to csv_included_path(:param1 => params[:id])
       }
     end

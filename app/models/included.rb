@@ -3,9 +3,10 @@ class Included < ActiveRecord::Base
 
   def self.to_csv(options = {})
     attributes = %w{title author pubtitle name_database}
+    header = %w{Título Autores Periódico/Conferência Database}
 
     CSV.generate(options) do |csv|
-      csv << attributes
+      csv << header
       all.each do |reference|
         csv << reference.attributes.values_at(*attributes)
       end

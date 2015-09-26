@@ -18,7 +18,8 @@ class IncludedsController < ApplicationController
 
   def csv
     @includeds = Included.where("included = 1 AND protocol_id = ?", params[:id])
-    send_data @includeds.to_csv, filename: "Incluidos-SLR-#{Date.today}.csv"
+
+    send_data @includeds.to_csv, filename: "Incluidos-SLR-#{Date.today}.xls"
   end
 
   private

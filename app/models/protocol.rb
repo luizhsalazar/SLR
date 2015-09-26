@@ -22,17 +22,6 @@ class Protocol < ActiveRecord::Base
 
   end
 
-  def self.to_csv
-    attributes = %w{title}
-
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
-      all.each do |protocol|
-        csv << protocol.attributes.values_at(*attributes)
-      end
-    end
-  end
-
   def generate_string(attributes)
 
     @termos = ''
