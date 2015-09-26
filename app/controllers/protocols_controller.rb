@@ -16,6 +16,14 @@ class ProtocolsController < ApplicationController
   def new
     @protocol = current_user.protocols.build
     1.times { @protocol.terms.build }
+
+    @protocol.ieee = true
+    @protocol.science_direct = true
+    @protocol.scopus = true
+    @protocol.acm = true
+    @protocol.springer = true
+    @protocol.from = 2005
+    @protocol.to = 2015
   end
 
   # GET /protocols/1/edit
