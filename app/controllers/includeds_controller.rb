@@ -16,12 +16,6 @@ class IncludedsController < ApplicationController
     redirect_to :back
   end
 
-  def csv
-    @includeds = Included.where("included = 1 AND protocol_id = ?", params[:id])
-
-    send_data @includeds.to_csv, filename: "Incluidos-SLR-#{Date.today}.xls"
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_included

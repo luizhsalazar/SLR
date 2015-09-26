@@ -249,11 +249,11 @@ class ProtocolsController < ApplicationController
 
     @ref_protocol = reference_exist
 
+    @includeds = Included.where("included = 1 AND protocol_id = ?", params[:id])
+
     respond_to do |format|
       format.html
-      format.xls {
-        redirect_to csv_included_path(:param1 => params[:id])
-      }
+      format.xls
     end
 
   end

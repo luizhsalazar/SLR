@@ -12,7 +12,7 @@
     <div class="alert alert-info"><b> Nenhum trabalho incluído na revisão </b></div>
 <% else %>
     <div class="pull-left" >
-      <%= link_to csv_included_path, class: "btn btn-default" do %>
+      <%= link_to included_protocol_path(format: "xls"), class: "btn btn-default" do %>
           Exportar Dados
           <span class="glyphicon glyphicon-download-alt" ></span>
       <% end %>

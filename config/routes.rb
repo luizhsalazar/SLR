@@ -5,7 +5,6 @@ Rails.application.routes.draw do
       put 'include', to: 'includeds#include'
       put 'exclude', to: 'includeds#exclude'
       get 'csv', to: 'includeds#csv'
-      # match "/users/:id" => "users#show", via: :get
     end
   end
 

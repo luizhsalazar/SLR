@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ss:Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <ss:Worksheet ss:Name="Incluidos-SLR">
+    <ss:Table>
+      <!--<ss:Column ss:ss:Width="100"/>-->
+      <ss:Row>
+        <ss:Cell><ss:Data ss:Type="String">Título</ss:Data></ss:Cell>
+        <ss:Cell><ss:Data ss:Type="String">Autores</ss:Data></ss:Cell>
+        <ss:Cell><ss:Data ss:Type="String">Conferência/Periódico</ss:Data></ss:Cell>
+        <ss:Cell><ss:Data ss:Type="String">Biblioteca</ss:Data></ss:Cell>
+      </ss:Row>
+      <% @includeds.each do |ref| %>
+          <ss:Row>
+            <ss:Cell><ss:Data ss:Type="String"><%= ref.title %></ss:Data></ss:Cell>
+            <ss:Cell><ss:Data ss:Type="String"><%= ref.author %></ss:Data></ss:Cell>
+            <ss:Cell><ss:Data ss:Type="String"><%= ref.pubtitle %></ss:Data></ss:Cell>
+            <ss:Cell><ss:Data ss:Type="String"><%= ref.name_database %></ss:Data></ss:Cell>
+          </ss:Row>
+      <% end %>
+    </ss:Table>
+  </ss:Worksheet>
+</ss:Workbook>
