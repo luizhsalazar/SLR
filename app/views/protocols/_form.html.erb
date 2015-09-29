@@ -36,7 +36,7 @@
                 <%= f.text_area :research_question, rows: '4', class: "form-control",
                                                     placeholder:
 'Exemplo: As perguntas de pesquisa a serem respondidas neste estudo são:
-- Quantos tópios de pesquisa estão sendo abordados?
+- Quantos tópicos de pesquisa estão sendo abordados?
 - Quem está liderando as pesquisas EBSE?
 - Quais são as limitações da pesquisa atual?'
                 %>
@@ -114,7 +114,8 @@ Os seguintes tipos de trabalhos serão excluídos:
           </div>
         </div>
 
-        <div class="panel panel-default" align="left"><b> String de busca </b> <i>(Não utilizar acentuação nos termos!)</i>
+
+        <div class="panel panel-default" align="left"><b> String de busca </b>
           <table class="table">
             <tr>
               <th>  </th>
@@ -139,6 +140,10 @@ Os seguintes tipos de trabalhos serão excluídos:
             <%= f.fields_for :terms do |builder| %>
                 <%= render 'term_fields', :f => builder %>
             <% end %>
+          </div>
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Atenção!</strong> Não utilizar acentuação nos termos, sinônimos e traduções
           </div>
           <div id="paging_termos">
             <%= link_to_add_fields (button_to "Adicionar termos", class: "btn btn-primary" ), f, :terms %>
