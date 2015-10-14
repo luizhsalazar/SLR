@@ -9,7 +9,7 @@ class Acm < ActiveRecord::Base
     # querytext flag does a search in FULL TEXT and METADATA fields
     # md flags does a search in METADATA fields only
     # within + adv get the exact same results as in a correct research in acm website
-    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&adv=1" + "&since_year=" + from + "&before_year=" + to + "&srt=meta_published_date dsc"))
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&adv=1" + "&since_year=" + from + "&before_year=" + to))
 
     doc_total = doc.css("table.small-text td")
 
@@ -25,7 +25,7 @@ class Acm < ActiveRecord::Base
 
       while i < max
 
-        search_query = "http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s + "&adv=1&since_year=" + from + "&before_year=" + to + "&srt=meta_published_date dsc"
+        search_query = "http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s + "&adv=1&since_year=" + from + "&before_year=" + to
 
         doc = Nokogiri::HTML(open(search_query))
 

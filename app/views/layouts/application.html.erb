@@ -46,7 +46,6 @@
                   <p class="user"></p>
                 </td>
                 <td align="right" width="310">
-
                   <% if user_signed_in? %>
                     <%= link_to (image_tag 'cadastrar.png'), new_protocol_path %>
                     <%= link_to (image_tag 'sair.png'), destroy_user_session_path, :method => :delete %>
@@ -59,12 +58,14 @@
             </table>
           </div>
 
-          <div id="home_header">
-            <p class="about">
-              Ferramenta para auxiliar a Revisão Sistemática da Literatura (SLR)
-              <br/> <br/>
-            </p>
-          </div>
+          <% unless user_signed_in? %>
+              <div id="home_header">
+                <p class="about">
+                  Ferramenta para auxiliar a Revisão Sistemática da Literatura (SLR)
+                  <br/> <br/>
+                </p>
+              </div>
+          <% end %>
 
           <div id="search_form_container">
               <div id="main_content" class="container">
