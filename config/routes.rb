@@ -54,6 +54,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'terms_of_service', to: 'home#terms_of_service'
+  get 'privacy_policy', to: 'home#privacy_policy'
+  get 'community_rules', to: 'home#community_rules'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
