@@ -48,5 +48,5 @@ production:
   base: ou=Users,dc=telemedicina,dc=ufsc,dc=br
   admin_user: cn=Users,dc=telemedicina,dc=ufsc,dc=br
   admin_password: admin_password
-  ssl: start_tls
+  ssl: false
   # <<: *AUTHORIZATIONS
