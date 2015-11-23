@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924173459) do
+ActiveRecord::Schema.define(version: 20151123171026) do
 
   create_table "acms", force: :cascade do |t|
     t.text     "abstract",       limit: 65535
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20150924173459) do
     t.boolean  "selected",       limit: 1
     t.integer  "protocol_id",    limit: 4
     t.integer  "year",           limit: 4
+  end
+
+  create_table "data_libraries", force: :cascade do |t|
+    t.text     "abstract",   limit: 65535
+    t.string   "author",     limit: 255
+    t.string   "link",       limit: 255
+    t.string   "publisher",  limit: 255
+    t.string   "pubtitle",   limit: 255
+    t.string   "pubtype",    limit: 255
+    t.string   "title",      limit: 255
+    t.string   "database",   limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "year",       limit: 4
   end
 
   create_table "google_scholars", force: :cascade do |t|
@@ -192,9 +206,11 @@ ActiveRecord::Schema.define(version: 20150924173459) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "lab",                    limit: 255
+    t.string   "username",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

@@ -36,6 +36,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 # authentication for users
 gem 'devise', '~> 3.5.1'
 
+gem 'devise_ldap_authenticatable', :git => 'git://github.com/cschiewek/devise_ldap_authenticatable.git'
+
 gem 'bibtex-ruby', '~> 4.0.14'
 
 gem 'crack', '~> 0.4.2'

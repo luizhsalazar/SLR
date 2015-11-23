@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/cschiewek/devise_ldap_authenticatable.git
+  revision: 79bb676d40fc84ce0359b0581205b0bb16201fcb
+  specs:
+    devise_ldap_authenticatable (0.8.6)
+      devise (>= 3.4.1)
+      net-ldap (>= 0.6.0, <= 0.11)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,6 +135,7 @@ GEM
     mysql2 (0.3.19)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
+    net-ldap (0.11)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -235,6 +244,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   crack (~> 0.4.2)
   devise (~> 3.5.1)
+  devise_ldap_authenticatable!
   execjs
   haml (~> 4.0.6)
   jbuilder (~> 2.0)
