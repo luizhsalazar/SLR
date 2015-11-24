@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
+//= require sweet-alert
 //= require_tree .
 
 function remove_fields (link) {
@@ -24,8 +25,10 @@ function remove_fields (link) {
 
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g")
+    var regexp = new RegExp("new_" + association, "g");
     $(link).parent().before(content.replace(regexp, new_id));
+    var texto = "Algumas bases possuem quantidade máxima de termos para execução das buscas.";
+    swal("Fique atento!", texto, "warning");
 }
 
 $(document).on("click", "a.link_to_add_fields", function(e){

@@ -81,19 +81,19 @@
                 <br>
               </div>
 
-              <%= f.label :bases_digitais %>  <br>
+              <%= f.label :bases_digitais %> (Nº máximo de termos)  <br>
               <div class="container-fluid">
-                <%= f.check_box :ieee, {:checked=> @protocol.ieee} %> IEEE Xplore <br>
-                <%= f.check_box :science_direct, {:checked=> @protocol.science_direct} %> Science Direct <br>
-                <%= f.check_box :scopus, {:checked=> @protocol.scopus} %> Scopus <br>
-                <%= f.check_box :acm, {:checked=> @protocol.acm} %> ACM Digital Library <br>
-                <%= f.check_box :springer, {:checked=> @protocol.springer} %> Springer Digital Library <br>
+                <%= f.check_box :ieee, {:checked=> @protocol.ieee} %> <b> IEEE Xplore </b> (9 termos) <br>
+                <%= f.check_box :science_direct, {:checked=> @protocol.science_direct} %> <b> Science Direct </b> (14 termos) <br>
+                <%= f.check_box :scopus, {:checked=> @protocol.scopus} %> <b> Scopus </b> (14 termos) <br>
+                <%= f.check_box :acm, {:checked=> @protocol.acm} %> <b> ACM Digital Library </b> (Não especificado) <br>
+                <%= f.check_box :springer, {:checked=> @protocol.springer} %> <b> Springer Digital Library </b> (Não especificado) <br>
               </div>
               <br>
 
-              <strong> No. máximo de resultados de busca retornados por base </strong><br><br>
+              <strong> Nº máximo de resultados de busca retornados por base </strong><br><br>
               <div class="container-fluid">
-                No. máximo: <%= f.select(:results_returned, options_for_select([[100], [80], [60], [40], [20]], @protocol.results_returned)) %>
+                Nº máximo: <%= f.select(:results_returned, options_for_select([[100], [80], [60], [40], [20]], @protocol.results_returned)) %>
               </div>
 
             </div>
