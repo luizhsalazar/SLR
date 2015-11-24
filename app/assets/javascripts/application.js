@@ -28,7 +28,7 @@ function add_fields(link, association, content) {
     var regexp = new RegExp("new_" + association, "g");
     $(link).parent().before(content.replace(regexp, new_id));
     var texto = "Algumas bases possuem quantidade máxima de termos para execução das buscas.";
-    swal("Fique atento!", texto, "warning");
+    swal("Atenção!", texto, "warning");
 }
 
 $(document).on("click", "a.link_to_add_fields", function(e){
