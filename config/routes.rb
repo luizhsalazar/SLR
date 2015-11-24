@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'home#terms_of_service'
   get 'privacy_policy', to: 'home#privacy_policy'
   get 'community_rules', to: 'home#community_rules'
+  get 'user_manual', to: 'home#user_manual'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
