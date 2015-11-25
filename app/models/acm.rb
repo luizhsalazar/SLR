@@ -4,17 +4,15 @@ class Acm < ActiveRecord::Base
 
     max = max_results.to_f / 20
 
-    j = 1
+    j = 0
 
-    # querytext flag does a search in FULL TEXT and METADATA fields
-    # md flags does a search in METADATA fields only
-    # within + adv get the exact same results as in a correct research in acm website
-    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?within=" + query + "&adv=1" + "&since_year=" + from + "&before_year=" + to))
+    doc = Nokogiri::HTML(open("http://dl.acm.org/results.cfm?query=" + query + "&since_year=" + from + "&before_year=" + to))
 
-    doc_total = doc.css("table.small-text td")
+    total = doc.css("#resfound").first.text
 
-    # Search for last characters and remove comma to get the total found value
-    total_found = doc_total.first.child.to_s[18..-1].gsub(/,/, '').to_f
+    index = total.index('r')
+
+    total_found = total[0..index-2].gsub(/,/, '').to_f
 
     not_found = total_found > max_results.to_f + 20000
 
@@ -25,27 +23,31 @@ class Acm < ActiveRecord::Base
 
       while i < max
 
-        search_query = "http://dl.acm.org/results.cfm?within=" + query + "&start=" + j.to_s + "&adv=1&since_year=" + from + "&before_year=" + to
+        search_query = "http://dl.acm.org/results.cfm?query=" + query + "&start=" + j.to_s + "&since_year=" + from + "&before_year=" + to
 
         doc = Nokogiri::HTML(open(search_query))
 
-        links = doc.css("a.medium-text")
-        abstracts = doc.css("div.abstract2")
-        conference = doc.css("div.addinfo")
-        authors = doc.css("div.authors")
+        results = doc.css("#results").css("div.details")
 
-        links.each { |link|
+        titles = results.css("div.title")
+        authors = results.css("div.authors")
+        pubtitles = results.css("div.source")
+        abstracts = doc.css("div.abstract")
+
+        titles.each { |title|
+
+          link = title.css("a")
+          pubtitle = pubtitles[index]
 
           @acm = Acm.new
-          @acm.title = link.child
-          @acm.link = 'http://dl.acm.org/' + link['href']
+          @acm.title = title.text
+          @acm.link = 'http://dl.acm.org/' + link[0]['href']
 
-          # Stripping HTML tags and deleting undesirable symbols
-          @acm.pubtitle = ActionView::Base.full_sanitizer.sanitize(conference[index].to_s).strip.gsub(/&#13;/, '')
           @acm.abstract = ActionView::Base.full_sanitizer.sanitize(abstracts[index].to_s).strip.gsub(/&#13;/, '')
           @acm.author = ActionView::Base.full_sanitizer.sanitize(authors[index].to_s).strip.gsub(/&#13;/, '')
 
-          @acm.year = @acm.pubtitle.gsub(/[^2-5]/, '')[0].nil? ? to : '201' + @acm.pubtitle.gsub(/[^2-5]/, '')[0].to_s
+          @acm.pubtitle =pubtitle.text
+          @acm.year = pubtitle.css("span.publicationDate").text
 
           @acm.protocol_id = protocol_id
           @acm.save!

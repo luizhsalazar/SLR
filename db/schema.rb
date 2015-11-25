@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123171026) do
+ActiveRecord::Schema.define(version: 20151125180519) do
 
   create_table "acms", force: :cascade do |t|
     t.text     "abstract",       limit: 65535
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20151123171026) do
     t.boolean  "included",       limit: 1
     t.boolean  "selected",       limit: 1
     t.integer  "protocol_id",    limit: 4
-    t.integer  "year",           limit: 4
+    t.text     "year",           limit: 65535
   end
 
   create_table "data_libraries", force: :cascade do |t|
